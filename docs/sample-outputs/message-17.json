@@ -1,0 +1,164 @@
+{
+    "id": 17,
+    "sourceType": "EMAIL",
+    "sender": "m.alvarez@westside-pharmacy.example",
+    "subject": "Broken safety seal on Neptazol bottle - batch B7788",
+    "receivedAt": "2026-07-30T10:15:00Z",
+    "bodyText": "We received a shipment of Neptazol and noticed one bottle (batch B7788) had a broken safety seal and a loose cap. No patient has taken from this bottle. Photo of the bottle is attached.",
+    "status": "PROCESSED",
+    "attachments": [
+        {
+            "id": 13,
+            "filename": "pqc-01-complaint.pdf",
+            "mimeType": "application/pdf",
+            "processable": true,
+            "pdfFlavor": "DIGITAL",
+            "detectedLanguage": "en",
+            "pageCount": 1,
+            "processed": true,
+            "summary": "The document is a Product Quality Complaint Form submitted by a pharmacy technician named M. Alvarez from the USA. The complaint concerns the medication Neptazol 20mg, packaged in a bottle of 30 tablets, with the specific batch/lot number B7788. The reporter indicates that the safety seal on the product was broken upon arrival, and the cap was loose, raising potential safety and quality concerns. A photo of the affected bottle is attached to the document for review. \n\nThis document is relevant to a patient-safety and quality complaint review because it addresses issues related to the integrity of the product packaging, which can directly impact patient safety. The broken safety seal and loose cap could lead to contamination risks or indicate potential tampering, both of which are serious concerns for medication quality. The inclusion of a photo supports the complaint, providing visual evidence of the reported issue. Overall, this document should be considered significant for further investigation into the product's quality and safety standards."
+        }
+    ],
+    "classifications": [
+        {
+            "id": 22,
+            "category": "PQC",
+            "confidence": 1.0,
+            "reason": "The message reports a broken safety seal and a loose cap on a specific product, Neptazol, with a concrete batch number.",
+            "reviewerStatus": "PENDING",
+            "reviewerCategory": null,
+            "reviewedBy": null,
+            "reviewedAt": null
+        }
+    ],
+    "extractedFields": [
+        {
+            "id": 245,
+            "attachmentId": 13,
+            "caseNumber": null,
+            "fieldGroup": "PQC",
+            "fieldName": "product_name",
+            "fieldValue": "Neptazol 20mg",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 246,
+            "attachmentId": 13,
+            "caseNumber": null,
+            "fieldGroup": "PQC",
+            "fieldName": "batch_lot_number",
+            "fieldValue": "B7788",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 247,
+            "attachmentId": 13,
+            "caseNumber": null,
+            "fieldGroup": "PQC",
+            "fieldName": "defect_description",
+            "fieldValue": "Safety seal was broken on arrival; cap was loose",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 248,
+            "attachmentId": 13,
+            "caseNumber": null,
+            "fieldGroup": "PQC",
+            "fieldName": "photo_mentioned",
+            "fieldValue": "yes",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        }
+    ],
+    "tables": [],
+    "images": [
+        {
+            "id": 3,
+            "attachmentId": 13,
+            "pageNumber": 1,
+            "description": "The image depicts a packaging container with a label indicating 'SEAL BROKEN' in red text on a light background. The top of the container shows an outline suggesting a lid or cap, while the container's body is unmarked except for the broken seal indication. The visual suggests that there may be an issue with the packaging integrity.",
+            "flaggedForReview": true
+        }
+    ],
+    "literatureCases": [],
+    "auditTrail": [
+        {
+            "id": 33,
+            "entityType": "MESSAGE",
+            "entityId": 17,
+            "actor": "system",
+            "action": "MESSAGE_INGESTED",
+            "detailJson": "{\"fixture\": \"pqc-01.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
+            "createdAt": "2026-09-04T04:49:43.305565Z"
+        },
+        {
+            "id": 334,
+            "entityType": "ATTACHMENT",
+            "entityId": 13,
+            "actor": "system",
+            "action": "AI_PDF_PROCESSED",
+            "detailJson": "{\"flavor\": \"DIGITAL\", \"pageCount\": 1, \"confidence\": 0.95}",
+            "createdAt": "2026-09-04T04:51:19.199363Z"
+        },
+        {
+            "id": 336,
+            "entityType": "CLASSIFICATION",
+            "entityId": 22,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The message reports a broken safety seal and a loose cap on a specific product, Neptazol, with a concrete batch number.\", \"category\": \"PQC\", \"confidence\": 1.0}",
+            "createdAt": "2026-09-04T04:51:21.766128Z"
+        },
+        {
+            "id": 337,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 245,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:51:21.768787Z"
+        },
+        {
+            "id": 338,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 246,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"batch_lot_number\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:51:21.771240Z"
+        },
+        {
+            "id": 339,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 247,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"defect_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:51:21.772836Z"
+        },
+        {
+            "id": 340,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 248,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"photo_mentioned\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:51:21.774395Z"
+        }
+    ]
+}

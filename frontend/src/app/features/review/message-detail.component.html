@@ -1,0 +1,184 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="back()"><mat-icon>arrow_back</mat-icon></button>
+  <span>{{ detail?.subject || '(no subject)' }}</span>
+  <span class="spacer"></span>
+  <span class="status-chip" *ngIf="detail">{{ detail.status }}</span>
+</mat-toolbar>
+
+<mat-progress-bar *ngIf="loading || submitting" mode="indeterminate"></mat-progress-bar>
+
+<div class="detail-wrap" *ngIf="detail && !loading">
+  <div class="column left">
+    <mat-tab-group>
+      <mat-tab [label]="detail.sourceType === 'UPLOAD' ? 'Upload info' : 'Email'">
+        <div class="pane" *ngIf="detail.sourceType !== 'UPLOAD'; else uploadInfo">
+          <p><strong>From:</strong> {{ detail.sender }}</p>
+          <p><strong>Received:</strong> {{ detail.receivedAt | date: 'medium' }}</p>
+          <mat-divider></mat-divider>
+          <pre class="body-text">{{ detail.bodyText || '(no body text)' }}</pre>
+        </div>
+        <ng-template #uploadInfo>
+          <div class="pane">
+            <p>Independently uploaded for literature screening (Section 4 bonus) — not received via the mailbox.</p>
+            <p><strong>Uploaded:</strong> {{ detail.receivedAt | date: 'medium' }}</p>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab *ngFor="let att of detail.attachments" [label]="att.filename">
+        <div class="pane">
+          <p>
+            <strong>Type:</strong> {{ att.processable ? (att.pdfFlavor || 'processing…') : 'not processed (non-PDF)' }}
+            <span *ngIf="att.detectedLanguage"> · lang: {{ att.detectedLanguage }}</span>
+            <span *ngIf="att.pageCount"> · {{ att.pageCount }} page(s)</span>
+          </p>
+          <p class="summary" *ngIf="att.summary"><strong>AI summary:</strong> {{ att.summary }}</p>
+
+          <iframe *ngIf="att.processable" class="pdf-frame" [src]="safeAttachmentUrl(att.id)"></iframe>
+
+          <div *ngIf="tablesFor(att.id).length">
+            <h4>Extracted tables</h4>
+            <div class="table-scroll" *ngFor="let t of tablesFor(att.id)">
+              <p class="muted">Page {{ t.pageNumber }}</p>
+              <table class="extracted-table">
+                <tr>
+                  <th *ngFor="let h of parseTable(t.tableJson).headers">{{ h }}</th>
+                </tr>
+                <tr *ngFor="let row of parseTable(t.tableJson).rows">
+                  <td *ngFor="let cell of row">{{ cell }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div *ngIf="imagesFor(att.id).length">
+            <h4>Images found</h4>
+            <ul>
+              <li *ngFor="let img of imagesFor(att.id)">
+                Page {{ img.pageNumber }}: {{ img.description }}
+                <mat-chip *ngIf="img.flaggedForReview" color="warn" highlighted>needs review</mat-chip>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <div class="column right">
+    <mat-card *ngIf="detail.sourceType !== 'UPLOAD'">
+      <mat-card-header><mat-card-title>AI Classification</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <div class="classification-row" *ngFor="let c of classifications">
+          <div class="cls-header">
+            <strong>{{ c.category }}</strong>
+            <span class="muted">{{ (c.confidence * 100) | number: '1.0-0' }}% confidence</span>
+          </div>
+          <p class="reason">{{ c.reason }}</p>
+          <mat-button-toggle-group [(ngModel)]="c.uiDecision" aria-label="Decision">
+            <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
+            <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
+            <mat-button-toggle value="REJECTED">Reject</mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-form-field *ngIf="c.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-select">
+            <mat-label>Correct category</mat-label>
+            <mat-select [(ngModel)]="c.uiOverrideCategory">
+              <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-divider></mat-divider>
+        </div>
+        <p *ngIf="!classifications.length" class="muted">No classification yet — still processing.</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngFor="let group of fieldGroups">
+      <mat-card-header><mat-card-title>{{ group }}</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <div class="field-row" *ngFor="let f of fieldsFor(group)">
+          <div class="field-header">
+            <strong>{{ f.fieldName }}</strong>
+            <span class="muted" *ngIf="f.confidence !== null">{{ (f.confidence * 100) | number: '1.0-0' }}%</span>
+          </div>
+          <p class="field-value">{{ f.fieldValue }}</p>
+          <p class="muted source">source: {{ sourceLabel(f) }}</p>
+          <mat-button-toggle-group [(ngModel)]="f.uiDecision" aria-label="Decision">
+            <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
+            <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-form-field *ngIf="f.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-input">
+            <mat-label>Corrected value</mat-label>
+            <input matInput [(ngModel)]="f.uiOverrideValue" />
+          </mat-form-field>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="detail.sourceType === 'UPLOAD'">
+      <mat-card-header><mat-card-title>Literature Screening — Patient Cases</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <p *ngIf="!literatureCases.length" class="muted">No patient cases identified in this article.</p>
+
+        <div class="case-block" *ngFor="let c of literatureCases">
+          <div class="cls-header">
+            <strong>Case {{ c.caseNumber }} — {{ c.relevantCase ? 'Relevant' : 'Not relevant' }}</strong>
+            <span class="muted">{{ (c.confidence * 100) | number: '1.0-0' }}% confidence</span>
+          </div>
+          <p class="reason">{{ c.relevanceReason }}</p>
+          <p class="summary">{{ c.summary }}</p>
+          <mat-button-toggle-group [(ngModel)]="c.uiDecision" aria-label="Decision">
+            <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
+            <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
+            <mat-button-toggle value="REJECTED">Reject</mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-form-field *ngIf="c.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-select">
+            <mat-label>Actually relevant?</mat-label>
+            <mat-select [(ngModel)]="c.uiOverrideIsRelevant">
+              <mat-option [value]="true">Yes — relevant case</mat-option>
+              <mat-option [value]="false">No — not relevant</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="case-fields" *ngIf="fieldGroupsForCase(c.caseNumber).length">
+            <div *ngFor="let group of fieldGroupsForCase(c.caseNumber)">
+              <h4>{{ group }}</h4>
+              <div class="field-row" *ngFor="let f of fieldsForCase(c.caseNumber)" [hidden]="f.fieldGroup !== group">
+                <div class="field-header">
+                  <strong>{{ f.fieldName }}</strong>
+                  <span class="muted" *ngIf="f.confidence !== null">{{ (f.confidence * 100) | number: '1.0-0' }}%</span>
+                </div>
+                <p class="field-value">{{ f.fieldValue }}</p>
+                <p class="muted source">source: {{ sourceLabel(f) }}</p>
+                <mat-button-toggle-group [(ngModel)]="f.uiDecision" aria-label="Decision">
+                  <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
+                  <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
+                </mat-button-toggle-group>
+                <mat-form-field *ngIf="f.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-input">
+                  <mat-label>Corrected value</mat-label>
+                  <input matInput [(ngModel)]="f.uiOverrideValue" />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <button mat-raised-button color="primary" class="submit-btn" (click)="submitReview()" [disabled]="submitting">
+      Submit review
+    </button>
+
+    <mat-expansion-panel class="audit-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Audit trail ({{ detail.auditTrail.length }})</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="audit-entry" *ngFor="let a of detail.auditTrail">
+        <span class="muted">{{ a.createdAt | date: 'medium' }}</span>
+        — <strong>{{ a.actor }}</strong> {{ a.action }}
+        <span class="muted" *ngIf="a.detailJson"> ({{ a.detailJson }})</span>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+{
+  "sender": "newsletter@pharmapromo-events.example",
+  "subject": "You're invited: Fall Product Showcase Webinar!",
+  "receivedAt": "2026-08-03T09:00:00Z",
+  "bodyText": "Join us for our annual Fall Product Showcase! Learn about our newest formulations, meet the team, and enter our raffle for a $50 gift card. Register now - seats are limited!",
+  "attachments": [],
+  "note": "Not Relevant - marketing email"
+}

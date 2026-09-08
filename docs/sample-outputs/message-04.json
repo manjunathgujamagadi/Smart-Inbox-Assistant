@@ -1,0 +1,527 @@
+{
+    "id": 4,
+    "sourceType": "EMAIL",
+    "sender": "dr.owusu@brightpath-medical.example",
+    "subject": "Case report - Sedaprin and falls in elderly patients",
+    "receivedAt": "2026-07-28T10:05:00Z",
+    "bodyText": "Sharing a relevant case report about Sedaprin and fall risk in elderly patients, similar to what we saw with our patient Grace Owens.",
+    "status": "PROCESSED",
+    "attachments": [
+        {
+            "id": 4,
+            "filename": "article-04.pdf",
+            "mimeType": "application/pdf",
+            "processable": true,
+            "pdfFlavor": "ARTICLE",
+            "detectedLanguage": "en",
+            "pageCount": 1,
+            "processed": true,
+            "summary": "This article presents a case study of a 71-year-old woman who experienced dizziness and a fall shortly after beginning treatment with Sedaprin, a medication prescribed for sleep difficulties. The patient was started on a 10mg nightly dosage but reported dizziness upon standing just two days later, leading to a fall and a bruise on her hip. After discontinuing Sedaprin, the patient did not experience any further falls in the following month. \n\nThe authors emphasize that the orthostatic effects of Sedaprin may often be overlooked in older adults, suggesting that lower starting doses might be more appropriate for this age group to minimize risks. This document is relevant to a patient-safety review because it highlights potential adverse effects associated with Sedaprin in elderly patients, which is important information for monitoring drug safety. The case underlines the need for caution in prescribing this medication to older adults and could inform guidelines for safer prescribing practices."
+        }
+    ],
+    "classifications": [
+        {
+            "id": 5,
+            "category": "ICSR",
+            "confidence": 1.0,
+            "reason": "The case report describes a specific patient (71-year-old woman) who experienced a bad reaction (dizziness and a fall) after taking Sedaprin.",
+            "reviewerStatus": "PENDING",
+            "reviewerCategory": null,
+            "reviewedBy": null,
+            "reviewedAt": null
+        },
+        {
+            "id": 6,
+            "category": "MI",
+            "confidence": 1.0,
+            "reason": "The email explicitly shares a case report and raises concerns about the use of Sedaprin in elderly patients, indicating a request for information on its safety.",
+            "reviewerStatus": "PENDING",
+            "reviewerCategory": null,
+            "reviewedBy": null,
+            "reviewedAt": null
+        }
+    ],
+    "extractedFields": [
+        {
+            "id": 59,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "age",
+            "fieldValue": "71",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 60,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "sex",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 61,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "weight_height",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 62,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "relevant_history",
+            "fieldValue": "sleep difficulty",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 63,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_name_or_role",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 64,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_role",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 65,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_country",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 66,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "product_name",
+            "fieldValue": "Sedaprin",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 67,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "dose",
+            "fieldValue": "10mg",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 68,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "route",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 69,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "start_date",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 70,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "stop_date",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 71,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "reaction_description",
+            "fieldValue": "dizziness and a fall",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 72,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "onset",
+            "fieldValue": "2 days after starting Sedaprin",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 73,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "outcome",
+            "fieldValue": "bruise on hip",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 74,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "serious",
+            "fieldValue": "No",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 75,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "seriousness_criteria",
+            "fieldValue": "Not applicable",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 76,
+            "attachmentId": 4,
+            "caseNumber": null,
+            "fieldGroup": "NARRATIVE",
+            "fieldName": "case_narrative",
+            "fieldValue": "A 71-year-old woman started on Sedaprin 10mg for sleep difficulties experienced dizziness and fell two days later, resulting in a bruise on her hip. After discontinuing the medication, she did not have any further falls in the following month.",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 77,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "MI",
+            "fieldName": "question_1",
+            "fieldValue": "What are the risks of Sedaprin in elderly patients?",
+            "confidence": 1.0,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 78,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "MI",
+            "fieldName": "product_or_topic",
+            "fieldValue": "Sedaprin",
+            "confidence": 1.0,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        }
+    ],
+    "tables": [],
+    "images": [],
+    "literatureCases": [],
+    "auditTrail": [
+        {
+            "id": 7,
+            "entityType": "MESSAGE",
+            "entityId": 4,
+            "actor": "system",
+            "action": "MESSAGE_INGESTED",
+            "detailJson": "{\"fixture\": \"article-email-04.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
+            "createdAt": "2026-09-04T04:49:43.137095Z"
+        },
+        {
+            "id": 84,
+            "entityType": "ATTACHMENT",
+            "entityId": 4,
+            "actor": "system",
+            "action": "AI_PDF_PROCESSED",
+            "detailJson": "{\"flavor\": \"ARTICLE\", \"pageCount\": 1, \"confidence\": 0.8}",
+            "createdAt": "2026-09-04T04:50:02.502054Z"
+        },
+        {
+            "id": 110,
+            "entityType": "CLASSIFICATION",
+            "entityId": 5,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The case report describes a specific patient (71-year-old woman) who experienced a bad reaction (dizziness and a fall) after taking Sedaprin.\", \"category\": \"ICSR\", \"confidence\": 1.0}",
+            "createdAt": "2026-09-04T04:50:14.584953Z"
+        },
+        {
+            "id": 111,
+            "entityType": "CLASSIFICATION",
+            "entityId": 6,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The email explicitly shares a case report and raises concerns about the use of Sedaprin in elderly patients, indicating a request for information on its safety.\", \"category\": \"MI\", \"confidence\": 1.0}",
+            "createdAt": "2026-09-04T04:50:14.588118Z"
+        },
+        {
+            "id": 112,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 59,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.591096Z"
+        },
+        {
+            "id": 113,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 60,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.594009Z"
+        },
+        {
+            "id": 114,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 61,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"weight_height\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.596313Z"
+        },
+        {
+            "id": 115,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 62,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"relevant_history\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.598140Z"
+        },
+        {
+            "id": 116,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 63,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-09-04T04:50:14.599567Z"
+        },
+        {
+            "id": 117,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 64,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-09-04T04:50:14.601326Z"
+        },
+        {
+            "id": 118,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 65,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-09-04T04:50:14.603239Z"
+        },
+        {
+            "id": 119,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 66,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.604923Z"
+        },
+        {
+            "id": 120,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 67,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.606182Z"
+        },
+        {
+            "id": 121,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 68,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"route\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.607594Z"
+        },
+        {
+            "id": 122,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 69,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"start_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.608686Z"
+        },
+        {
+            "id": 123,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 70,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"stop_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.609596Z"
+        },
+        {
+            "id": 124,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 71,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.610651Z"
+        },
+        {
+            "id": 125,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 72,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.611603Z"
+        },
+        {
+            "id": 126,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 73,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"outcome\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.612476Z"
+        },
+        {
+            "id": 127,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 74,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"serious\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.613244Z"
+        },
+        {
+            "id": 128,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 75,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.613919Z"
+        },
+        {
+            "id": 129,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 76,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:14.614740Z"
+        },
+        {
+            "id": 130,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 77,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"question_1\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-09-04T04:50:14.615532Z"
+        },
+        {
+            "id": 131,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 78,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_or_topic\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-09-04T04:50:14.616296Z"
+        }
+    ]
+}

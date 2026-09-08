@@ -1,0 +1,10 @@
+{
+  "sender": "dr.priya.nair@rivermed-clinic.example",
+  "subject": "FYI - relevant published case report (Neptazol)",
+  "receivedAt": "2026-07-25T09:00:00Z",
+  "bodyText": "Thought this published case report might be relevant to the Neptazol case I sent earlier - similar anaphylaxis presentation. Attaching for your files.",
+  "attachments": [
+    "../pdfs/article-01.pdf"
+  ],
+  "note": "Article PDF - fictional patient case"
+}

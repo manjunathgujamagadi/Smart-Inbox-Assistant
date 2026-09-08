@@ -1,0 +1,10 @@
+{
+  "sender": "safety.liaison@pedshealth-network.example",
+  "subject": "Case report - Ferbolex pediatric hepatotoxicity",
+  "receivedAt": "2026-07-26T13:15:00Z",
+  "bodyText": "Forwarding a case report our pediatric network came across regarding Ferbolex and liver enzyme elevation in a child. Please review for relevance.",
+  "attachments": [
+    "../pdfs/article-02.pdf"
+  ],
+  "note": "Article PDF - fictional patient case"
+}

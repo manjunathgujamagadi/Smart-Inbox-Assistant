@@ -1,0 +1,91 @@
+{
+    "id": 15,
+    "sourceType": "EMAIL",
+    "sender": "patient.query22@webmail.example",
+    "subject": "Question about taking Neptazol with ibuprofen",
+    "receivedAt": "2026-08-01T08:50:00Z",
+    "bodyText": "Hi, I'm currently taking Neptazol for my blood pressure and I have a headache today. Is it safe to take ibuprofen with it, or should I use something else?",
+    "status": "PROCESSED",
+    "attachments": [],
+    "classifications": [
+        {
+            "id": 19,
+            "category": "MI",
+            "confidence": 1.0,
+            "reason": "The message contains a clear question about the safety of taking ibuprofen with Neptazol.",
+            "reviewerStatus": "PENDING",
+            "reviewerCategory": null,
+            "reviewedBy": null,
+            "reviewedAt": null
+        }
+    ],
+    "extractedFields": [
+        {
+            "id": 223,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "MI",
+            "fieldName": "question_1",
+            "fieldValue": "Is it safe to take ibuprofen with Neptazol, or should I use something else?",
+            "confidence": 1.0,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 224,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "MI",
+            "fieldName": "product_or_topic",
+            "fieldValue": "Neptazol",
+            "confidence": 1.0,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        }
+    ],
+    "tables": [],
+    "images": [],
+    "literatureCases": [],
+    "auditTrail": [
+        {
+            "id": 29,
+            "entityType": "MESSAGE",
+            "entityId": 15,
+            "actor": "system",
+            "action": "MESSAGE_INGESTED",
+            "detailJson": "{\"fixture\": \"mi-01.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
+            "createdAt": "2026-09-04T04:49:43.284076Z"
+        },
+        {
+            "id": 306,
+            "entityType": "CLASSIFICATION",
+            "entityId": 19,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The message contains a clear question about the safety of taking ibuprofen with Neptazol.\", \"category\": \"MI\", \"confidence\": 1.0}",
+            "createdAt": "2026-09-04T04:51:12.337157Z"
+        },
+        {
+            "id": 307,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 223,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"question_1\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-09-04T04:51:12.339643Z"
+        },
+        {
+            "id": 308,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 224,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_or_topic\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-09-04T04:51:12.341783Z"
+        }
+    ]
+}

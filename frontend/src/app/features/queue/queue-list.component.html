@@ -1,0 +1,77 @@
+<mat-toolbar color="primary">
+  <span>Smart Inbox Assistant — Review Queue</span>
+  <span class="spacer"></span>
+  <button mat-stroked-button color="accent" (click)="runBatch()" [disabled]="running">
+    <mat-icon>play_arrow</mat-icon>
+    Run batch (test-data)
+  </button>
+  <button mat-stroked-button color="accent" (click)="fileInput.click()" [disabled]="uploading" title="Section 4 bonus: literature screening">
+    <mat-icon>upload_file</mat-icon>
+    Upload article(s)
+  </button>
+  <input #fileInput type="file" accept="application/pdf" multiple hidden (change)="onFilesSelected($event)" />
+  <button mat-icon-button (click)="load()" title="Refresh">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-progress-bar *ngIf="loading || running || uploading" mode="indeterminate"></mat-progress-bar>
+
+<div class="table-wrap">
+  <table mat-table [dataSource]="messages" *ngIf="!loading">
+    <ng-container matColumnDef="sender">
+      <th mat-header-cell *matHeaderCellDef>Sender</th>
+      <td mat-cell *matCellDef="let m">{{ m.sender || '(unknown)' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef>Subject</th>
+      <td mat-cell *matCellDef="let m">{{ m.subject || '(no subject)' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="received">
+      <th mat-header-cell *matHeaderCellDef>Received</th>
+      <td mat-cell *matCellDef="let m">{{ m.receivedAt | date: 'short' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let m">{{ m.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="classifications">
+      <th mat-header-cell *matHeaderCellDef>AI Classification</th>
+      <td mat-cell *matCellDef="let m">
+        <ng-container *ngIf="m.sourceType !== 'UPLOAD'; else literatureCol">
+          <mat-chip-set>
+            <mat-chip *ngFor="let c of m.classifications" [color]="chipColor(c.reviewerStatus)" highlighted>
+              {{ c.category }} ({{ (c.confidence * 100) | number: '1.0-0' }}%)
+            </mat-chip>
+            <span *ngIf="!m.classifications.length" class="muted">not yet processed</span>
+          </mat-chip-set>
+        </ng-container>
+        <ng-template #literatureCol>
+          <mat-chip-set>
+            <mat-chip color="accent" highlighted>literature</mat-chip>
+            <span class="muted">{{ literatureLabel(m) }}</span>
+          </mat-chip-set>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let m">
+        <a mat-button color="primary" [routerLink]="['/messages', m.id]">Review</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <p *ngIf="!loading && !messages.length" class="empty">
+    No messages yet. Click "Run batch (test-data)" to ingest the synthetic sample set, or wait for the mailbox
+    poller if IMAP is configured.
+  </p>
+</div>

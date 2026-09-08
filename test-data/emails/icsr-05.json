@@ -1,0 +1,10 @@
+{
+  "sender": "dr.owusu@brightpath-medical.example",
+  "subject": "Scanned adverse event form attached",
+  "receivedAt": "2026-07-23T16:00:00Z",
+  "bodyText": "Please find the scanned handwritten intake form attached for this adverse event - apologies, it was a busy clinic day and we didn't have time to type it up.",
+  "attachments": [
+    "../pdfs/icsr-05-handwritten.pdf"
+  ],
+  "note": "ICSR - scanned/handwritten-style PDF"
+}

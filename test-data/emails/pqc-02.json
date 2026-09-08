@@ -1,0 +1,10 @@
+{
+  "sender": "s.whitfield@mailservice.example",
+  "subject": "Wrong color tablets found in bottle",
+  "receivedAt": "2026-07-31T18:20:00Z",
+  "bodyText": "I opened a new bottle of Ferbolex and some of the tablets are a different color than the others. I haven't taken any of them yet. Batch number is B9012. Is this normal or should I return it?",
+  "attachments": [
+    "../pdfs/pqc-02-complaint.pdf"
+  ],
+  "note": "PQC-only - digital PDF, no injury"
+}

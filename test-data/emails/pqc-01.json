@@ -1,0 +1,10 @@
+{
+  "sender": "m.alvarez@westside-pharmacy.example",
+  "subject": "Broken safety seal on Neptazol bottle - batch B7788",
+  "receivedAt": "2026-07-30T10:15:00Z",
+  "bodyText": "We received a shipment of Neptazol and noticed one bottle (batch B7788) had a broken safety seal and a loose cap. No patient has taken from this bottle. Photo of the bottle is attached.",
+  "attachments": [
+    "../pdfs/pqc-01-complaint.pdf"
+  ],
+  "note": "PQC-only - digital PDF with embedded image"
+}

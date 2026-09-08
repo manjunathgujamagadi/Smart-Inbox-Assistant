@@ -1,0 +1,10 @@
+{
+  "sender": "pharmacist.tomlin@citycare-pharmacy.example",
+  "subject": "Contaminated product caused patient reaction - batch B4471",
+  "receivedAt": "2026-07-21T11:10:00Z",
+  "bodyText": "A patient came in after using Cortivex Cream from batch B4471. The tube had a strange smell and discoloration. After applying it his skin became inflamed and blistered. Full report attached.",
+  "attachments": [
+    "../pdfs/icsr-04-form.pdf"
+  ],
+  "note": "ICSR + PQC dual classification, digital PDF"
+}

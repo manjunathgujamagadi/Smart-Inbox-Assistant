@@ -1,0 +1,10 @@
+{
+  "sender": "dr.lucas.moreau@santeclinique.example",
+  "subject": "Rapport d'effet indesirable - Patient sous Ferbolex",
+  "receivedAt": "2026-07-19T09:45:00Z",
+  "bodyText": "Bonjour,\n\nVeuillez trouver ci-joint le rapport concernant un patient ayant presente une reaction cutanee sous Ferbolex. La reaction s'est resolue apres l'arret du traitement.\n\nCordialement,\nDr. Lucas Moreau",
+  "attachments": [
+    "../pdfs/icsr-08-fr-form.pdf"
+  ],
+  "note": "Non-English (French) ICSR PDF"
+}

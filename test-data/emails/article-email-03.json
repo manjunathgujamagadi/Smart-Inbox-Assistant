@@ -1,0 +1,10 @@
+{
+  "sender": "qa.director@citycare-pharmacy.example",
+  "subject": "Published case tying Cortivex to batch defect",
+  "receivedAt": "2026-07-27T15:40:00Z",
+  "bodyText": "Attached is a dermatology case report that appears to connect a Cortivex reaction to the same batch quality issue we flagged earlier (B4471).",
+  "attachments": [
+    "../pdfs/article-03.pdf"
+  ],
+  "note": "Article PDF - fictional patient case"
+}

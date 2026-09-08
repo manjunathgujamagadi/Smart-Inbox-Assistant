@@ -1,0 +1,8 @@
+{
+  "sender": "concerned.parent55@mailbox.example",
+  "subject": "my son had a bad reaction",
+  "receivedAt": "2026-07-18T22:41:00Z",
+  "bodyText": "hi, my son took some medicine (i think it's called Amoxiclav?) and got really sick with a rash all over his body. it happened pretty quick. not sure exactly when he started it or how much. should we be worried??",
+  "attachments": [],
+  "note": "ICSR - low/vague detail, no attachment, tests 'Not stated' handling"
+}

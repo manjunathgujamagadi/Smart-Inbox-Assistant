@@ -1,0 +1,130 @@
+{
+    "totalDocuments": 20,
+    "done": 20,
+    "failed": 0,
+    "avgDurationMs": 11296.6,
+    "minDurationMs": 1607,
+    "maxDurationMs": 23539,
+    "jobs": [
+        {
+            "messageId": 2,
+            "subject": "Case report - Ferbolex pediatric hepatotoxicity",
+            "status": "DONE",
+            "durationMs": 13699
+        },
+        {
+            "messageId": 1,
+            "subject": "FYI - relevant published case report (Neptazol)",
+            "status": "DONE",
+            "durationMs": 15146
+        },
+        {
+            "messageId": 3,
+            "subject": "Published case tying Cortivex to batch defect",
+            "status": "DONE",
+            "durationMs": 14931
+        },
+        {
+            "messageId": 4,
+            "subject": "Case report - Sedaprin and falls in elderly patients",
+            "status": "DONE",
+            "durationMs": 16376
+        },
+        {
+            "messageId": 5,
+            "subject": "Case report - Glucoreg GI tolerability",
+            "status": "DONE",
+            "durationMs": 12699
+        },
+        {
+            "messageId": 6,
+            "subject": "Adverse reaction report - Neptazol 20mg",
+            "status": "DONE",
+            "durationMs": 13098
+        },
+        {
+            "messageId": 7,
+            "subject": "Possible reaction to Ferbolex",
+            "status": "DONE",
+            "durationMs": 9499
+        },
+        {
+            "messageId": 8,
+            "subject": "my son had a bad reaction",
+            "status": "DONE",
+            "durationMs": 9416
+        },
+        {
+            "messageId": 9,
+            "subject": "Contaminated product caused patient reaction - batch B4471",
+            "status": "DONE",
+            "durationMs": 12394
+        },
+        {
+            "messageId": 10,
+            "subject": "Scanned adverse event form attached",
+            "status": "DONE",
+            "durationMs": 17316
+        },
+        {
+            "messageId": 11,
+            "subject": "reporting side effect",
+            "status": "DONE",
+            "durationMs": 16805
+        },
+        {
+            "messageId": 12,
+            "subject": "Reporte de reaccion adversa - Paciente con Neptazol",
+            "status": "DONE",
+            "durationMs": 14091
+        },
+        {
+            "messageId": 14,
+            "subject": "You're invited: Fall Product Showcase Webinar!",
+            "status": "DONE",
+            "durationMs": 1607
+        },
+        {
+            "messageId": 15,
+            "subject": "Question about taking Neptazol with ibuprofen",
+            "status": "DONE",
+            "durationMs": 2134
+        },
+        {
+            "messageId": 16,
+            "subject": "Max dose of Ferbolex syrup for children?",
+            "status": "DONE",
+            "durationMs": 2036
+        },
+        {
+            "messageId": 13,
+            "subject": "Rapport d'effet indesirable - Patient sous Ferbolex",
+            "status": "DONE",
+            "durationMs": 13784
+        },
+        {
+            "messageId": 17,
+            "subject": "Broken safety seal on Neptazol bottle - batch B7788",
+            "status": "DONE",
+            "durationMs": 7376
+        },
+        {
+            "messageId": 18,
+            "subject": "Wrong color tablets found in bottle",
+            "status": "DONE",
+            "durationMs": 5710
+        },
+        {
+            "messageId": 20,
+            "subject": "lit-no-case.pdf",
+            "status": "DONE",
+            "durationMs": 4276
+        },
+        {
+            "messageId": 19,
+            "subject": "lit-multi-case.pdf",
+            "status": "DONE",
+            "durationMs": 23539
+        }
+    ]
+}

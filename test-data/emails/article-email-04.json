@@ -1,0 +1,10 @@
+{
+  "sender": "dr.owusu@brightpath-medical.example",
+  "subject": "Case report - Sedaprin and falls in elderly patients",
+  "receivedAt": "2026-07-28T10:05:00Z",
+  "bodyText": "Sharing a relevant case report about Sedaprin and fall risk in elderly patients, similar to what we saw with our patient Grace Owens.",
+  "attachments": [
+    "../pdfs/article-04.pdf"
+  ],
+  "note": "Article PDF - fictional patient case"
+}

@@ -1,0 +1,464 @@
+{
+    "id": 5,
+    "sourceType": "EMAIL",
+    "sender": "medinfo@wellcare-hospital.example",
+    "subject": "Case report - Glucoreg GI tolerability",
+    "receivedAt": "2026-07-29T11:30:00Z",
+    "bodyText": "Our medical information team found this case report on Glucoreg and GI side effects, thought it might be useful context for your team.",
+    "status": "PROCESSED",
+    "attachments": [
+        {
+            "id": 5,
+            "filename": "article-05.pdf",
+            "mimeType": "application/pdf",
+            "processable": true,
+            "pdfFlavor": "ARTICLE",
+            "detectedLanguage": "en",
+            "pageCount": 1,
+            "processed": true,
+            "summary": "The document details a case involving a 45-year-old man who recently commenced treatment with Glucoreg for type 2 diabetes. Following his morning dose, he experienced mild nausea and vomiting about one hour later, which recurred over several days. These symptoms, although bothersome, did not necessitate medical attention. To address the issue, the timing of the dose was modified to be taken with food. After this adjustment, the patient reported a significant improvement in his symptoms.\n\nThis document is relevant to a patient-safety review because it describes an adverse reaction (nausea and vomiting) associated with a medication. It outlines the patient's experience with these symptoms and how a change in the administration of the drug helped alleviate the reaction. The case provides insights into potential side effects of Glucoreg and emphasizes the importance of proper dosing instructions, particularly in relation to food. Monitoring such reactions contributes to overall pharmacovigilance efforts and ensures patient safety."
+        }
+    ],
+    "classifications": [
+        {
+            "id": 7,
+            "category": "ICSR",
+            "confidence": 1.0,
+            "reason": "The case report describes a specific patient (45-year-old man), a specific drug (Glucoreg), and a bad reaction (nausea and vomiting) that occurred after taking the medication.",
+            "reviewerStatus": "PENDING",
+            "reviewerCategory": null,
+            "reviewedBy": null,
+            "reviewedAt": null
+        }
+    ],
+    "extractedFields": [
+        {
+            "id": 79,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "age",
+            "fieldValue": "45",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 80,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "sex",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 81,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "weight_height",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 82,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "relevant_history",
+            "fieldValue": "type 2 diabetes",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 83,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_name_or_role",
+            "fieldValue": "Kim J, Haddad Y",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 84,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_role",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 85,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_country",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 86,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "product_name",
+            "fieldValue": "Glucoreg",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 87,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "dose",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 88,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "route",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 89,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "start_date",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 90,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "stop_date",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 91,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "reaction_description",
+            "fieldValue": "nausea and vomiting",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 92,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "onset",
+            "fieldValue": "approximately one hour after morning dose",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 93,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "outcome",
+            "fieldValue": "significant improvement after dose adjustment",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 94,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "serious",
+            "fieldValue": "no",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 95,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "seriousness_criteria",
+            "fieldValue": "mild, did not require medical attention",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 96,
+            "attachmentId": 5,
+            "caseNumber": null,
+            "fieldGroup": "NARRATIVE",
+            "fieldName": "case_narrative",
+            "fieldValue": "A 45-year-old man started treatment with Glucoreg for type 2 diabetes and experienced mild nausea and vomiting about one hour after his morning dose. These symptoms recurred over several days but did not require medical attention. After adjusting the timing of the dose to be taken with food, the patient reported significant improvement in his symptoms.",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        }
+    ],
+    "tables": [],
+    "images": [],
+    "literatureCases": [],
+    "auditTrail": [
+        {
+            "id": 9,
+            "entityType": "MESSAGE",
+            "entityId": 5,
+            "actor": "system",
+            "action": "MESSAGE_INGESTED",
+            "detailJson": "{\"fixture\": \"article-email-05.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
+            "createdAt": "2026-09-04T04:49:43.154045Z"
+        },
+        {
+            "id": 133,
+            "entityType": "ATTACHMENT",
+            "entityId": 5,
+            "actor": "system",
+            "action": "AI_PDF_PROCESSED",
+            "detailJson": "{\"flavor\": \"ARTICLE\", \"pageCount\": 1, \"confidence\": 0.8}",
+            "createdAt": "2026-09-04T04:50:15.500901Z"
+        },
+        {
+            "id": 135,
+            "entityType": "CLASSIFICATION",
+            "entityId": 7,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The case report describes a specific patient (45-year-old man), a specific drug (Glucoreg), and a bad reaction (nausea and vomiting) that occurred after taking the medication.\", \"category\": \"ICSR\", \"confidence\": 1.0}",
+            "createdAt": "2026-09-04T04:50:24.415778Z"
+        },
+        {
+            "id": 136,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 79,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.419462Z"
+        },
+        {
+            "id": 137,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 80,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.422626Z"
+        },
+        {
+            "id": 138,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 81,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"weight_height\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.425340Z"
+        },
+        {
+            "id": 139,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 82,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"relevant_history\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.427947Z"
+        },
+        {
+            "id": 140,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 83,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.430128Z"
+        },
+        {
+            "id": 141,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 84,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.432194Z"
+        },
+        {
+            "id": 142,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 85,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.433913Z"
+        },
+        {
+            "id": 143,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 86,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.435665Z"
+        },
+        {
+            "id": 144,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 87,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.438229Z"
+        },
+        {
+            "id": 145,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 88,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"route\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.439563Z"
+        },
+        {
+            "id": 146,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 89,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"start_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.440860Z"
+        },
+        {
+            "id": 147,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 90,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"stop_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.442123Z"
+        },
+        {
+            "id": 148,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 91,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.443486Z"
+        },
+        {
+            "id": 149,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 92,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.445005Z"
+        },
+        {
+            "id": 150,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 93,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"outcome\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.446532Z"
+        },
+        {
+            "id": 151,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 94,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"serious\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.448176Z"
+        },
+        {
+            "id": 152,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 95,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.449090Z"
+        },
+        {
+            "id": 153,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 96,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:50:24.449964Z"
+        }
+    ]
+}

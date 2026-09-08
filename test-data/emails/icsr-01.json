@@ -1,0 +1,10 @@
+{
+  "sender": "dr.priya.nair@rivermed-clinic.example",
+  "subject": "Adverse reaction report - Neptazol 20mg",
+  "receivedAt": "2026-07-11T09:20:00Z",
+  "bodyText": "Dear Safety Team,\n\nPlease find attached the completed adverse event report for a patient who developed a serious reaction to Neptazol. She required an ER visit. Let me know if you need anything further.\n\nRegards,\nDr. Priya Nair",
+  "attachments": [
+    "../pdfs/icsr-01-form.pdf"
+  ],
+  "note": "ICSR - high detail, digital PDF with table"
+}

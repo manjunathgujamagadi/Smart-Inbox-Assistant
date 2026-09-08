@@ -1,0 +1,25 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.table-wrap {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.muted {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+}
+
+.empty {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 48px 16px;
+}

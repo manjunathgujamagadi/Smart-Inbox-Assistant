@@ -1,0 +1,70 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: smart_inbox
+      POSTGRES_USER: smart_inbox
+      POSTGRES_PASSWORD: smart_inbox
+    ports:
+      # Host 5433 -> container 5432: host 5432 is already used by another
+      # local service on the dev machine this was built on.
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smart_inbox"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ai-service:
+    build: ./ai-service
+    environment:
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:?Set AZURE_OPENAI_API_KEY in .env}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:?Set AZURE_OPENAI_ENDPOINT in .env}
+      AZURE_OPENAI_DEPLOYMENT: ${AZURE_OPENAI_DEPLOYMENT:-gpt-4o-mini}
+      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION:-2024-12-01-preview}
+    ports:
+      # Host 8001 -> container 8000: host 8000 is already used by another
+      # local service on the dev machine this was built on.
+      - "8001:8000"
+    volumes:
+      - storage:/data/storage
+
+  backend:
+    build: ./backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: smart_inbox
+      DB_USER: smart_inbox
+      DB_PASSWORD: smart_inbox
+      AI_SERVICE_URL: http://ai-service:8000
+      STORAGE_ROOT: /data/storage
+      BATCH_DEFAULT_DIR: /data/test-data/emails
+      MAIL_IMAP_HOST: ${MAIL_IMAP_HOST:-imap.gmail.com}
+      MAIL_IMAP_PORT: ${MAIL_IMAP_PORT:-993}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_POLLING_ENABLED: ${MAIL_POLLING_ENABLED:-false}
+    ports:
+      # Host 8081 -> container 8080: host 8080 is already used by another
+      # local service on the dev machine this was built on.
+      - "8081:8080"
+    volumes:
+      - storage:/data/storage
+      - ./test-data:/data/test-data:ro
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"
+
+volumes:
+  pgdata:
+  storage:

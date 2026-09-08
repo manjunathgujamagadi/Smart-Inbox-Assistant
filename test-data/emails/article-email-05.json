@@ -1,0 +1,10 @@
+{
+  "sender": "medinfo@wellcare-hospital.example",
+  "subject": "Case report - Glucoreg GI tolerability",
+  "receivedAt": "2026-07-29T11:30:00Z",
+  "bodyText": "Our medical information team found this case report on Glucoreg and GI side effects, thought it might be useful context for your team.",
+  "attachments": [
+    "../pdfs/article-05.pdf"
+  ],
+  "note": "Article PDF - fictional patient case"
+}

@@ -1,0 +1,10 @@
+{
+  "sender": "nurse.callahan@meadowbrook-clinic.example",
+  "subject": "Possible reaction to Ferbolex",
+  "receivedAt": "2026-07-15T14:05:00Z",
+  "bodyText": "Hi, a patient of ours developed hives after starting Ferbolex, seems to have started after the second dose. Attaching the lab notes we have. Not 100% sure on exact timing. She's a 34 year old woman.",
+  "attachments": [
+    "../pdfs/icsr-02-labs.pdf"
+  ],
+  "note": "ICSR - moderate detail, digital PDF with small lab table"
+}

@@ -1,0 +1,464 @@
+{
+    "id": 1,
+    "sourceType": "EMAIL",
+    "sender": "dr.priya.nair@rivermed-clinic.example",
+    "subject": "FYI - relevant published case report (Neptazol)",
+    "receivedAt": "2026-07-25T09:00:00Z",
+    "bodyText": "Thought this published case report might be relevant to the Neptazol case I sent earlier - similar anaphylaxis presentation. Attaching for your files.",
+    "status": "PROCESSED",
+    "attachments": [
+        {
+            "id": 1,
+            "filename": "article-01.pdf",
+            "mimeType": "application/pdf",
+            "processable": true,
+            "pdfFlavor": "ARTICLE",
+            "detectedLanguage": "en",
+            "pageCount": 1,
+            "processed": true,
+            "summary": "This article reports a case involving a 45-year-old man who experienced an adverse reaction after taking Neptazol 20mg for the first time. About 30 minutes post-administration, he developed symptoms including facial flushing, throat tightness, and difficulty breathing, indicative of a potential allergic reaction. The patient was treated with intramuscular epinephrine in the emergency department and managed to recover fully within several hours. Following the incident, Neptazol was discontinued and not given to the patient again. \n\nThis document is relevant to a patient-safety review due to the description of a significant adverse reaction following the use of a medication. It highlights the importance of monitoring patients for side effects after starting a new drug, especially if they exhibit serious symptoms like breathing difficulties. The case underscores the need for careful consideration of drug allergies and responses in patients. Additionally, it stresses the importance of immediate action in emergencies, contributing valuable insights for improving safety protocols in medication administration."
+        }
+    ],
+    "classifications": [
+        {
+            "id": 2,
+            "category": "ICSR",
+            "confidence": 1.0,
+            "reason": "The message contains a detailed case report of a patient experiencing anaphylaxis after taking Neptazol, including specific patient details, drug name, and adverse reaction.",
+            "reviewerStatus": "PENDING",
+            "reviewerCategory": null,
+            "reviewedBy": null,
+            "reviewedAt": null
+        }
+    ],
+    "extractedFields": [
+        {
+            "id": 19,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "age",
+            "fieldValue": "45",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 20,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "sex",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 21,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "weight_height",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 22,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "relevant_history",
+            "fieldValue": "No known drug allergies",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 23,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_name_or_role",
+            "fieldValue": "Chen H, Alvarez M, Osei K",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 24,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_role",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 25,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_country",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 26,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "product_name",
+            "fieldValue": "Neptazol",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 27,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "dose",
+            "fieldValue": "20mg",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 28,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "route",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 29,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "start_date",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 30,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "stop_date",
+            "fieldValue": "Not stated",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 31,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "reaction_description",
+            "fieldValue": "Anaphylaxis, facial flushing, throat tightness, difficulty breathing",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 32,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "onset",
+            "fieldValue": "30 minutes post-administration",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 33,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "outcome",
+            "fieldValue": "Recovered fully within several hours",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 34,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "serious",
+            "fieldValue": "Yes",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 35,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "seriousness_criteria",
+            "fieldValue": "Anaphylaxis",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 36,
+            "attachmentId": 1,
+            "caseNumber": null,
+            "fieldGroup": "NARRATIVE",
+            "fieldName": "case_narrative",
+            "fieldValue": "A 45-year-old man experienced anaphylaxis after taking Neptazol 20mg for the first time. He developed symptoms such as facial flushing, throat tightness, and difficulty breathing about 30 minutes after administration. He was treated with epinephrine and recovered fully within hours. Neptazol was discontinued after the incident.",
+            "confidence": 1.0,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        }
+    ],
+    "tables": [],
+    "images": [],
+    "literatureCases": [],
+    "auditTrail": [
+        {
+            "id": 1,
+            "entityType": "MESSAGE",
+            "entityId": 1,
+            "actor": "system",
+            "action": "MESSAGE_INGESTED",
+            "detailJson": "{\"fixture\": \"article-email-01.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
+            "createdAt": "2026-09-04T04:49:43.081304Z"
+        },
+        {
+            "id": 42,
+            "entityType": "ATTACHMENT",
+            "entityId": 1,
+            "actor": "system",
+            "action": "AI_PDF_PROCESSED",
+            "detailJson": "{\"flavor\": \"ARTICLE\", \"pageCount\": 1, \"confidence\": 0.8}",
+            "createdAt": "2026-09-04T04:49:48.268672Z"
+        },
+        {
+            "id": 63,
+            "entityType": "CLASSIFICATION",
+            "entityId": 2,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The message contains a detailed case report of a patient experiencing anaphylaxis after taking Neptazol, including specific patient details, drug name, and adverse reaction.\", \"category\": \"ICSR\", \"confidence\": 1.0}",
+            "createdAt": "2026-09-04T04:49:58.199545Z"
+        },
+        {
+            "id": 64,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 19,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.204232Z"
+        },
+        {
+            "id": 65,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 20,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.208020Z"
+        },
+        {
+            "id": 66,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 21,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"weight_height\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.210543Z"
+        },
+        {
+            "id": 67,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 22,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"relevant_history\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.212433Z"
+        },
+        {
+            "id": 68,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 23,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.214209Z"
+        },
+        {
+            "id": 69,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 24,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.215737Z"
+        },
+        {
+            "id": 70,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 25,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.217153Z"
+        },
+        {
+            "id": 71,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 26,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.218540Z"
+        },
+        {
+            "id": 72,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 27,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.219953Z"
+        },
+        {
+            "id": 73,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 28,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"route\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.221320Z"
+        },
+        {
+            "id": 74,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 29,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"start_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.222767Z"
+        },
+        {
+            "id": 75,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 30,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"stop_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.224223Z"
+        },
+        {
+            "id": 76,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 31,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.225676Z"
+        },
+        {
+            "id": 77,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 32,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.227112Z"
+        },
+        {
+            "id": 78,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 33,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"outcome\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.228505Z"
+        },
+        {
+            "id": 79,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 34,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"serious\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.229824Z"
+        },
+        {
+            "id": 80,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 35,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.231136Z"
+        },
+        {
+            "id": 81,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 36,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-09-04T04:49:58.232471Z"
+        }
+    ]
+}

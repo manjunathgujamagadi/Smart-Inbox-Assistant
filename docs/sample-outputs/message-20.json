@@ -1,0 +1,47 @@
+{
+    "id": 20,
+    "sourceType": "UPLOAD",
+    "sender": "literature-upload",
+    "subject": "lit-no-case.pdf",
+    "receivedAt": "2026-09-04T04:49:43.348447Z",
+    "bodyText": null,
+    "status": "PROCESSED",
+    "attachments": [
+        {
+            "id": 16,
+            "filename": "lit-no-case.pdf",
+            "mimeType": "application/pdf",
+            "processable": true,
+            "pdfFlavor": "ARTICLE",
+            "detectedLanguage": "en",
+            "pageCount": 1,
+            "processed": true,
+            "summary": "This article is a written piece that does not contain any actual patient cases. It appears to focus on a theoretical discussion or analysis rather than providing evidence or data related to specific patient experiences or adverse events. As such, it does not include any real-life scenarios that would typically be relevant for assessing patient safety, quality complaints, or information requests. The absence of case details means that there are no insights or findings that could contribute to understanding the safety profile of any medication or treatment. Therefore, this document does not seem relevant to a patient-safety or quality-complaint review. It does not provide the necessary information or context that would typically be required for such evaluations in pharmacovigilance. Overall, the article lacks the required patient-specific information that is essential for the intended review process."
+        }
+    ],
+    "classifications": [],
+    "extractedFields": [],
+    "tables": [],
+    "images": [],
+    "literatureCases": [],
+    "auditTrail": [
+        {
+            "id": 39,
+            "entityType": "MESSAGE",
+            "entityId": 20,
+            "actor": "system",
+            "action": "MESSAGE_INGESTED",
+            "detailJson": "{\"filename\": \"lit-no-case.pdf\", \"sourceType\": \"LITERATURE_UPLOAD\"}",
+            "createdAt": "2026-09-04T04:49:43.353763Z"
+        },
+        {
+            "id": 348,
+            "entityType": "ATTACHMENT",
+            "entityId": 16,
+            "actor": "system",
+            "action": "AI_PDF_PROCESSED",
+            "detailJson": "{\"flavor\": \"ARTICLE\", \"pageCount\": 1, \"confidence\": 0.8}",
+            "createdAt": "2026-09-04T04:51:25.750082Z"
+        }
+    ]
+}

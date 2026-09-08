@@ -1,0 +1,79 @@
+spring:
+  application:
+    name: smart-inbox-backend
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:smart_inbox}
+    username: ${DB_USER:smart_inbox}
+    password: ${DB_PASSWORD:smart_inbox}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 100MB
+
+  mail:
+    # Real IMAP test mailbox credentials — set via env vars, never commit real values.
+    host: ${MAIL_IMAP_HOST:imap.gmail.com}
+    port: ${MAIL_IMAP_PORT:993}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        store:
+          protocol: imaps
+        imaps:
+          ssl:
+            enable: true
+          connectiontimeout: 10000
+          timeout: 10000
+
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  ai-service:
+    base-url: ${AI_SERVICE_URL:http://localhost:8000}
+    timeout-seconds: ${AI_SERVICE_TIMEOUT_SECONDS:120}
+  mail:
+    inbox-folder: ${MAIL_INBOX_FOLDER:INBOX}
+    poll-interval-ms: ${MAIL_POLL_INTERVAL_MS:60000}
+    enabled: ${MAIL_POLLING_ENABLED:false}
+  storage:
+    root: ${STORAGE_ROOT:./storage}
+  queue:
+    worker-pool-size: ${QUEUE_WORKER_POOL_SIZE:2}
+  reviewer:
+    default-name: ${DEFAULT_REVIEWER_NAME:demo-reviewer}
+  batch:
+    default-dir: ${BATCH_DEFAULT_DIR:../test-data/emails}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  health:
+    # MailIngestionService talks IMAP directly via its own jakarta.mail Session
+    # (see fetchAndIngestNewMessages) rather than Spring's autoconfigured
+    # JavaMailSender, so the built-in mail health check (which pings the
+    # placeholder host as an SMTP server) is meaningless here and just adds
+    # a slow, spuriously-failing check to /actuator/health.
+    mail:
+      enabled: false

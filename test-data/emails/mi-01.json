@@ -1,0 +1,8 @@
+{
+  "sender": "patient.query22@webmail.example",
+  "subject": "Question about taking Neptazol with ibuprofen",
+  "receivedAt": "2026-08-01T08:50:00Z",
+  "bodyText": "Hi, I'm currently taking Neptazol for my blood pressure and I have a headache today. Is it safe to take ibuprofen with it, or should I use something else?",
+  "attachments": [],
+  "note": "MI-only - simple dosing/interaction question"
+}

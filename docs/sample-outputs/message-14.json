@@ -1,0 +1,46 @@
+{
+    "id": 14,
+    "sourceType": "EMAIL",
+    "sender": "newsletter@pharmapromo-events.example",
+    "subject": "You're invited: Fall Product Showcase Webinar!",
+    "receivedAt": "2026-08-03T09:00:00Z",
+    "bodyText": "Join us for our annual Fall Product Showcase! Learn about our newest formulations, meet the team, and enter our raffle for a $50 gift card. Register now - seats are limited!",
+    "status": "PROCESSED",
+    "attachments": [],
+    "classifications": [
+        {
+            "id": 18,
+            "category": "NOT_RELEVANT",
+            "confidence": 1.0,
+            "reason": "The email is a marketing invitation and does not contain any safety reports, quality complaints, or information requests.",
+            "reviewerStatus": "PENDING",
+            "reviewerCategory": null,
+            "reviewedBy": null,
+            "reviewedAt": null
+        }
+    ],
+    "extractedFields": [],
+    "tables": [],
+    "images": [],
+    "literatureCases": [],
+    "auditTrail": [
+        {
+            "id": 27,
+            "entityType": "MESSAGE",
+            "entityId": 14,
+            "actor": "system",
+            "action": "MESSAGE_INGESTED",
+            "detailJson": "{\"fixture\": \"irrelevant-01.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
+            "createdAt": "2026-09-04T04:49:43.273731Z"
+        },
+        {
+            "id": 304,
+            "entityType": "CLASSIFICATION",
+            "entityId": 18,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The email is a marketing invitation and does not contain any safety reports, quality complaints, or information requests.\", \"category\": \"NOT_RELEVANT\", \"confidence\": 1.0}",
+            "createdAt": "2026-09-04T04:51:10.191437Z"
+        }
+    ]
+}

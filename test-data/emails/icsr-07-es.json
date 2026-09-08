@@ -1,0 +1,10 @@
+{
+  "sender": "dra.fernanda.ruiz@clinicasalud.example",
+  "subject": "Reporte de reaccion adversa - Paciente con Neptazol",
+  "receivedAt": "2026-07-13T10:00:00Z",
+  "bodyText": "Estimado equipo de farmacovigilancia,\n\nAdjunto el informe de una paciente que presento una reaccion adversa grave al Neptazol y requirio hospitalizacion. Quedo atenta a cualquier consulta.\n\nSaludos,\nDra. Fernanda Ruiz",
+  "attachments": [
+    "../pdfs/icsr-07-es-form.pdf"
+  ],
+  "note": "Non-English (Spanish) ICSR PDF"
+}

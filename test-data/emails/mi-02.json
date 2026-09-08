@@ -1,0 +1,8 @@
+{
+  "sender": "caregiver.jones@familymail.example",
+  "subject": "Max dose of Ferbolex syrup for children?",
+  "receivedAt": "2026-08-02T12:00:00Z",
+  "bodyText": "Could you tell me the maximum daily dose of Ferbolex syrup for a 6-year-old? The label doesn't cover that age range clearly and I want to make sure I'm dosing correctly.",
+  "attachments": [],
+  "note": "MI-only - pediatric dosing question"
+}

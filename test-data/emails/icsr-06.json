@@ -1,0 +1,10 @@
+{
+  "sender": "r.thompson88@personalmail.example",
+  "subject": "reporting side effect",
+  "receivedAt": "2026-07-24T08:30:00Z",
+  "bodyText": "Hi, I wanted to report a side effect from my medication. I filled out the attached form by hand about what happened to me.",
+  "attachments": [
+    "../pdfs/icsr-06-handwritten.pdf"
+  ],
+  "note": "ICSR - scanned/handwritten-style PDF (patient self-report)"
+}
