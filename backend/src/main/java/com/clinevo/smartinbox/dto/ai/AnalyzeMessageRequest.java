@@ -16,5 +16,6 @@ public record AnalyzeMessageRequest(
             List<PageContext> pages   // per-page text so the model can cite exact page numbers
     ) {}
 
-    public record PageContext(int pageNumber, String text) {}
+    /** confidence: how reliably the page text was read (OCR/translation), used to cap field confidence. */
+    public record PageContext(int pageNumber, String text, Double confidence) {}
 }

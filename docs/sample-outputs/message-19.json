@@ -3,7 +3,7 @@
     "sourceType": "UPLOAD",
     "sender": "literature-upload",
     "subject": "lit-multi-case.pdf",
-    "receivedAt": "2026-09-04T04:49:43.334110Z",
+    "receivedAt": "2026-10-09T16:18:36.852712Z",
     "bodyText": null,
     "status": "PROCESSED",
     "attachments": [
@@ -16,13 +16,15 @@
             "detectedLanguage": "en",
             "pageCount": 1,
             "processed": true,
-            "summary": "This document is a case report detailing two incidents involving adverse reactions to the medication Neptazol, prescribed for hypertension. \n\nIn Case 1, a 52-year-old woman experienced a generalized urticarial rash and mild lip swelling after ten days of taking Neptazol. She received outpatient treatment with antihistamines, and her symptoms resolved within 48 hours after discontinuing the medication.\n\nIn Case 2, a 67-year-old man experienced more severe symptoms, including facial angioedema and difficulty swallowing, after three weeks of Neptazol use. He required emergency treatment with intramuscular epinephrine and intravenous corticosteroids and was monitored overnight before being discharged from the hospital. Neptazol was permanently discontinued for him, and he was advised to avoid the drug class in the future.\n\nThis document is relevant to patient-safety and quality complaints because it outlines serious adverse reactions associated with Neptazol, including one case that required emergency medical intervention. The information may be useful for assessing the safety profile of this medication and guiding future use and reporting in similar cases."
+            "summary": "The document is a case report detailing two adverse reactions related to the medication Neptazol, which is prescribed for hypertension. \n\n**Case 1** describes a 52-year-old woman who developed a generalized urticarial rash and mild lip swelling after ten days of taking Neptazol 20mg daily. She was treated with antihistamines, and her symptoms resolved within 48 hours after discontinuation of the medication.\n\n**Case 2** involves a 67-year-old man who experienced facial angioedema and difficulty swallowing after three weeks on the same dosage of Neptazol. He required emergency treatment with intramuscular epinephrine and intravenous corticosteroids, and he was hospitalized overnight. Neptazol was permanently discontinued for this patient.\n\nBoth cases demonstrate serious allergic reactions to Neptazol, suggesting the need for caution and monitoring when using this medication. \n\nThis document is relevant to patient safety as it provides insights into adverse drug reactions, highlighting the importance of pharmacovigilance in identifying and managing risks associated with medications. It may inform future decisions regarding the safety of Neptazol and the need for clearer patient warnings or monitoring protocols.",
+            "extractionConfidence": 0.8,
+            "translatedText": null
         }
     ],
     "classifications": [],
     "extractedFields": [
         {
-            "id": 253,
+            "id": 239,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PATIENT",
@@ -35,7 +37,7 @@
             "reviewerValue": null
         },
         {
-            "id": 254,
+            "id": 240,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PATIENT",
@@ -48,7 +50,7 @@
             "reviewerValue": null
         },
         {
-            "id": 255,
+            "id": 241,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PATIENT",
@@ -61,7 +63,7 @@
             "reviewerValue": null
         },
         {
-            "id": 256,
+            "id": 242,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PATIENT",
@@ -74,7 +76,7 @@
             "reviewerValue": null
         },
         {
-            "id": 257,
+            "id": 243,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "REPORTER",
@@ -87,7 +89,7 @@
             "reviewerValue": null
         },
         {
-            "id": 258,
+            "id": 244,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "REPORTER",
@@ -100,7 +102,7 @@
             "reviewerValue": null
         },
         {
-            "id": 259,
+            "id": 245,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "REPORTER",
@@ -113,7 +115,7 @@
             "reviewerValue": null
         },
         {
-            "id": 260,
+            "id": 246,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PRODUCT",
@@ -126,7 +128,7 @@
             "reviewerValue": null
         },
         {
-            "id": 261,
+            "id": 247,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PRODUCT",
@@ -139,7 +141,7 @@
             "reviewerValue": null
         },
         {
-            "id": 262,
+            "id": 248,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PRODUCT",
@@ -152,7 +154,7 @@
             "reviewerValue": null
         },
         {
-            "id": 263,
+            "id": 249,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PRODUCT",
@@ -165,7 +167,7 @@
             "reviewerValue": null
         },
         {
-            "id": 264,
+            "id": 250,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "PRODUCT",
@@ -178,7 +180,7 @@
             "reviewerValue": null
         },
         {
-            "id": 265,
+            "id": 251,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "REACTION",
@@ -191,7 +193,7 @@
             "reviewerValue": null
         },
         {
-            "id": 266,
+            "id": 252,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "REACTION",
@@ -204,7 +206,7 @@
             "reviewerValue": null
         },
         {
-            "id": 267,
+            "id": 253,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "REACTION",
@@ -217,7 +219,7 @@
             "reviewerValue": null
         },
         {
-            "id": 268,
+            "id": 254,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "SEVERITY",
@@ -230,7 +232,7 @@
             "reviewerValue": null
         },
         {
-            "id": 269,
+            "id": 255,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "SEVERITY",
@@ -243,12 +245,12 @@
             "reviewerValue": null
         },
         {
-            "id": 270,
+            "id": 256,
             "attachmentId": 15,
             "caseNumber": 1,
             "fieldGroup": "NARRATIVE",
             "fieldName": "case_narrative",
-            "fieldValue": "A 52-year-old woman developed a generalized urticarial rash and mild lip swelling after ten days of Neptazol treatment for hypertension. She was treated with oral antihistamines, and her symptoms resolved within 48 hours after discontinuation of the drug.",
+            "fieldValue": "A 52-year-old woman developed a generalized urticarial rash and mild lip swelling after taking Neptazol for hypertension for ten days. She was treated with oral antihistamines, and her symptoms resolved within 48 hours after discontinuation of the drug.",
             "confidence": 1.0,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
@@ -256,7 +258,7 @@
             "reviewerValue": null
         },
         {
-            "id": 271,
+            "id": 257,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PATIENT",
@@ -269,7 +271,7 @@
             "reviewerValue": null
         },
         {
-            "id": 272,
+            "id": 258,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PATIENT",
@@ -282,7 +284,7 @@
             "reviewerValue": null
         },
         {
-            "id": 273,
+            "id": 259,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PATIENT",
@@ -295,7 +297,7 @@
             "reviewerValue": null
         },
         {
-            "id": 274,
+            "id": 260,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PATIENT",
@@ -308,7 +310,7 @@
             "reviewerValue": null
         },
         {
-            "id": 275,
+            "id": 261,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "REPORTER",
@@ -321,7 +323,7 @@
             "reviewerValue": null
         },
         {
-            "id": 276,
+            "id": 262,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "REPORTER",
@@ -334,7 +336,7 @@
             "reviewerValue": null
         },
         {
-            "id": 277,
+            "id": 263,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "REPORTER",
@@ -347,7 +349,7 @@
             "reviewerValue": null
         },
         {
-            "id": 278,
+            "id": 264,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PRODUCT",
@@ -360,7 +362,7 @@
             "reviewerValue": null
         },
         {
-            "id": 279,
+            "id": 265,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PRODUCT",
@@ -373,7 +375,7 @@
             "reviewerValue": null
         },
         {
-            "id": 280,
+            "id": 266,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PRODUCT",
@@ -386,7 +388,7 @@
             "reviewerValue": null
         },
         {
-            "id": 281,
+            "id": 267,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PRODUCT",
@@ -399,7 +401,7 @@
             "reviewerValue": null
         },
         {
-            "id": 282,
+            "id": 268,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "PRODUCT",
@@ -412,7 +414,7 @@
             "reviewerValue": null
         },
         {
-            "id": 283,
+            "id": 269,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "REACTION",
@@ -425,12 +427,12 @@
             "reviewerValue": null
         },
         {
-            "id": 284,
+            "id": 270,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "REACTION",
             "fieldName": "onset",
-            "fieldValue": "three weeks",
+            "fieldValue": "three weeks after treatment",
             "confidence": 1.0,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
@@ -438,7 +440,7 @@
             "reviewerValue": null
         },
         {
-            "id": 285,
+            "id": 271,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "REACTION",
@@ -451,7 +453,7 @@
             "reviewerValue": null
         },
         {
-            "id": 286,
+            "id": 272,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "SEVERITY",
@@ -464,7 +466,7 @@
             "reviewerValue": null
         },
         {
-            "id": 287,
+            "id": 273,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "SEVERITY",
@@ -477,12 +479,12 @@
             "reviewerValue": null
         },
         {
-            "id": 288,
+            "id": 274,
             "attachmentId": 15,
             "caseNumber": 2,
             "fieldGroup": "NARRATIVE",
             "fieldName": "case_narrative",
-            "fieldValue": "A 67-year-old man experienced facial angioedema and difficulty swallowing after three weeks on Neptazol for hypertension. He received intramuscular epinephrine and intravenous corticosteroids in the emergency department, and Neptazol was permanently discontinued.",
+            "fieldValue": "A 67-year-old man experienced facial angioedema and difficulty swallowing after three weeks of Neptazol treatment. He received intramuscular epinephrine and intravenous corticosteroids in the emergency department, and Neptazol was permanently discontinued.",
             "confidence": 1.0,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
@@ -498,9 +500,9 @@
             "attachmentId": 15,
             "caseNumber": 1,
             "relevantCase": true,
-            "relevanceReason": "This case describes a specific patient with identifiable details and a clear adverse reaction to a specific drug.",
+            "relevanceReason": "This case describes a specific patient with identifiable details and a clear adverse reaction to a drug.",
             "confidence": 1.0,
-            "summary": "A 52-year-old woman developed a generalized urticarial rash and mild lip swelling after ten days of Neptazol treatment for hypertension. She was treated with oral antihistamines, and her symptoms resolved within 48 hours after discontinuation of the drug.",
+            "summary": "A 52-year-old woman developed a generalized urticarial rash and mild lip swelling after taking Neptazol for hypertension for ten days. She was treated with oral antihistamines, and her symptoms resolved within 48 hours after discontinuation of the drug.",
             "reviewerStatus": "PENDING",
             "reviewerIsRelevant": null,
             "reviewedBy": null,
@@ -511,9 +513,9 @@
             "attachmentId": 15,
             "caseNumber": 2,
             "relevantCase": true,
-            "relevanceReason": "This case describes a specific patient with identifiable details and a clear adverse reaction to a specific drug.",
+            "relevanceReason": "This case describes a specific patient with identifiable details and a clear adverse reaction to a drug.",
             "confidence": 1.0,
-            "summary": "A 67-year-old man experienced facial angioedema and difficulty swallowing after three weeks on Neptazol for hypertension. He received intramuscular epinephrine and intravenous corticosteroids in the emergency department, and Neptazol was permanently discontinued.",
+            "summary": "A 67-year-old man experienced facial angioedema and difficulty swallowing after three weeks of Neptazol treatment. He received intramuscular epinephrine and intravenous corticosteroids in the emergency department, and Neptazol was permanently discontinued.",
             "reviewerStatus": "PENDING",
             "reviewerIsRelevant": null,
             "reviewedBy": null,
@@ -528,358 +530,358 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"filename\": \"lit-multi-case.pdf\", \"sourceType\": \"LITERATURE_UPLOAD\"}",
-            "createdAt": "2026-09-04T04:49:43.340497Z"
+            "createdAt": "2026-10-09T16:18:36.866965Z"
         },
         {
-            "id": 349,
+            "id": 332,
             "entityType": "ATTACHMENT",
             "entityId": 15,
             "actor": "system",
             "action": "AI_PDF_PROCESSED",
             "detailJson": "{\"flavor\": \"ARTICLE\", \"pageCount\": 1, \"confidence\": 0.8}",
-            "createdAt": "2026-09-04T04:51:26.982984Z"
+            "createdAt": "2026-10-09T16:20:29.682013Z"
         },
         {
-            "id": 351,
+            "id": 334,
             "entityType": "LITERATURE_CASE",
             "entityId": 1,
             "actor": "system",
             "action": "AI_SCREENED",
             "detailJson": "{\"caseNumber\": 1, \"confidence\": 1.0, \"isRelevantCase\": true}",
-            "createdAt": "2026-09-04T04:51:45.304167Z"
+            "createdAt": "2026-10-09T16:20:49.557660Z"
         },
         {
-            "id": 352,
+            "id": 335,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 239,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"age\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.563591Z"
+        },
+        {
+            "id": 336,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 240,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"sex\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.566777Z"
+        },
+        {
+            "id": 337,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 241,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"weight_height\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.569067Z"
+        },
+        {
+            "id": 338,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 242,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"relevant_history\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.571085Z"
+        },
+        {
+            "id": 339,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 243,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"caseNumber\": 1, \"fieldGroup\": \"REPORTER\"}",
+            "createdAt": "2026-10-09T16:20:49.572855Z"
+        },
+        {
+            "id": 340,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 244,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_role\", \"caseNumber\": 1, \"fieldGroup\": \"REPORTER\"}",
+            "createdAt": "2026-10-09T16:20:49.574502Z"
+        },
+        {
+            "id": 341,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 245,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_country\", \"caseNumber\": 1, \"fieldGroup\": \"REPORTER\"}",
+            "createdAt": "2026-10-09T16:20:49.575921Z"
+        },
+        {
+            "id": 342,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 246,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_name\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.576785Z"
+        },
+        {
+            "id": 343,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 247,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"dose\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.577661Z"
+        },
+        {
+            "id": 344,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 248,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"route\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.579007Z"
+        },
+        {
+            "id": 345,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 249,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"start_date\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.580677Z"
+        },
+        {
+            "id": 346,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 250,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"stop_date\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.582868Z"
+        },
+        {
+            "id": 347,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 251,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reaction_description\", \"caseNumber\": 1, \"fieldGroup\": \"REACTION\"}",
+            "createdAt": "2026-10-09T16:20:49.584471Z"
+        },
+        {
+            "id": 348,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 252,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"onset\", \"caseNumber\": 1, \"fieldGroup\": \"REACTION\"}",
+            "createdAt": "2026-10-09T16:20:49.585895Z"
+        },
+        {
+            "id": 349,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 253,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"age\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.304970Z"
+            "detailJson": "{\"fieldName\": \"outcome\", \"caseNumber\": 1, \"fieldGroup\": \"REACTION\"}",
+            "createdAt": "2026-10-09T16:20:49.587542Z"
         },
         {
-            "id": 353,
+            "id": 350,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 254,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"sex\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.305421Z"
+            "detailJson": "{\"fieldName\": \"serious\", \"caseNumber\": 1, \"fieldGroup\": \"SEVERITY\"}",
+            "createdAt": "2026-10-09T16:20:49.589221Z"
         },
         {
-            "id": 354,
+            "id": 351,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 255,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"weight_height\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.305769Z"
+            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"caseNumber\": 1, \"fieldGroup\": \"SEVERITY\"}",
+            "createdAt": "2026-10-09T16:20:49.590932Z"
         },
         {
-            "id": 355,
+            "id": 352,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 256,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"relevant_history\", \"caseNumber\": 1, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.306090Z"
-        },
-        {
-            "id": 356,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 257,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"caseNumber\": 1, \"fieldGroup\": \"REPORTER\"}",
-            "createdAt": "2026-09-04T04:51:45.306423Z"
-        },
-        {
-            "id": 357,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 258,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_role\", \"caseNumber\": 1, \"fieldGroup\": \"REPORTER\"}",
-            "createdAt": "2026-09-04T04:51:45.306724Z"
-        },
-        {
-            "id": 358,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 259,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_country\", \"caseNumber\": 1, \"fieldGroup\": \"REPORTER\"}",
-            "createdAt": "2026-09-04T04:51:45.307093Z"
-        },
-        {
-            "id": 359,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 260,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"product_name\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.307398Z"
-        },
-        {
-            "id": 360,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 261,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"dose\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.307699Z"
-        },
-        {
-            "id": 361,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 262,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"route\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.307979Z"
-        },
-        {
-            "id": 362,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 263,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"start_date\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.308273Z"
-        },
-        {
-            "id": 363,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 264,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"stop_date\", \"caseNumber\": 1, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.308559Z"
-        },
-        {
-            "id": 364,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 265,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reaction_description\", \"caseNumber\": 1, \"fieldGroup\": \"REACTION\"}",
-            "createdAt": "2026-09-04T04:51:45.308840Z"
-        },
-        {
-            "id": 365,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 266,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"onset\", \"caseNumber\": 1, \"fieldGroup\": \"REACTION\"}",
-            "createdAt": "2026-09-04T04:51:45.309124Z"
-        },
-        {
-            "id": 366,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 267,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"outcome\", \"caseNumber\": 1, \"fieldGroup\": \"REACTION\"}",
-            "createdAt": "2026-09-04T04:51:45.309464Z"
-        },
-        {
-            "id": 367,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 268,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"serious\", \"caseNumber\": 1, \"fieldGroup\": \"SEVERITY\"}",
-            "createdAt": "2026-09-04T04:51:45.309787Z"
-        },
-        {
-            "id": 368,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 269,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"caseNumber\": 1, \"fieldGroup\": \"SEVERITY\"}",
-            "createdAt": "2026-09-04T04:51:45.310300Z"
-        },
-        {
-            "id": 369,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 270,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"case_narrative\", \"caseNumber\": 1, \"fieldGroup\": \"NARRATIVE\"}",
-            "createdAt": "2026-09-04T04:51:45.311212Z"
+            "createdAt": "2026-10-09T16:20:49.592543Z"
         },
         {
-            "id": 370,
+            "id": 353,
             "entityType": "LITERATURE_CASE",
             "entityId": 2,
             "actor": "system",
             "action": "AI_SCREENED",
             "detailJson": "{\"caseNumber\": 2, \"confidence\": 1.0, \"isRelevantCase\": true}",
-            "createdAt": "2026-09-04T04:51:45.312224Z"
+            "createdAt": "2026-10-09T16:20:49.594536Z"
         },
         {
-            "id": 371,
+            "id": 354,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 257,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"age\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.596264Z"
+        },
+        {
+            "id": 355,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 258,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"sex\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.598175Z"
+        },
+        {
+            "id": 356,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 259,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"weight_height\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.599703Z"
+        },
+        {
+            "id": 357,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 260,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"relevant_history\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
+            "createdAt": "2026-10-09T16:20:49.601278Z"
+        },
+        {
+            "id": 358,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 261,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"caseNumber\": 2, \"fieldGroup\": \"REPORTER\"}",
+            "createdAt": "2026-10-09T16:20:49.602891Z"
+        },
+        {
+            "id": 359,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 262,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_role\", \"caseNumber\": 2, \"fieldGroup\": \"REPORTER\"}",
+            "createdAt": "2026-10-09T16:20:49.604591Z"
+        },
+        {
+            "id": 360,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 263,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_country\", \"caseNumber\": 2, \"fieldGroup\": \"REPORTER\"}",
+            "createdAt": "2026-10-09T16:20:49.606111Z"
+        },
+        {
+            "id": 361,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 264,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_name\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.607533Z"
+        },
+        {
+            "id": 362,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 265,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"dose\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.609045Z"
+        },
+        {
+            "id": 363,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 266,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"route\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.611047Z"
+        },
+        {
+            "id": 364,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 267,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"start_date\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.613054Z"
+        },
+        {
+            "id": 365,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 268,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"stop_date\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
+            "createdAt": "2026-10-09T16:20:49.614861Z"
+        },
+        {
+            "id": 366,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 269,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reaction_description\", \"caseNumber\": 2, \"fieldGroup\": \"REACTION\"}",
+            "createdAt": "2026-10-09T16:20:49.616881Z"
+        },
+        {
+            "id": 367,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 270,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"onset\", \"caseNumber\": 2, \"fieldGroup\": \"REACTION\"}",
+            "createdAt": "2026-10-09T16:20:49.618803Z"
+        },
+        {
+            "id": 368,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 271,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"age\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.312987Z"
+            "detailJson": "{\"fieldName\": \"outcome\", \"caseNumber\": 2, \"fieldGroup\": \"REACTION\"}",
+            "createdAt": "2026-10-09T16:20:49.620572Z"
         },
         {
-            "id": 372,
+            "id": 369,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 272,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"sex\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.313673Z"
+            "detailJson": "{\"fieldName\": \"serious\", \"caseNumber\": 2, \"fieldGroup\": \"SEVERITY\"}",
+            "createdAt": "2026-10-09T16:20:49.622683Z"
         },
         {
-            "id": 373,
+            "id": 370,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 273,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"weight_height\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.314337Z"
+            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"caseNumber\": 2, \"fieldGroup\": \"SEVERITY\"}",
+            "createdAt": "2026-10-09T16:20:49.624518Z"
         },
         {
-            "id": 374,
+            "id": 371,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 274,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"relevant_history\", \"caseNumber\": 2, \"fieldGroup\": \"PATIENT\"}",
-            "createdAt": "2026-09-04T04:51:45.314964Z"
-        },
-        {
-            "id": 375,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 275,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"caseNumber\": 2, \"fieldGroup\": \"REPORTER\"}",
-            "createdAt": "2026-09-04T04:51:45.315595Z"
-        },
-        {
-            "id": 376,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 276,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_role\", \"caseNumber\": 2, \"fieldGroup\": \"REPORTER\"}",
-            "createdAt": "2026-09-04T04:51:45.316187Z"
-        },
-        {
-            "id": 377,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 277,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_country\", \"caseNumber\": 2, \"fieldGroup\": \"REPORTER\"}",
-            "createdAt": "2026-09-04T04:51:45.316792Z"
-        },
-        {
-            "id": 378,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 278,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"product_name\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.317432Z"
-        },
-        {
-            "id": 379,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 279,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"dose\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.318029Z"
-        },
-        {
-            "id": 380,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 280,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"route\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.318637Z"
-        },
-        {
-            "id": 381,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 281,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"start_date\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.319203Z"
-        },
-        {
-            "id": 382,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 282,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"stop_date\", \"caseNumber\": 2, \"fieldGroup\": \"PRODUCT\"}",
-            "createdAt": "2026-09-04T04:51:45.319804Z"
-        },
-        {
-            "id": 383,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 283,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reaction_description\", \"caseNumber\": 2, \"fieldGroup\": \"REACTION\"}",
-            "createdAt": "2026-09-04T04:51:45.320436Z"
-        },
-        {
-            "id": 384,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 284,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"onset\", \"caseNumber\": 2, \"fieldGroup\": \"REACTION\"}",
-            "createdAt": "2026-09-04T04:51:45.321036Z"
-        },
-        {
-            "id": 385,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 285,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"outcome\", \"caseNumber\": 2, \"fieldGroup\": \"REACTION\"}",
-            "createdAt": "2026-09-04T04:51:45.321731Z"
-        },
-        {
-            "id": 386,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 286,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"serious\", \"caseNumber\": 2, \"fieldGroup\": \"SEVERITY\"}",
-            "createdAt": "2026-09-04T04:51:45.322350Z"
-        },
-        {
-            "id": 387,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 287,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"caseNumber\": 2, \"fieldGroup\": \"SEVERITY\"}",
-            "createdAt": "2026-09-04T04:51:45.323034Z"
-        },
-        {
-            "id": 388,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 288,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"case_narrative\", \"caseNumber\": 2, \"fieldGroup\": \"NARRATIVE\"}",
-            "createdAt": "2026-09-04T04:51:45.323699Z"
+            "createdAt": "2026-10-09T16:20:49.626375Z"
         }
     ]
 }

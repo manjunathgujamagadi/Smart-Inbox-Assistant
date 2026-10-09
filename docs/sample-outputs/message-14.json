@@ -9,10 +9,10 @@
     "attachments": [],
     "classifications": [
         {
-            "id": 18,
+            "id": 15,
             "category": "NOT_RELEVANT",
             "confidence": 1.0,
-            "reason": "The email is a marketing invitation and does not contain any safety reports, quality complaints, or information requests.",
+            "reason": "The email is a marketing invitation and does not contain any relevant safety reports, quality complaints, or information requests.",
             "reviewerStatus": "PENDING",
             "reviewerCategory": null,
             "reviewedBy": null,
@@ -31,16 +31,16 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"fixture\": \"irrelevant-01.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
-            "createdAt": "2026-09-04T04:49:43.273731Z"
+            "createdAt": "2026-10-09T16:18:36.706559Z"
         },
         {
-            "id": 304,
+            "id": 287,
             "entityType": "CLASSIFICATION",
-            "entityId": 18,
+            "entityId": 15,
             "actor": "system",
             "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"The email is a marketing invitation and does not contain any safety reports, quality complaints, or information requests.\", \"category\": \"NOT_RELEVANT\", \"confidence\": 1.0}",
-            "createdAt": "2026-09-04T04:51:10.191437Z"
+            "detailJson": "{\"reason\": \"The email is a marketing invitation and does not contain any relevant safety reports, quality complaints, or information requests.\", \"category\": \"NOT_RELEVANT\", \"confidence\": 1.0}",
+            "createdAt": "2026-10-09T16:20:11.455482Z"
         }
     ]
 }

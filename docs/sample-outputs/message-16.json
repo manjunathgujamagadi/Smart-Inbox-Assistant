@@ -9,9 +9,9 @@
     "attachments": [],
     "classifications": [
         {
-            "id": 20,
+            "id": 17,
             "category": "MI",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "reason": "The message explicitly asks for the maximum daily dose of Ferbolex syrup for a 6-year-old.",
             "reviewerStatus": "PENDING",
             "reviewerCategory": null,
@@ -21,26 +21,26 @@
     ],
     "extractedFields": [
         {
-            "id": 225,
+            "id": 211,
             "attachmentId": null,
             "caseNumber": null,
             "fieldGroup": "MI",
             "fieldName": "question_1",
             "fieldValue": "Could you tell me the maximum daily dose of Ferbolex syrup for a 6-year-old?",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "EMAIL_BODY",
             "sourceRef": null,
             "reviewerStatus": "PENDING",
             "reviewerValue": null
         },
         {
-            "id": 226,
+            "id": 212,
             "attachmentId": null,
             "caseNumber": null,
             "fieldGroup": "MI",
             "fieldName": "product_or_topic",
             "fieldValue": "Ferbolex syrup",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "EMAIL_BODY",
             "sourceRef": null,
             "reviewerStatus": "PENDING",
@@ -58,34 +58,34 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"fixture\": \"mi-02.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
-            "createdAt": "2026-09-04T04:49:43.294420Z"
+            "createdAt": "2026-10-09T16:18:36.748880Z"
         },
         {
-            "id": 310,
+            "id": 293,
             "entityType": "CLASSIFICATION",
-            "entityId": 20,
+            "entityId": 17,
             "actor": "system",
             "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"The message explicitly asks for the maximum daily dose of Ferbolex syrup for a 6-year-old.\", \"category\": \"MI\", \"confidence\": 1.0}",
-            "createdAt": "2026-09-04T04:51:14.386002Z"
+            "detailJson": "{\"reason\": \"The message explicitly asks for the maximum daily dose of Ferbolex syrup for a 6-year-old.\", \"category\": \"MI\", \"confidence\": 0.95}",
+            "createdAt": "2026-10-09T16:20:15.961516Z"
         },
         {
-            "id": 311,
+            "id": 294,
             "entityType": "EXTRACTED_FIELD",
-            "entityId": 225,
+            "entityId": 211,
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"question_1\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:51:14.389010Z"
+            "createdAt": "2026-10-09T16:20:15.964440Z"
         },
         {
-            "id": 312,
+            "id": 295,
             "entityType": "EXTRACTED_FIELD",
-            "entityId": 226,
+            "entityId": 212,
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"product_or_topic\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:51:14.391290Z"
+            "createdAt": "2026-10-09T16:20:15.966975Z"
         }
     ]
 }

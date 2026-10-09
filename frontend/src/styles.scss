@@ -1,4 +1,236 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.core();
+
+$primary: mat.m2-define-palette(mat.$m2-teal-palette, 700, 100, 900);
+$accent: mat.m2-define-palette(mat.$m2-indigo-palette, 500);
+$warn: mat.m2-define-palette(mat.$m2-red-palette, 700);
+
+$typography: mat.m2-define-typography-config(
+  $font-family: '"Inter", Roboto, "Helvetica Neue", sans-serif',
+  $button: mat.m2-define-typography-level(13.5px, 20px, 500, $letter-spacing: normal)
+);
+
+$theme: mat.m2-define-light-theme(
+  (
+    color: (primary: $primary, accent: $accent, warn: $warn),
+    typography: $typography,
+    density: -1,
+  )
+);
+
+@include mat.all-component-themes($theme);
+@include mat.typography-hierarchy($typography);
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --surface-2: #f8fafb;
+  --border: #e3e8ec;
+  --text: #1b2731;
+  --text-2: #51606c;
+  --text-3: #8592a0;
+  --brand: #00796b;
+  --brand-soft: #e0f2f1;
+  --brand-dark: #004d40;
+
+  /* Category colours (Section 2 of the brief) */
+  --icsr: #c62828;
+  --icsr-soft: #fdecea;
+  --pqc: #b45309;
+  --pqc-soft: #fff4e5;
+  --mi: #1d4ed8;
+  --mi-soft: #e8efff;
+  --nr: #5f6b76;
+  --nr-soft: #eef1f3;
+  --lit: #6d28d9;
+  --lit-soft: #f1eafe;
+
+  --ok: #2e7d32;
+  --ok-soft: #e8f5e9;
+  --warn: #b45309;
+  --warn-soft: #fff4e5;
+  --err: #c62828;
+  --err-soft: #fdecea;
+
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 8px 24px rgba(16, 24, 40, 0.12);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', Roboto, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Shared utility classes ---------- */
+.muted {
+  color: var(--text-3);
+  font-size: 12px;
+}
+
+.page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: var(--text-2);
+    font-size: 13px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  font-size: 14px;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: var(--text-2);
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Status pills used across pages */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  background: var(--nr-soft);
+  color: var(--nr);
+
+  mat-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+
+  &.ok {
+    background: var(--ok-soft);
+    color: var(--ok);
+  }
+  &.warn {
+    background: var(--warn-soft);
+    color: var(--warn);
+  }
+  &.err {
+    background: var(--err-soft);
+    color: var(--err);
+  }
+  &.info {
+    background: var(--mi-soft);
+    color: var(--mi);
+  }
+  &.brand {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+  }
+  &.lit {
+    background: var(--lit-soft);
+    color: var(--lit);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+/* Snackbar variants */
+.snack-ok .mdc-snackbar__surface {
+  background: #1f3d36 !important;
+}
+.snack-err .mdc-snackbar__surface {
+  background: #5b1a1a !important;
+}
+
+/* Material tweaks */
+.mat-mdc-tab .mdc-tab__text-label {
+  letter-spacing: normal;
+}
+
+.mat-mdc-button-toggle-group {
+  border-radius: 8px !important;
+}
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 30px !important;
+  padding: 0 12px !important;
+  font-size: 12.5px;
+}
+.mat-button-toggle-checked.toggle-accept {
+  background: var(--ok-soft) !important;
+  color: var(--ok) !important;
+}
+.mat-button-toggle-checked.toggle-override {
+  background: var(--mi-soft) !important;
+  color: var(--mi) !important;
+}
+.mat-button-toggle-checked.toggle-reject {
+  background: var(--err-soft) !important;
+  color: var(--err) !important;
+}

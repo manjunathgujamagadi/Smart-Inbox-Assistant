@@ -47,6 +47,14 @@ public class Attachment {
 
     private String summary;
 
+    /** Transcription/extraction confidence for the whole PDF (low for unclear handwriting). */
+    @Column(name = "extraction_confidence", precision = 4, scale = 3)
+    private java.math.BigDecimal extractionConfidence;
+
+    /** English translation of a non-English PDF, page by page; the original PDF is the source of truth. */
+    @Column(name = "translated_text", columnDefinition = "TEXT")
+    private String translatedText;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 }

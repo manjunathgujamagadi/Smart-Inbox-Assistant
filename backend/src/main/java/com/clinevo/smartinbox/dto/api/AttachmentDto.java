@@ -9,5 +9,7 @@ public record AttachmentDto(
         String detectedLanguage,
         Integer pageCount,
         boolean processed,
-        String summary
+        String summary,
+        java.math.BigDecimal extractionConfidence,
+        String translatedText
 ) {}

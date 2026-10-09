@@ -22,8 +22,9 @@ services:
     environment:
       AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:?Set AZURE_OPENAI_API_KEY in .env}
       AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:?Set AZURE_OPENAI_ENDPOINT in .env}
-      AZURE_OPENAI_DEPLOYMENT: ${AZURE_OPENAI_DEPLOYMENT:-gpt-4o-mini}
-      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION:-2024-12-01-preview}
+      AZURE_OPENAI_DEPLOYMENT: ${AZURE_OPENAI_DEPLOYMENT:-gpt-5-mini}
+      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION:-2024-10-21}
+      AZURE_OPENAI_REASONING_EFFORT: ${AZURE_OPENAI_REASONING_EFFORT:-}
     ports:
       # Host 8001 -> container 8000: host 8000 is already used by another
       # local service on the dev machine this was built on.
@@ -49,7 +50,11 @@ services:
       MAIL_IMAP_PORT: ${MAIL_IMAP_PORT:-993}
       MAIL_USERNAME: ${MAIL_USERNAME:-}
       MAIL_PASSWORD: ${MAIL_PASSWORD:-}
-      MAIL_POLLING_ENABLED: ${MAIL_POLLING_ENABLED:-false}
+      MAIL_POLLING_ENABLED: ${MAIL_POLLING_ENABLED:-true}
+      MAIL_INBOX_FOLDER: ${MAIL_INBOX_FOLDER:-INBOX}
+      MAIL_POLL_INTERVAL_MS: ${MAIL_POLL_INTERVAL_MS:-30000}
+      MAIL_INGEST_SINCE: ${MAIL_INGEST_SINCE:-}
+      MAIL_IMAP_SSL_TRUST: ${MAIL_IMAP_SSL_TRUST:-}
     ports:
       # Host 8081 -> container 8080: host 8080 is already used by another
       # local service on the dev machine this was built on.

@@ -16,8 +16,10 @@ pip install reportlab pillow
 python3 generate_test_data.py
 ```
 
-`emails/*.json` fixtures are what `POST /api/batch/run` ingests (see
-`LocalBatchIngestionService`); each `attachments` entry is a path to a PDF under `pdfs/`.
+Each `emails/*.json` fixture describes one email; its `attachments` entries are paths to PDFs under
+`pdfs/`. [`send_test_emails.py`](send_test_emails.py) delivers them to the real test mailbox as
+actual emails with the PDFs attached (see the root README), which is how the batch run is meant to
+be done. `POST /api/batch/run` loads the same fixtures from disk as an offline fallback.
 
 ## Coverage of Section 6 requirements
 
@@ -26,7 +28,7 @@ python3 generate_test_data.py
 | 1 | ≥10 emails, varying detail about a reaction | `icsr-01`..`icsr-06`, `icsr-07-es`, `icsr-08-fr`, `article-email-01`..`05` (13 total) |
 | 2 | ≥5 normal digital PDF attachments | `icsr-01-form`, `icsr-02-labs`, `icsr-04-form`, `pqc-01-complaint`, `pqc-02-complaint` |
 | 3 | ≥2 scanned/handwritten-style PDFs | `icsr-05-handwritten`, `icsr-06-handwritten` (rendered with a handwriting font onto a page image, no text layer — see write-up) |
-| 4 | ≥5 fictional "article" PDFs | `article-01`..`article-05` (each attached to its own `article-email-*`) |
+| 4 | ≥5 fictional "article" PDFs | `article-01`..`article-05` (each attached to its own `article-email-*`; `article-02` uses a two-column journal layout) |
 | 5 | ≥2 non-English PDFs, case-relevant | `icsr-07-es-form` (Spanish), `icsr-08-fr-form` (French) |
 | 6 | ≥2 quality-complaint-only, ≥2 info-request-only | `pqc-01`, `pqc-02`; `mi-01`, `mi-02` |
 | 7 | ≥1 clearly irrelevant example | `irrelevant-01` (marketing email) |

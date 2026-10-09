@@ -16,25 +16,27 @@
             "detectedLanguage": "en",
             "pageCount": 2,
             "processed": true,
-            "summary": "This document is a Combined Adverse Event / Product Complaint Report concerning a 29-year-old male patient who experienced adverse reactions after using Cortivex Cream. The cream was applied topically twice daily from July 20 to July 21, 2026. The patient developed skin inflammation and blistering at the site of application within hours of the first use, and these symptoms are ongoing at the time of the report.\n\nThe report is filed by T. Tomlin, a pharmacist from the USA. There is a mention of a potential product defect, as the batch lot number B4471 is associated with visible discoloration and an unusual odor in the cream. No photos are provided to support the observations.\n\nGiven the reported skin reactions and the potential defect of the product, this document is relevant to patient safety and quality complaint reviews. It highlights serious concerns regarding the product's integrity and its effects on a patient, warranting further investigation into the safety and quality of Cortivex Cream."
+            "summary": "This document is a Combined Adverse Event/Product Complaint Report concerning a 29-year-old male patient who experienced skin inflammation and blistering at the site of application after using Cortivex Cream. The cream was applied topically twice daily from July 20 to July 21, 2026. The onset of reactions occurred within hours of the first application, and the issues were still ongoing at the time of reporting. \n\nThe reporter of this incident is T. Tomlin, a pharmacist based in the USA, who did not note any relevant medical history for the patient. Additionally, the report raises a product defect concern, indicating that there was visible discoloration and an unusual odor in the cream from batch/lot number B4471. No photographs were provided with the report. \n\nGiven that this document addresses both an adverse event and a potential quality issue with a product, it is highly relevant for patient safety and quality complaint reviews. The combination of the patient's reaction and the reported defect raises significant concerns that could affect other users of the product.",
+            "extractionConfidence": 0.95,
+            "translatedText": null
         }
     ],
     "classifications": [
         {
-            "id": 13,
+            "id": 10,
             "category": "ICSR",
             "confidence": 1.0,
-            "reason": "A patient experienced skin inflammation and blistering after using Cortivex Cream, with specific details about the patient, reporter, drug, and bad outcome.",
+            "reason": "The message contains a specific patient (29-year-old male), a reporter (T. Tomlin, pharmacist), a specific drug (Cortivex Cream), and a bad outcome (skin inflammation and blistering).",
             "reviewerStatus": "PENDING",
             "reviewerCategory": null,
             "reviewedBy": null,
             "reviewedAt": null
         },
         {
-            "id": 14,
+            "id": 11,
             "category": "PQC",
             "confidence": 1.0,
-            "reason": "The product Cortivex Cream from batch B4471 was reported to have visible discoloration and an unusual odor, indicating a quality complaint.",
+            "reason": "The message reports a specific defect in the product (visible discoloration and unusual odor) and includes a batch number (B4471).",
             "reviewerStatus": "PENDING",
             "reviewerCategory": null,
             "reviewedBy": null,
@@ -43,7 +45,7 @@
     ],
     "extractedFields": [
         {
-            "id": 147,
+            "id": 141,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PATIENT",
@@ -56,7 +58,7 @@
             "reviewerValue": null
         },
         {
-            "id": 148,
+            "id": 142,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PATIENT",
@@ -69,7 +71,7 @@
             "reviewerValue": null
         },
         {
-            "id": 149,
+            "id": 143,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PATIENT",
@@ -82,7 +84,7 @@
             "reviewerValue": null
         },
         {
-            "id": 150,
+            "id": 144,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PATIENT",
@@ -95,7 +97,7 @@
             "reviewerValue": null
         },
         {
-            "id": 151,
+            "id": 145,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "REPORTER",
@@ -108,7 +110,7 @@
             "reviewerValue": null
         },
         {
-            "id": 152,
+            "id": 146,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "REPORTER",
@@ -121,7 +123,7 @@
             "reviewerValue": null
         },
         {
-            "id": 153,
+            "id": 147,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "REPORTER",
@@ -134,7 +136,7 @@
             "reviewerValue": null
         },
         {
-            "id": 154,
+            "id": 148,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PRODUCT",
@@ -147,7 +149,7 @@
             "reviewerValue": null
         },
         {
-            "id": 155,
+            "id": 149,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PRODUCT",
@@ -160,7 +162,7 @@
             "reviewerValue": null
         },
         {
-            "id": 156,
+            "id": 150,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PRODUCT",
@@ -173,7 +175,7 @@
             "reviewerValue": null
         },
         {
-            "id": 157,
+            "id": 151,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PRODUCT",
@@ -186,7 +188,7 @@
             "reviewerValue": null
         },
         {
-            "id": 158,
+            "id": 152,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PRODUCT",
@@ -199,7 +201,7 @@
             "reviewerValue": null
         },
         {
-            "id": 159,
+            "id": 153,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "REACTION",
@@ -212,7 +214,7 @@
             "reviewerValue": null
         },
         {
-            "id": 160,
+            "id": 154,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "REACTION",
@@ -225,7 +227,7 @@
             "reviewerValue": null
         },
         {
-            "id": 161,
+            "id": 155,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "REACTION",
@@ -238,7 +240,7 @@
             "reviewerValue": null
         },
         {
-            "id": 162,
+            "id": 156,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "SEVERITY",
@@ -251,7 +253,7 @@
             "reviewerValue": null
         },
         {
-            "id": 163,
+            "id": 157,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "SEVERITY",
@@ -264,20 +266,20 @@
             "reviewerValue": null
         },
         {
-            "id": 164,
+            "id": 158,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "NARRATIVE",
             "fieldName": "case_narrative",
-            "fieldValue": "A 29-year-old male patient used Cortivex Cream from batch B4471 and developed skin inflammation and blistering after application. The cream had a strange smell and discoloration, indicating a potential product defect. The symptoms are ongoing at the time of the report.",
-            "confidence": 1.0,
+            "fieldValue": "A 29-year-old male patient experienced skin inflammation and blistering after using Cortivex Cream from batch B4471. The cream was applied topically twice daily from July 20 to July 21, 2026, and the reactions began within hours of the first application, remaining ongoing at the time of reporting.",
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
             "reviewerValue": null
         },
         {
-            "id": 165,
+            "id": 159,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PQC",
@@ -290,7 +292,7 @@
             "reviewerValue": null
         },
         {
-            "id": 166,
+            "id": 160,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PQC",
@@ -303,7 +305,7 @@
             "reviewerValue": null
         },
         {
-            "id": 167,
+            "id": 161,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PQC",
@@ -316,7 +318,7 @@
             "reviewerValue": null
         },
         {
-            "id": 168,
+            "id": 162,
             "attachmentId": 8,
             "caseNumber": null,
             "fieldGroup": "PQC",
@@ -340,232 +342,232 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"fixture\": \"icsr-04.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
-            "createdAt": "2026-09-04T04:49:43.208642Z"
+            "createdAt": "2026-10-09T16:18:36.562783Z"
         },
         {
-            "id": 191,
+            "id": 205,
             "entityType": "ATTACHMENT",
             "entityId": 8,
             "actor": "system",
             "action": "AI_PDF_PROCESSED",
             "detailJson": "{\"flavor\": \"DIGITAL\", \"pageCount\": 2, \"confidence\": 0.95}",
-            "createdAt": "2026-09-04T04:50:36.293598Z"
+            "createdAt": "2026-10-09T16:19:33.980387Z"
+        },
+        {
+            "id": 207,
+            "entityType": "CLASSIFICATION",
+            "entityId": 10,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The message contains a specific patient (29-year-old male), a reporter (T. Tomlin, pharmacist), a specific drug (Cortivex Cream), and a bad outcome (skin inflammation and blistering).\", \"category\": \"ICSR\", \"confidence\": 1.0}",
+            "createdAt": "2026-10-09T16:19:47.117280Z"
+        },
+        {
+            "id": 208,
+            "entityType": "CLASSIFICATION",
+            "entityId": 11,
+            "actor": "system",
+            "action": "AI_CLASSIFIED",
+            "detailJson": "{\"reason\": \"The message reports a specific defect in the product (visible discoloration and unusual odor) and includes a batch number (B4471).\", \"category\": \"PQC\", \"confidence\": 1.0}",
+            "createdAt": "2026-10-09T16:19:47.122007Z"
+        },
+        {
+            "id": 209,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 141,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.127746Z"
+        },
+        {
+            "id": 210,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 142,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.133790Z"
+        },
+        {
+            "id": 211,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 143,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"weight_height\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.139630Z"
+        },
+        {
+            "id": 212,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 144,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"relevant_history\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.146242Z"
+        },
+        {
+            "id": 213,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 145,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.150409Z"
+        },
+        {
+            "id": 214,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 146,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.153937Z"
         },
         {
             "id": 215,
-            "entityType": "CLASSIFICATION",
-            "entityId": 13,
-            "actor": "system",
-            "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"A patient experienced skin inflammation and blistering after using Cortivex Cream, with specific details about the patient, reporter, drug, and bad outcome.\", \"category\": \"ICSR\", \"confidence\": 1.0}",
-            "createdAt": "2026-09-04T04:50:46.331077Z"
-        },
-        {
-            "id": 216,
-            "entityType": "CLASSIFICATION",
-            "entityId": 14,
-            "actor": "system",
-            "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"The product Cortivex Cream from batch B4471 was reported to have visible discoloration and an unusual odor, indicating a quality complaint.\", \"category\": \"PQC\", \"confidence\": 1.0}",
-            "createdAt": "2026-09-04T04:50:46.334175Z"
-        },
-        {
-            "id": 217,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 147,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.337805Z"
+            "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.157042Z"
         },
         {
-            "id": 218,
+            "id": 216,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 148,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.340917Z"
+            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.159973Z"
         },
         {
-            "id": 219,
+            "id": 217,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 149,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"weight_height\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.343065Z"
+            "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.163523Z"
         },
         {
-            "id": 220,
+            "id": 218,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 150,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"relevant_history\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.344948Z"
+            "detailJson": "{\"fieldName\": \"route\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.166471Z"
         },
         {
-            "id": 221,
+            "id": 219,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 151,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.346923Z"
+            "detailJson": "{\"fieldName\": \"start_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.169174Z"
         },
         {
-            "id": 222,
+            "id": 220,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 152,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.348671Z"
+            "detailJson": "{\"fieldName\": \"stop_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.171979Z"
         },
         {
-            "id": 223,
+            "id": 221,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 153,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.350117Z"
+            "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.175734Z"
         },
         {
-            "id": 224,
+            "id": 222,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 154,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.351512Z"
+            "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.181053Z"
         },
         {
-            "id": 225,
+            "id": 223,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 155,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.352506Z"
+            "detailJson": "{\"fieldName\": \"outcome\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.186539Z"
         },
         {
-            "id": 226,
+            "id": 224,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 156,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"route\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.353828Z"
+            "detailJson": "{\"fieldName\": \"serious\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.190311Z"
         },
         {
-            "id": 227,
+            "id": 225,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 157,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"start_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.355048Z"
+            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.193784Z"
         },
         {
-            "id": 228,
+            "id": 226,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 158,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"stop_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.356140Z"
+            "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.196841Z"
         },
         {
-            "id": 229,
+            "id": 227,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 159,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.357145Z"
+            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.199881Z"
         },
         {
-            "id": 230,
+            "id": 228,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 160,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.358517Z"
+            "detailJson": "{\"fieldName\": \"batch_lot_number\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.202386Z"
         },
         {
-            "id": 231,
+            "id": 229,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 161,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"outcome\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.359718Z"
+            "detailJson": "{\"fieldName\": \"defect_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:47.204597Z"
         },
         {
-            "id": 232,
+            "id": 230,
             "entityType": "EXTRACTED_FIELD",
             "entityId": 162,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"serious\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.360999Z"
-        },
-        {
-            "id": 233,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 163,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.362173Z"
-        },
-        {
-            "id": 234,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 164,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.363016Z"
-        },
-        {
-            "id": 235,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 165,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.363853Z"
-        },
-        {
-            "id": 236,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 166,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"batch_lot_number\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.365018Z"
-        },
-        {
-            "id": 237,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 167,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"defect_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.366243Z"
-        },
-        {
-            "id": 238,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 168,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"photo_mentioned\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:46.367242Z"
+            "createdAt": "2026-10-09T16:19:47.206756Z"
         }
     ]
 }

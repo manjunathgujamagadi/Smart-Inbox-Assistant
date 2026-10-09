@@ -1,0 +1,99 @@
+<mat-progress-bar class="top-progress" *ngIf="loading() || retrying" mode="indeterminate"></mat-progress-bar>
+
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Processing report</h1>
+      <p>How long the AI pipeline took for every document in the batch (PDF understanding + classification + extraction).</p>
+    </div>
+    <div class="actions">
+      <button mat-stroked-button (click)="retryFailed()" [disabled]="retrying || !report()?.failed">
+        <mat-icon>replay</mat-icon>
+        Retry failed
+      </button>
+      <button mat-stroked-button (click)="exportJson()" [disabled]="!report()">
+        <mat-icon>download</mat-icon>
+        Export JSON
+      </button>
+      <button mat-icon-button (click)="load()" matTooltip="Refresh now"><mat-icon>refresh</mat-icon></button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="report() as r">
+    <div class="tiles">
+      <div class="tile">
+        <span class="label">Documents</span>
+        <span class="value">{{ r.totalDocuments }}</span>
+        <span class="sub" *ngIf="inFlight()"><mat-icon class="spin">autorenew</mat-icon>{{ inFlight() }} in progress</span>
+        <span class="sub" *ngIf="!inFlight()">all jobs finished</span>
+      </div>
+      <div class="tile">
+        <span class="label">Succeeded</span>
+        <span class="value ok">{{ r.done }}</span>
+        <span class="sub">{{ r.totalDocuments ? ((r.done / r.totalDocuments) * 100 | number: '1.0-0') : 0 }}% success rate</span>
+      </div>
+      <div class="tile">
+        <span class="label">Failed</span>
+        <span class="value" [class.err]="r.failed">{{ r.failed }}</span>
+        <span class="sub">{{ r.failed ? 'use Retry failed to re-queue' : 'no failures' }}</span>
+      </div>
+      <div class="tile">
+        <span class="label">Average time / document</span>
+        <span class="value">{{ fmt(round(r.avgDurationMs)) }}</span>
+        <span class="sub">min {{ fmt(r.minDurationMs) }} · max {{ fmt(r.maxDurationMs) }}</span>
+      </div>
+      <div class="tile">
+        <span class="label">Total pipeline time</span>
+        <span class="value">{{ fmt(totalMs()) }}</span>
+        <span class="sub">sequential sum of all jobs</span>
+      </div>
+    </div>
+
+    <section class="panel">
+      <div class="panel-title">
+        <mat-icon>timer</mat-icon>
+        Time per document
+        <span class="spacer"></span>
+        <mat-button-toggle-group [value]="sort()" (change)="sort.set($event.value)" hideSingleSelectionIndicator>
+          <mat-button-toggle value="id">In order received</mat-button-toggle>
+          <mat-button-toggle value="slowest">Slowest first</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <div class="chart" role="table" aria-label="Processing time per document">
+        <div class="chart-row head" role="row">
+          <span role="columnheader">#</span>
+          <span role="columnheader">Document</span>
+          <span role="columnheader">Status</span>
+          <span role="columnheader">Duration</span>
+        </div>
+        <a
+          class="chart-row"
+          role="row"
+          *ngFor="let j of jobs()"
+          [routerLink]="['/messages', j.messageId]"
+          [matTooltip]="(j.subject || '(no subject)') + ' — ' + fmt(j.durationMs)"
+          matTooltipPosition="above"
+        >
+          <span class="id" role="cell">{{ j.messageId }}</span>
+          <span class="subject" role="cell">{{ j.subject || '(no subject)' }}</span>
+          <span role="cell">
+            <span class="pill ok" *ngIf="j.status === 'DONE'"><mat-icon>check</mat-icon>Done</span>
+            <span class="pill err" *ngIf="j.status === 'FAILED'"><mat-icon>error</mat-icon>Failed</span>
+            <span class="pill info" *ngIf="j.status === 'PROCESSING'"><mat-icon class="spin">autorenew</mat-icon>Running</span>
+            <span class="pill" *ngIf="j.status === 'PENDING'"><mat-icon>schedule</mat-icon>Queued</span>
+          </span>
+          <span class="bar-cell" role="cell">
+            <span class="track">
+              <span class="bar" [class.failed]="j.status === 'FAILED'" [style.width.%]="barWidth(j.durationMs)"></span>
+            </span>
+            <span class="val">{{ fmt(j.durationMs) }}</span>
+          </span>
+        </a>
+        <div class="empty" *ngIf="!jobs().length">
+          No documents processed yet. Ingest the sample set from the review queue to produce a report.
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</div>

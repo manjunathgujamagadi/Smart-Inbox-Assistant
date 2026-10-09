@@ -1,5 +1,7 @@
 package com.clinevo.smartinbox.web;
 
+import com.clinevo.smartinbox.service.MailIngestionService;
+import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> badRequest(IllegalArgumentException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
+    }
+
+    @ExceptionHandler(MailIngestionService.MailboxBusyException.class)
+    public ResponseEntity<Map<String, String>> mailboxBusy(MailIngestionService.MailboxBusyException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", e.getMessage()));
+    }
+
+    /** IMAP connect/login failures: the mailbox, not this API, is what's broken. */
+    @ExceptionHandler(MessagingException.class)
+    public ResponseEntity<Map<String, String>> mailbox(MessagingException e) {
+        log.warn("Mailbox error", e);
+        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(Map.of("error", "Mailbox error: " + e.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)

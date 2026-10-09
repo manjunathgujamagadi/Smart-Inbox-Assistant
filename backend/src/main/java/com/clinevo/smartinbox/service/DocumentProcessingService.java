@@ -68,7 +68,7 @@ public class DocumentProcessingService {
             List<AnalyzeMessageRequest.PageContext> pageContexts = result.pages() == null ? List.of() :
                     result.pages().stream()
                             .map(p -> new AnalyzeMessageRequest.PageContext(
-                                    p.pageNumber(), p.translatedText() != null ? p.translatedText() : p.text()))
+                                    p.pageNumber(), p.translatedText() != null ? p.translatedText() : p.text(), p.confidence()))
                             .toList();
 
             if (isLiterature) {
@@ -100,6 +100,12 @@ public class DocumentProcessingService {
         attachment.setDetectedLanguage(result.detectedLanguage());
         attachment.setPageCount(result.pageCount());
         attachment.setSummary(result.summary());
+        attachment.setExtractionConfidence(result.confidence() == null ? null : BigDecimal.valueOf(result.confidence()));
+        if (result.pages() != null && result.pages().stream().anyMatch(p -> p.translatedText() != null)) {
+            attachment.setTranslatedText(result.pages().stream()
+                    .map(p -> "--- page " + p.pageNumber() + " ---\n" + (p.translatedText() == null ? "" : p.translatedText()))
+                    .collect(java.util.stream.Collectors.joining("\n\n")));
+        }
         attachment.setProcessed(true);
         attachmentRepository.save(attachment);
 

@@ -7,6 +7,8 @@ assigned).
 """
 from __future__ import annotations
 
+import re
+
 from app.llm_client import call_tool
 from app.config import get_settings
 from app.schemas import (
@@ -37,14 +39,16 @@ color, contamination, damaged packaging, counterfeit. Assign this only if the me
 (and ideally a batch/lot number); a product simply being involved in an unrelated adverse reaction is not, by \
 itself, a quality complaint.
    - MI (Info Request): someone in the message explicitly asks a question about a product (dosing, how to \
-take it, interactions) with NO bad reaction and NO defect mentioned. Assign this only if the message contains a \
+take it, interactions) with NO bad reaction and NO defect mentioned. MI therefore never accompanies ICSR or PQC: \
+a question asked inside a safety report or complaint (e.g. "should we be worried?") is part of that report, not \
+a separate info request. Assign this only if the message contains a \
 literal interrogative sentence (typically ending in "?") or an unambiguous explicit request such as "please \
 advise" / "can you tell me" / "should we be worried" - actually written in the source, not something you infer \
 the sender might want to know. Simply forwarding, describing, or discussing a case - even one that implicitly \
 invites follow-up review or touches on drug-safety information generally - is NOT a question. A report that \
 only describes what happened to a patient is not an information request just because more information could, \
 in principle, be useful to someone. Never invent a question that was not actually asked: every question_N field \
-you extract for MI must quote or closely paraphrase an actual question that is really present in the source.
+you extract for MI must quote the actual question verbatim from the source.
    - NOT_RELEVANT: anything else - marketing, spam, internal admin chatter.
 
    HARD CONSTRAINT, check this before you answer: NOT_RELEVANT can never appear in the same classifications \
@@ -62,7 +66,10 @@ and without qualification. The same applies to fields: if you cannot fill an ext
 or the literal string "Not stated," that is a sign the category it belongs to shouldn't have been assigned at \
 all - go back and remove it rather than writing a hedge like "not applicable" or "unclear."
 
-   For every category you assign, give a confidence score from 0.0 to 1.0 and a one-line reason.
+   For every category you assign, give a confidence score from 0.0 to 1.0 and a one-line reason. Calibrate it: \
+0.95-1.0 only when every defining element is stated explicitly (for ICSR: patient, reporter, drug and bad \
+outcome all present); 0.7-0.9 when one element is only loosely or indirectly stated; 0.5-0.7 when the \
+evidence is thin but still points to this category.
 
 2. EXTRACT structured facts, but only for the categories you actually assigned:
 
@@ -85,7 +92,17 @@ sentences; give your own confidence in its accuracy)
 fieldName=product_or_topic
 
 3. GROUND RULES:
-   - Say "Not stated" rather than guessing. Give a confidence score for every extracted field.
+   - Say "Not stated" rather than guessing. Give a confidence score for every extracted field, calibrated as \
+follows - do not default to 1.0:
+       0.95-1.0  the value is written verbatim and unambiguously in the source.
+       0.75-0.9  you normalised, paraphrased or combined statements (e.g. "since Monday" -> a date), or wrote \
+the narrative yourself.
+       0.5-0.7   the value is implied by context, or the source wording is ambiguous.
+       below 0.5 you are unsure the reading is right.
+     For "Not stated": 0.9+ only when the source is a structured form or clearly covers that topic without \
+giving the value; 0.6-0.8 when the source is short or informal and the value may simply have been left out.
+     Pages marked with a reading confidence (OCR of handwriting, or machine translation) cap the confidence of \
+every field taken from them - never exceed that page's reading confidence.
    - Every field must cite where it came from. Set sourceType to EMAIL_BODY or PDF_PAGE. When sourceType is \
 PDF_PAGE, set attachmentId to that attachment's id (given below) and sourceRef to "page N". When sourceType \
 is EMAIL_BODY, you may omit attachmentId and sourceRef.
@@ -153,12 +170,90 @@ def analyze_message(request: AnalyzeMessageRequest) -> AnalyzeMessageResponse:
         # Classification is a judgment call on borderline multi-label cases (e.g. does
         # a case-report email also count as an info request?) where a temperature=1
         # default produces visible run-to-run flip-flopping in testing; 0 favors the
-        # model's single most-confident reading instead.
+        # model's single most-confident reading instead. Reasoning models (gpt-5-mini) only
+        # accept the default temperature, so llm_client drops this for them; the Section 2
+        # rules enforced below keep the categories consistent either way.
         temperature=0,
     )
-    classifications = [ClassificationResult(**c) for c in result.get("classifications", [])]
-    fields = [ExtractedFieldResult(**f) for f in result.get("extractedFields", [])]
+    classifications = _enforce_category_rules(
+        [ClassificationResult(**c) for c in result.get("classifications", [])], request
+    )
+    assigned = {c.category for c in classifications}
+    fields = [
+        _cap_confidence(f, request)
+        for f in (ExtractedFieldResult(**f) for f in result.get("extractedFields", []))
+        if FIELD_GROUP_CATEGORY.get(f.fieldGroup) in assigned
+    ]
     return AnalyzeMessageResponse(classifications=classifications, extractedFields=fields)
+
+
+# Which category each extracted field group belongs to.
+FIELD_GROUP_CATEGORY = {
+    "PATIENT": "ICSR", "REPORTER": "ICSR", "PRODUCT": "ICSR", "REACTION": "ICSR",
+    "SEVERITY": "ICSR", "NARRATIVE": "ICSR", "PQC": "PQC", "MI": "MI",
+}
+
+# Phrases that count as an explicit request for information when no "?" is present.
+_REQUEST_PHRASES = ("please advise", "can you tell", "could you tell", "please confirm", "please let me know",
+                    "i would like to know", "we would like to know", "kindly advise", "please clarify")
+
+
+def _enforce_category_rules(
+    classifications: list[ClassificationResult], request: AnalyzeMessageRequest
+) -> list[ClassificationResult]:
+    """Applies the Section 2 definitions deterministically, so a prompt slip can't break them."""
+    # The model occasionally repeats a category (e.g. once per attached PDF); a message belongs
+    # to each bucket at most once, so keep the most confident entry per category.
+    best: dict[str, ClassificationResult] = {}
+    for c in classifications:
+        c.confidence = max(0.0, min(1.0, c.confidence))
+        if c.confidence <= 0:
+            continue  # a 0-confidence label is the model saying "not this one"
+        if c.category not in best or c.confidence > best[c.category].confidence:
+            best[c.category] = c
+
+    # MI means a question with no bad reaction and no defect.
+    if "MI" in best and ("ICSR" in best or "PQC" in best):
+        del best["MI"]
+    # MI needs a question that is actually written in the source.
+    if "MI" in best and not _has_explicit_question(request):
+        del best["MI"]
+    # NOT_RELEVANT means none of the other three apply.
+    if best.keys() - {"NOT_RELEVANT"}:
+        best.pop("NOT_RELEVANT", None)
+    if not best:
+        best["NOT_RELEVANT"] = ClassificationResult(
+            category="NOT_RELEVANT",
+            confidence=0.5,
+            reason="No explicit safety, quality or information-request evidence was found.",
+        )
+    return list(best.values())
+
+
+def _has_explicit_question(request: AnalyzeMessageRequest) -> bool:
+    texts = [request.message.subject or "", request.message.bodyText or ""]
+    texts += [p.text for a in request.attachments for p in a.pages]
+    combined = "\n".join(texts).lower()
+    return "?" in combined or any(p in combined for p in _REQUEST_PHRASES)
+
+
+def _cap_confidence(field: ExtractedFieldResult, request: AnalyzeMessageRequest) -> ExtractedFieldResult:
+    """A fact can't be more certain than the reading of the page it came from (OCR / translation)."""
+    if field.sourceType != "PDF_PAGE" or field.confidence is None or field.attachmentId is None:
+        return field
+    page_no = _page_number(field.sourceRef)
+    for att in request.attachments:
+        if att.attachmentId != field.attachmentId:
+            continue
+        page_conf = [p.confidence for p in att.pages if p.confidence is not None and (page_no is None or p.pageNumber == page_no)]
+        if page_conf:
+            field.confidence = round(min(field.confidence, min(page_conf)), 3)
+    return field
+
+
+def _page_number(source_ref: str | None) -> int | None:
+    match = re.search(r"\d+", source_ref or "")
+    return int(match.group()) if match else None
 
 
 def _build_context(request: AnalyzeMessageRequest) -> str:
@@ -175,7 +270,8 @@ def _build_context(request: AnalyzeMessageRequest) -> str:
         if att.summary:
             parts.append(f"Summary: {att.summary}")
         for page in att.pages:
-            parts.append(f"--- page {page.pageNumber} ---")
+            marker = f" (reading confidence {page.confidence:.2f})" if page.confidence is not None else ""
+            parts.append(f"--- page {page.pageNumber}{marker} ---")
             parts.append(page.text[:4000])
     text = "\n".join(parts)
     return text[:30000]

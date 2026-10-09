@@ -1,0 +1,98 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav
+    class="nav"
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="navOpen()"
+    (closedStart)="navOpen.set(false)"
+  >
+    <div class="brand">
+      <div class="logo"><mat-icon>health_and_safety</mat-icon></div>
+      <div>
+        <div class="brand-name">Smart Inbox</div>
+        <div class="brand-sub">Safety intake assistant</div>
+      </div>
+    </div>
+
+    <nav>
+      <a class="nav-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>inbox</mat-icon>
+        <span>Review queue</span>
+        <span class="count" *ngIf="store.pendingMail()">{{ store.pendingMail() }}</span>
+      </a>
+      <a class="nav-item" routerLink="/literature" routerLinkActive="active">
+        <mat-icon>menu_book</mat-icon>
+        <span>Literature screening</span>
+        <span class="count lit" *ngIf="store.pendingLiterature()">{{ store.pendingLiterature() }}</span>
+      </a>
+      <a class="nav-item" routerLink="/report" routerLinkActive="active">
+        <mat-icon>insights</mat-icon>
+        <span>Processing report</span>
+        <span class="count busy" *ngIf="store.inFlight()" matTooltip="Documents currently being processed">
+          <mat-icon class="spin">autorenew</mat-icon>{{ store.inFlight() }}
+        </span>
+      </a>
+    </nav>
+
+    <div class="nav-footer">
+      <div class="mailbox" [ngClass]="mailState()">
+        <span class="dot"></span>
+        <div class="mailbox-text">
+          <ng-container [ngSwitch]="mailState()">
+            <ng-container *ngSwitchCase="'off'">
+              <strong>Mailbox not connected</strong>
+              <span>Set MAIL_USERNAME / MAIL_PASSWORD</span>
+            </ng-container>
+            <ng-container *ngSwitchCase="'err'">
+              <strong>Mailbox error</strong>
+              <span [title]="store.mail()?.lastError ?? ''">{{ store.mail()?.lastError }}</span>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <strong>{{ store.mail()?.mailbox }}</strong>
+              <span>
+                {{ store.mail()?.pollingEnabled ? 'Polling every ' + (store.mail()!.pollIntervalMs / 1000) + 's' : 'Manual checks only' }}
+                <ng-container *ngIf="store.mail()?.lastPollAt"> · {{ store.mail()?.lastPollAt | date: 'shortTime' }}</ng-container>
+              </span>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="reviewer">
+        <div class="avatar">{{ reviewer.name().charAt(0).toUpperCase() }}</div>
+        <ng-container *ngIf="!editingName; else editName">
+          <div class="reviewer-text">
+            <span class="label">Signed in as</span>
+            <strong>{{ reviewer.name() }}</strong>
+          </div>
+          <button mat-icon-button (click)="startEditName()" matTooltip="Change reviewer name (recorded in the audit trail)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </ng-container>
+        <ng-template #editName>
+          <input
+            class="name-input"
+            [(ngModel)]="nameDraft"
+            (keydown.enter)="saveName()"
+            (keydown.escape)="editingName = false"
+            (blur)="saveName()"
+            placeholder="Your name"
+            autofocus
+          />
+        </ng-template>
+      </div>
+
+      <div class="synthetic">
+        <mat-icon>verified_user</mat-icon>
+        Synthetic test data only
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <header class="mobile-bar" *ngIf="isMobile()">
+      <button mat-icon-button (click)="navOpen.set(true)" aria-label="Open navigation"><mat-icon>menu</mat-icon></button>
+      <span class="brand-name">Smart Inbox</span>
+    </header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

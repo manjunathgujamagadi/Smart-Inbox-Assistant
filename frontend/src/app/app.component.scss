@@ -1,0 +1,270 @@
+.shell {
+  height: 100vh;
+  background: var(--bg);
+}
+
+.nav {
+  width: 260px;
+  background: #0f2a2a;
+  color: #d4e4e2;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep .mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 18px 18px;
+
+  .logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #26a69a, #00796b);
+    display: grid;
+    place-items: center;
+    color: #fff;
+  }
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  font-size: 11.5px;
+  color: #8fb3ae;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: #b9d0cd;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+  }
+
+  &.active {
+    background: rgba(38, 166, 154, 0.22);
+    color: #fff;
+
+    mat-icon {
+      color: #4db6ac;
+    }
+  }
+
+  .count {
+    margin-left: auto;
+    min-width: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: #e53935;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+
+    &.lit {
+      background: #7c4dff;
+    }
+
+    &.busy {
+      background: rgba(255, 255, 255, 0.14);
+
+      mat-icon {
+        font-size: 13px;
+        width: 13px;
+        height: 13px;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.nav-footer {
+  margin-top: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mailbox {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+
+  .dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 4px;
+    background: #78909c;
+  }
+
+  &.ok .dot {
+    background: #66bb6a;
+    box-shadow: 0 0 0 3px rgba(102, 187, 106, 0.25);
+  }
+
+  &.err .dot {
+    background: #ef5350;
+    box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.25);
+  }
+}
+
+.mailbox-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  strong {
+    color: #fff;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  span {
+    color: #8fb3ae;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px 6px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+
+  .avatar {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #26a69a;
+    color: #fff;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+  }
+
+  button {
+    color: #8fb3ae;
+    margin-left: auto;
+  }
+}
+
+.reviewer-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 13px;
+
+  .label {
+    font-size: 10.5px;
+    color: #8fb3ae;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  strong {
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.name-input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #4db6ac;
+  border-radius: 6px;
+  color: #fff;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+  margin: 3px 6px 3px 0;
+}
+
+.synthetic {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #6f9590;
+  padding: 0 4px;
+
+  mat-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.content {
+  background: var(--bg);
+}
+
+.mobile-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: #0f2a2a;
+  color: #fff;
+}

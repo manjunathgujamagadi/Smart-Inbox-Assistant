@@ -126,6 +126,7 @@ public class MessageQueryService {
     private AttachmentDto toAttachmentDto(Attachment a) {
         return new AttachmentDto(a.getId(), a.getFilename(), a.getMimeType(), a.isProcessable(),
                 a.getPdfFlavor() == null ? null : a.getPdfFlavor().name(), a.getDetectedLanguage(),
-                a.getPageCount(), a.isProcessed(), a.getSummary());
+                a.getPageCount(), a.isProcessed(), a.getSummary(),
+                a.getExtractionConfidence(), a.getTranslatedText());
     }
 }

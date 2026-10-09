@@ -1,77 +1,295 @@
-<mat-toolbar color="primary">
-  <span>Smart Inbox Assistant — Review Queue</span>
-  <span class="spacer"></span>
-  <button mat-stroked-button color="accent" (click)="runBatch()" [disabled]="running">
-    <mat-icon>play_arrow</mat-icon>
-    Run batch (test-data)
-  </button>
-  <button mat-stroked-button color="accent" (click)="fileInput.click()" [disabled]="uploading" title="Section 4 bonus: literature screening">
-    <mat-icon>upload_file</mat-icon>
-    Upload article(s)
-  </button>
+<mat-progress-bar
+  class="top-progress"
+  *ngIf="store.loading() || running || uploading || checkingMail || retrying"
+  mode="indeterminate"
+></mat-progress-bar>
+
+<div class="page">
+  <!-- ===== Header ===== -->
+  <div class="page-header">
+    <div *ngIf="mode === 'mail'">
+      <h1>Review queue</h1>
+      <p>Emails from the shared mailbox, sorted and summarised by the AI. Review and confirm each one.</p>
+    </div>
+    <div *ngIf="mode === 'literature'">
+      <h1>Literature screening</h1>
+      <p>Upload published articles to find identifiable patient cases worth reporting, one case at a time.</p>
+    </div>
+
+    <div class="actions">
+      <ng-container *ngIf="mode === 'mail'">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="checkMailbox()"
+          [disabled]="checkingMail || !store.mail()?.configured"
+          [matTooltip]="store.mail()?.configured ? 'Check the test mailbox now instead of waiting for the next poll' : 'No mailbox configured'"
+        >
+          <mat-icon [class.spin]="checkingMail">{{ checkingMail ? 'autorenew' : 'mark_email_unread' }}</mat-icon>
+          Check mailbox
+        </button>
+        <button mat-stroked-button [matMenuTriggerFor]="more" aria-label="More actions">
+          <mat-icon>more_horiz</mat-icon>
+          More
+        </button>
+        <mat-menu #more="matMenu" xPosition="before">
+          <button mat-menu-item (click)="runBatch()" [disabled]="running">
+            <mat-icon>science</mat-icon>
+            <span>Ingest sample set (test-data)</span>
+          </button>
+          <button mat-menu-item (click)="retryFailed()" [disabled]="retrying || !stats().failed">
+            <mat-icon>replay</mat-icon>
+            <span>Retry failed ({{ stats().failed }})</span>
+          </button>
+          <a mat-menu-item routerLink="/report">
+            <mat-icon>insights</mat-icon>
+            <span>Processing report</span>
+          </a>
+        </mat-menu>
+      </ng-container>
+      <button *ngIf="mode === 'literature'" mat-flat-button color="primary" (click)="fileInput.click()" [disabled]="uploading">
+        <mat-icon>upload_file</mat-icon>
+        Upload articles
+      </button>
+      <button mat-icon-button (click)="store.refresh()" matTooltip="Refresh now">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </div>
+
   <input #fileInput type="file" accept="application/pdf" multiple hidden (change)="onFilesSelected($event)" />
-  <button mat-icon-button (click)="load()" title="Refresh">
-    <mat-icon>refresh</mat-icon>
-  </button>
-</mat-toolbar>
 
-<mat-progress-bar *ngIf="loading || running || uploading" mode="indeterminate"></mat-progress-bar>
+  <div class="banner err" *ngIf="store.error()">
+    <mat-icon>cloud_off</mat-icon>
+    <span>{{ store.error() }} — retrying automatically every 10 seconds.</span>
+  </div>
 
-<div class="table-wrap">
-  <table mat-table [dataSource]="messages" *ngIf="!loading">
-    <ng-container matColumnDef="sender">
-      <th mat-header-cell *matHeaderCellDef>Sender</th>
-      <td mat-cell *matCellDef="let m">{{ m.sender || '(unknown)' }}</td>
-    </ng-container>
+  <!-- ===== KPI tiles (clickable filters) ===== -->
+  <div class="kpis" *ngIf="mode === 'mail'">
+    <button class="kpi" [class.selected]="!hasFilters()" (click)="clearFilters()">
+      <span class="kpi-label"><mat-icon>all_inbox</mat-icon>All messages</span>
+      <span class="kpi-value">{{ stats().total }}</span>
+      <span class="kpi-sub">
+        <ng-container *ngIf="stats().processing">{{ stats().processing }} processing · </ng-container>
+        <ng-container *ngIf="stats().failed"><span class="err-text">{{ stats().failed }} failed</span> · </ng-container>
+        {{ stats().reviewed }} reviewed
+      </span>
+    </button>
+    <button class="kpi attention" [class.selected]="reviewFilter() === 'PENDING' && !categoryFilter()" (click)="showReview('PENDING')">
+      <span class="kpi-label"><mat-icon>pending_actions</mat-icon>Awaiting review</span>
+      <span class="kpi-value">{{ stats().pending }}</span>
+      <span class="kpi-sub">{{ stats().total ? ((stats().reviewed / stats().total) * 100 | number: '1.0-0') : 0 }}% of queue signed off</span>
+    </button>
+    <button
+      *ngFor="let c of categories"
+      class="kpi cat"
+      [ngClass]="categoryMeta[c].cssClass"
+      [class.selected]="categoryFilter() === c"
+      (click)="toggleCategory(c)"
+      [matTooltip]="categoryMeta[c].hint"
+    >
+      <span class="kpi-label"><mat-icon>{{ categoryMeta[c].icon }}</mat-icon>{{ categoryMeta[c].label }}</span>
+      <span class="kpi-value">{{ stats().byCategory[c] }}</span>
+      <span class="kpi-sub">{{ categoryMeta[c].short }}</span>
+    </button>
+  </div>
 
-    <ng-container matColumnDef="subject">
-      <th mat-header-cell *matHeaderCellDef>Subject</th>
-      <td mat-cell *matCellDef="let m">{{ m.subject || '(no subject)' }}</td>
-    </ng-container>
+  <ng-container *ngIf="mode === 'literature'">
+    <div
+      class="dropzone"
+      [class.over]="dragOver"
+      [class.busy]="uploading"
+      (dragover)="onDragOver($event)"
+      (dragleave)="dragOver = false"
+      (drop)="onDrop($event)"
+      (click)="fileInput.click()"
+      role="button"
+      tabindex="0"
+      (keydown.enter)="fileInput.click()"
+    >
+      <mat-icon>{{ uploading ? 'hourglass_top' : 'cloud_upload' }}</mat-icon>
+      <div>
+        <strong>{{ uploading ? 'Uploading…' : 'Drop article PDFs here, or click to browse' }}</strong>
+        <span>Each article is checked for real, identifiable patient cases. Several cases in one article are split out.</span>
+      </div>
+    </div>
 
-    <ng-container matColumnDef="received">
-      <th mat-header-cell *matHeaderCellDef>Received</th>
-      <td mat-cell *matCellDef="let m">{{ m.receivedAt | date: 'short' }}</td>
-    </ng-container>
+    <div class="kpis lit">
+      <button class="kpi" [class.selected]="!hasFilters()" (click)="clearFilters()">
+        <span class="kpi-label"><mat-icon>menu_book</mat-icon>Articles</span>
+        <span class="kpi-value">{{ stats().total }}</span>
+        <span class="kpi-sub">{{ stats().processing }} screening</span>
+      </button>
+      <button class="kpi attention" [class.selected]="reviewFilter() === 'PENDING'" (click)="showReview('PENDING')">
+        <span class="kpi-label"><mat-icon>pending_actions</mat-icon>Awaiting review</span>
+        <span class="kpi-value">{{ stats().pending }}</span>
+        <span class="kpi-sub">{{ stats().reviewed }} reviewed</span>
+      </button>
+      <div class="kpi static lit-tile">
+        <span class="kpi-label"><mat-icon>person_search</mat-icon>Patient cases found</span>
+        <span class="kpi-value">{{ stats().cases }}</span>
+        <span class="kpi-sub">{{ stats().relevantCases }} reportable</span>
+      </div>
+      <div class="kpi static">
+        <span class="kpi-label"><mat-icon>task_alt</mat-icon>Articles with a reportable case</span>
+        <span class="kpi-value">{{ stats().articlesWithCases }}</span>
+        <span class="kpi-sub">of {{ stats().total }}</span>
+      </div>
+    </div>
+  </ng-container>
 
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let m">{{ m.status }}</td>
-    </ng-container>
+  <!-- ===== List ===== -->
+  <section class="panel list">
+    <div class="toolbar">
+      <div class="search">
+        <mat-icon>search</mat-icon>
+        <input
+          type="search"
+          placeholder="Search subject, sender or category…"
+          [ngModel]="search()"
+          (ngModelChange)="search.set($event)"
+          aria-label="Search messages"
+        />
+      </div>
 
-    <ng-container matColumnDef="classifications">
-      <th mat-header-cell *matHeaderCellDef>AI Classification</th>
-      <td mat-cell *matCellDef="let m">
-        <ng-container *ngIf="m.sourceType !== 'UPLOAD'; else literatureCol">
-          <mat-chip-set>
-            <mat-chip *ngFor="let c of m.classifications" [color]="chipColor(c.reviewerStatus)" highlighted>
-              {{ c.category }} ({{ (c.confidence * 100) | number: '1.0-0' }}%)
-            </mat-chip>
-            <span *ngIf="!m.classifications.length" class="muted">not yet processed</span>
-          </mat-chip-set>
+      <mat-button-toggle-group
+        [value]="reviewFilter()"
+        (change)="reviewFilter.set($event.value)"
+        aria-label="Review state filter"
+        hideSingleSelectionIndicator
+      >
+        <mat-button-toggle value="ALL">All</mat-button-toggle>
+        <mat-button-toggle value="PENDING">To review</mat-button-toggle>
+        <mat-button-toggle value="REVIEWED">Reviewed</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <span class="active-filter" *ngIf="categoryFilter() as c">
+        <app-category-badge [category]="c"></app-category-badge>
+        <button mat-icon-button (click)="categoryFilter.set(null)" aria-label="Clear category filter"><mat-icon>close</mat-icon></button>
+      </span>
+
+      <span class="spacer"></span>
+
+      <button mat-button [matMenuTriggerFor]="sortMenu">
+        <mat-icon>sort</mat-icon>
+        {{ sortLabels[sort()] }}
+      </button>
+      <mat-menu #sortMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="sort.set('priority')">
+          <mat-icon>priority_high</mat-icon><span>Priority (safety reports first)</span>
+        </button>
+        <button mat-menu-item (click)="sort.set('newest')"><mat-icon>south</mat-icon><span>Newest first</span></button>
+        <button mat-menu-item (click)="sort.set('oldest')"><mat-icon>north</mat-icon><span>Oldest first</span></button>
+        <button mat-menu-item (click)="sort.set('confidence')">
+          <mat-icon>troubleshoot</mat-icon><span>Lowest AI confidence</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="head row" *ngIf="filtered().length">
+      <span class="c-msg">{{ mode === 'mail' ? 'Message' : 'Article' }}</span>
+      <span class="c-cat">{{ mode === 'mail' ? 'AI classification' : 'Screening result' }}</span>
+      <span class="c-conf">Min. confidence</span>
+      <span class="c-state">Status</span>
+      <span class="c-time">Received</span>
+    </div>
+
+    <a
+      *ngFor="let r of filtered(); trackBy: trackById"
+      class="row item"
+      [routerLink]="['/messages', r.m.id]"
+      [ngClass]="r.topCategory ? categoryMeta[r.topCategory].cssClass : r.relevantCases ? 'lit' : 'none'"
+      [class.pending]="r.review === 'PENDING'"
+    >
+      <span class="c-msg">
+        <span class="avatar" *ngIf="mode === 'mail'">{{ initials(r.m.sender) }}</span>
+        <span class="avatar doc" *ngIf="mode === 'literature'"><mat-icon>picture_as_pdf</mat-icon></span>
+        <span class="msg-text">
+          <span class="subject">
+            <span class="unread-dot" *ngIf="r.review === 'PENDING'"></span>
+            {{ r.m.subject || '(no subject)' }}
+          </span>
+          <span class="sender">{{ mode === 'mail' ? r.m.sender || '(unknown sender)' : 'Uploaded article' }}</span>
+        </span>
+      </span>
+
+      <span class="c-cat">
+        <ng-container *ngIf="mode === 'mail'">
+          <app-category-badge
+            *ngFor="let c of r.m.classifications"
+            [category]="c.reviewerStatus === 'OVERRIDDEN' && c.reviewerCategory ? c.reviewerCategory : c.category"
+            [status]="c.reviewerStatus"
+            [compact]="r.m.classifications.length > 2"
+          ></app-category-badge>
+          <span class="muted" *ngIf="!r.m.classifications.length">
+            {{ r.processing ? 'Analysing…' : r.m.status === 'FAILED' ? 'Processing failed' : 'No classification' }}
+          </span>
         </ng-container>
-        <ng-template #literatureCol>
-          <mat-chip-set>
-            <mat-chip color="accent" highlighted>literature</mat-chip>
-            <span class="muted">{{ literatureLabel(m) }}</span>
-          </mat-chip-set>
-        </ng-template>
-      </td>
-    </ng-container>
+        <ng-container *ngIf="mode === 'literature'">
+          <span class="pill lit" *ngIf="r.m.literatureCases.length">
+            <mat-icon>person_search</mat-icon>
+            {{ r.relevantCases }}/{{ r.m.literatureCases.length }} reportable case{{ r.m.literatureCases.length === 1 ? '' : 's' }}
+          </span>
+          <span class="muted" *ngIf="!r.m.literatureCases.length">
+            {{ r.processing ? 'Screening…' : 'No patient case found' }}
+          </span>
+        </ng-container>
+      </span>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let m">
-        <a mat-button color="primary" [routerLink]="['/messages', m.id]">Review</a>
-      </td>
-    </ng-container>
+      <span class="c-conf">
+        <app-confidence-meter [value]="r.minConfidence" *ngIf="r.minConfidence != null"></app-confidence-meter>
+      </span>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+      <span class="c-state">
+        <span class="pill info" *ngIf="r.processing"><mat-icon class="spin">autorenew</mat-icon>{{ r.m.status | titlecase }}</span>
+        <span class="pill err" *ngIf="r.m.status === 'FAILED'"><mat-icon>error</mat-icon>Failed</span>
+        <ng-container *ngIf="!r.processing && r.m.status !== 'FAILED'">
+          <span class="pill warn" *ngIf="r.review === 'PENDING'"><mat-icon>schedule</mat-icon>To review</span>
+          <span class="pill ok" *ngIf="r.review === 'REVIEWED'"><mat-icon>task_alt</mat-icon>Reviewed</span>
+          <span class="pill" *ngIf="r.review === 'NONE'"><mat-icon>remove</mat-icon>Nothing to review</span>
+        </ng-container>
+      </span>
 
-  <p *ngIf="!loading && !messages.length" class="empty">
-    No messages yet. Click "Run batch (test-data)" to ingest the synthetic sample set, or wait for the mailbox
-    poller if IMAP is configured.
-  </p>
+      <span class="c-time" [title]="r.m.receivedAt | date: 'medium'">{{ timeAgo(r.m.receivedAt) }}</span>
+      <mat-icon class="chev">chevron_right</mat-icon>
+    </a>
+
+    <!-- Empty states -->
+    <div class="empty" *ngIf="store.loaded() && !filtered().length">
+      <ng-container *ngIf="rows().length; else nothingYet">
+        <mat-icon>filter_alt_off</mat-icon>
+        <strong>No messages match these filters</strong>
+        <button mat-stroked-button (click)="clearFilters()">Clear filters</button>
+      </ng-container>
+      <ng-template #nothingYet>
+        <ng-container *ngIf="mode === 'mail'">
+          <mat-icon>inbox</mat-icon>
+          <strong>The queue is empty</strong>
+          <span>Send an email with PDF attachments to the test mailbox, or ingest the synthetic sample set.</span>
+          <div class="empty-actions">
+            <button mat-flat-button color="primary" (click)="checkMailbox()" [disabled]="!store.mail()?.configured">
+              <mat-icon>mark_email_unread</mat-icon>Check mailbox
+            </button>
+            <button mat-stroked-button (click)="runBatch()" [disabled]="running">
+              <mat-icon>science</mat-icon>Ingest sample set
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="mode === 'literature'">
+          <mat-icon>menu_book</mat-icon>
+          <strong>No articles uploaded yet</strong>
+          <span>Drop one or more article PDFs above to start screening.</span>
+        </ng-container>
+      </ng-template>
+    </div>
+
+    <div class="skeleton" *ngIf="!store.loaded()">
+      <div class="sk-row" *ngFor="let i of [1, 2, 3, 4, 5]"></div>
+    </div>
+
+    <div class="list-footer" *ngIf="filtered().length">
+      Showing {{ filtered().length }} of {{ rows().length }}
+      <span *ngIf="store.lastRefresh()"> · updated {{ store.lastRefresh() | date: 'mediumTime' }} · auto-refreshes every 10s</span>
+    </div>
+  </section>
 </div>

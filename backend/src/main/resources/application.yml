@@ -24,22 +24,6 @@ spring:
       max-file-size: 25MB
       max-request-size: 100MB
 
-  mail:
-    # Real IMAP test mailbox credentials — set via env vars, never commit real values.
-    host: ${MAIL_IMAP_HOST:imap.gmail.com}
-    port: ${MAIL_IMAP_PORT:993}
-    username: ${MAIL_USERNAME:}
-    password: ${MAIL_PASSWORD:}
-    properties:
-      mail:
-        store:
-          protocol: imaps
-        imaps:
-          ssl:
-            enable: true
-          connectiontimeout: 10000
-          timeout: 10000
-
 server:
   port: ${SERVER_PORT:8080}
 
@@ -48,9 +32,16 @@ app:
     base-url: ${AI_SERVICE_URL:http://localhost:8000}
     timeout-seconds: ${AI_SERVICE_TIMEOUT_SECONDS:120}
   mail:
+    # Real IMAP test mailbox (Section 3A) — set via env vars, never commit real values.
+    enabled: ${MAIL_POLLING_ENABLED:false}
+    host: ${MAIL_IMAP_HOST:imap.gmail.com}
+    port: ${MAIL_IMAP_PORT:993}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
     inbox-folder: ${MAIL_INBOX_FOLDER:INBOX}
     poll-interval-ms: ${MAIL_POLL_INTERVAL_MS:60000}
-    enabled: ${MAIL_POLLING_ENABLED:false}
+    ingest-since: ${MAIL_INGEST_SINCE:}
+    ssl-trust: ${MAIL_IMAP_SSL_TRUST:}
   storage:
     root: ${STORAGE_ROOT:./storage}
   queue:
@@ -71,9 +62,7 @@ management:
         include: health,info
   health:
     # MailIngestionService talks IMAP directly via its own jakarta.mail Session
-    # (see fetchAndIngestNewMessages) rather than Spring's autoconfigured
-    # JavaMailSender, so the built-in mail health check (which pings the
-    # placeholder host as an SMTP server) is meaningless here and just adds
-    # a slow, spuriously-failing check to /actuator/health.
+    # rather than Spring's autoconfigured JavaMailSender, so the built-in mail
+    # health check (an SMTP ping) is meaningless here.
     mail:
       enabled: false

@@ -13,7 +13,7 @@ public record PdfProcessResponse(
         String summary,
         Double confidence
 ) {
-    public record PageDto(int pageNumber, String text, String translatedText) {}
+    public record PageDto(int pageNumber, String text, String translatedText, Double confidence) {}
 
     public record TableDto(int pageNumber, List<String> headers, List<List<String>> rows) {}
 

@@ -16,15 +16,17 @@
             "detectedLanguage": "en",
             "pageCount": 1,
             "processed": true,
-            "summary": "This document describes a case involving an 8-year-old girl who was treated with Ferbolex syrup at a dosage of 250mg twice daily for a respiratory infection. After five days of treatment, she developed symptoms of jaundice and fatigue. Laboratory tests indicated significantly elevated liver enzymes, specifically ALT and AST levels, which were about six times higher than the normal range. Following the discontinuation of Ferbolex, the girl's liver enzymes returned to normal over the next three weeks.\n\nThis document is relevant to a patient safety and quality complaint review because it details a serious adverse event associated with the use of a medication. The noted liver dysfunction raises safety concerns regarding Ferbolex, and the case illustrates the importance of monitoring for potential side effects in pediatric patients. Additionally, the timeline of events, along with the recovery after cessation of the medication, contributes valuable information for both safety assessments and potential future inquiries into the drug's risk profile. Overall, this report highlights the need for vigilance in medication management, particularly in young patients."
+            "summary": "This document reports a case involving an 8-year-old girl who experienced adverse effects after taking Ferbolex syrup for a respiratory infection. The medication was administered at a dosage of 250mg twice daily for five days. Following the treatment, the girl developed jaundice and fatigue, which prompted further investigation. Liver function tests revealed significantly elevated ALT and AST enzyme levels—around six times higher than the normal upper limit. Upon discontinuing Ferbolex, the girl's liver enzyme levels began to normalize within three weeks.\n\nThis document is relevant to a patient safety review because it highlights a potential adverse drug reaction associated with Ferbolex. The occurrence of jaundice and elevated liver enzymes indicates a serious side effect that could have implications for other patients. The case underscores the importance of monitoring liver function in patients receiving this medication. It also raises questions about the drug’s safety profile, particularly in pediatric patients. Overall, this documentation is valuable for assessing drug safety and could inform future clinical practices and pharmacovigilance efforts.",
+            "extractionConfidence": 0.8,
+            "translatedText": null
         }
     ],
     "classifications": [
         {
             "id": 1,
             "category": "ICSR",
-            "confidence": 1.0,
-            "reason": "The message contains a detailed case report of an 8-year-old girl who experienced elevated liver enzymes after taking Ferbolex, fulfilling all elements of a safety report.",
+            "confidence": 0.95,
+            "reason": "The message contains a detailed case report of an 8-year-old girl who experienced jaundice and elevated liver enzymes after taking Ferbolex, fulfilling all elements of a safety report.",
             "reviewerStatus": "PENDING",
             "reviewerCategory": null,
             "reviewedBy": null,
@@ -39,7 +41,7 @@
             "fieldGroup": "PATIENT",
             "fieldName": "age",
             "fieldValue": "8 years",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -52,7 +54,7 @@
             "fieldGroup": "PATIENT",
             "fieldName": "sex",
             "fieldValue": "Not stated",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -65,7 +67,7 @@
             "fieldGroup": "PATIENT",
             "fieldName": "weight_height",
             "fieldValue": "Not stated",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -78,7 +80,7 @@
             "fieldGroup": "PATIENT",
             "fieldName": "relevant_history",
             "fieldValue": "respiratory infection",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -91,7 +93,7 @@
             "fieldGroup": "REPORTER",
             "fieldName": "reporter_name_or_role",
             "fieldValue": "Nakamura T, Silva R",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -104,7 +106,7 @@
             "fieldGroup": "REPORTER",
             "fieldName": "reporter_role",
             "fieldValue": "Not stated",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -117,7 +119,7 @@
             "fieldGroup": "REPORTER",
             "fieldName": "reporter_country",
             "fieldValue": "Not stated",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -129,8 +131,8 @@
             "caseNumber": null,
             "fieldGroup": "PRODUCT",
             "fieldName": "product_name",
-            "fieldValue": "Ferbolex syrup",
-            "confidence": 1.0,
+            "fieldValue": "Ferbolex",
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -143,7 +145,7 @@
             "fieldGroup": "PRODUCT",
             "fieldName": "dose",
             "fieldValue": "250mg twice daily",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -156,7 +158,7 @@
             "fieldGroup": "PRODUCT",
             "fieldName": "route",
             "fieldValue": "Not stated",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -169,7 +171,7 @@
             "fieldGroup": "PRODUCT",
             "fieldName": "start_date",
             "fieldValue": "Not stated",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -182,7 +184,7 @@
             "fieldGroup": "PRODUCT",
             "fieldName": "stop_date",
             "fieldValue": "Not stated",
-            "confidence": 1.0,
+            "confidence": 0.9,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -194,8 +196,8 @@
             "caseNumber": null,
             "fieldGroup": "REACTION",
             "fieldName": "reaction_description",
-            "fieldValue": "elevated liver enzymes, jaundice, fatigue",
-            "confidence": 1.0,
+            "fieldValue": "jaundice and elevated liver enzymes",
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -207,8 +209,8 @@
             "caseNumber": null,
             "fieldGroup": "REACTION",
             "fieldName": "onset",
-            "fieldValue": "5 days after starting treatment",
-            "confidence": 1.0,
+            "fieldValue": "after 5 days",
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -220,8 +222,8 @@
             "caseNumber": null,
             "fieldGroup": "REACTION",
             "fieldName": "outcome",
-            "fieldValue": "liver enzymes returned to normal after discontinuation",
-            "confidence": 1.0,
+            "fieldValue": "normalized after drug withdrawal",
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -234,7 +236,7 @@
             "fieldGroup": "SEVERITY",
             "fieldName": "serious",
             "fieldValue": "yes",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -246,8 +248,8 @@
             "caseNumber": null,
             "fieldGroup": "SEVERITY",
             "fieldName": "seriousness_criteria",
-            "fieldValue": "liver dysfunction requiring monitoring and intervention",
-            "confidence": 1.0,
+            "fieldValue": "liver enzyme elevation and jaundice",
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -259,8 +261,8 @@
             "caseNumber": null,
             "fieldGroup": "NARRATIVE",
             "fieldName": "case_narrative",
-            "fieldValue": "An 8-year-old girl was treated with Ferbolex syrup for a respiratory infection. After five days, she developed jaundice and fatigue, with lab tests showing significantly elevated liver enzymes. The medication was discontinued, and her liver enzymes normalized over three weeks.",
-            "confidence": 1.0,
+            "fieldValue": "An 8-year-old girl developed jaundice and fatigue after taking Ferbolex syrup for a respiratory infection. Liver function tests showed significantly elevated ALT and AST levels. After discontinuation of the drug, her liver enzyme levels normalized within three weeks.",
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -278,7 +280,7 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"fixture\": \"article-email-02.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
-            "createdAt": "2026-09-04T04:49:43.098446Z"
+            "createdAt": "2026-10-09T16:18:36.334813Z"
         },
         {
             "id": 41,
@@ -287,7 +289,7 @@
             "actor": "system",
             "action": "AI_PDF_PROCESSED",
             "detailJson": "{\"flavor\": \"ARTICLE\", \"pageCount\": 1, \"confidence\": 0.8}",
-            "createdAt": "2026-09-04T04:49:47.772218Z"
+            "createdAt": "2026-10-09T16:18:43.155641Z"
         },
         {
             "id": 43,
@@ -295,8 +297,8 @@
             "entityId": 1,
             "actor": "system",
             "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"The message contains a detailed case report of an 8-year-old girl who experienced elevated liver enzymes after taking Ferbolex, fulfilling all elements of a safety report.\", \"category\": \"ICSR\", \"confidence\": 1.0}",
-            "createdAt": "2026-09-04T04:49:56.777924Z"
+            "detailJson": "{\"reason\": \"The message contains a detailed case report of an 8-year-old girl who experienced jaundice and elevated liver enzymes after taking Ferbolex, fulfilling all elements of a safety report.\", \"category\": \"ICSR\", \"confidence\": 0.95}",
+            "createdAt": "2026-10-09T16:18:52.944943Z"
         },
         {
             "id": 44,
@@ -305,7 +307,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.781802Z"
+            "createdAt": "2026-10-09T16:18:52.958990Z"
         },
         {
             "id": 45,
@@ -314,7 +316,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.783773Z"
+            "createdAt": "2026-10-09T16:18:52.967428Z"
         },
         {
             "id": 46,
@@ -323,7 +325,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"weight_height\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.785367Z"
+            "createdAt": "2026-10-09T16:18:52.974378Z"
         },
         {
             "id": 47,
@@ -332,7 +334,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"relevant_history\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.786950Z"
+            "createdAt": "2026-10-09T16:18:52.979181Z"
         },
         {
             "id": 48,
@@ -341,7 +343,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.788502Z"
+            "createdAt": "2026-10-09T16:18:52.983846Z"
         },
         {
             "id": 49,
@@ -350,7 +352,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.789961Z"
+            "createdAt": "2026-10-09T16:18:52.988144Z"
         },
         {
             "id": 50,
@@ -359,7 +361,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.791318Z"
+            "createdAt": "2026-10-09T16:18:52.991425Z"
         },
         {
             "id": 51,
@@ -368,7 +370,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.792668Z"
+            "createdAt": "2026-10-09T16:18:52.995665Z"
         },
         {
             "id": 52,
@@ -377,7 +379,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.793974Z"
+            "createdAt": "2026-10-09T16:18:52.999399Z"
         },
         {
             "id": 53,
@@ -386,7 +388,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"route\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.795341Z"
+            "createdAt": "2026-10-09T16:18:53.004273Z"
         },
         {
             "id": 54,
@@ -395,7 +397,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"start_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.796842Z"
+            "createdAt": "2026-10-09T16:18:53.008767Z"
         },
         {
             "id": 55,
@@ -404,7 +406,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"stop_date\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.798316Z"
+            "createdAt": "2026-10-09T16:18:53.013819Z"
         },
         {
             "id": 56,
@@ -413,7 +415,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.799465Z"
+            "createdAt": "2026-10-09T16:18:53.017551Z"
         },
         {
             "id": 57,
@@ -422,7 +424,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.800525Z"
+            "createdAt": "2026-10-09T16:18:53.021260Z"
         },
         {
             "id": 58,
@@ -431,7 +433,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"outcome\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.801432Z"
+            "createdAt": "2026-10-09T16:18:53.025416Z"
         },
         {
             "id": 59,
@@ -440,7 +442,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"serious\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.802356Z"
+            "createdAt": "2026-10-09T16:18:53.029101Z"
         },
         {
             "id": 60,
@@ -449,7 +451,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.803137Z"
+            "createdAt": "2026-10-09T16:18:53.032882Z"
         },
         {
             "id": 61,
@@ -458,7 +460,7 @@
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:49:56.803887Z"
+            "createdAt": "2026-10-09T16:18:53.037283Z"
         }
     ]
 }

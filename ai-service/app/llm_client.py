@@ -1,11 +1,14 @@
 """
-Thin wrapper around the Azure OpenAI SDK (gpt-4o-mini). Structured output is
-obtained via OpenAI's function-calling / tools feature: we hand the model a
-single "tool" whose parameters schema is the exact JSON shape we want, force
-tool_choice to that tool, and parse the resulting tool_call's arguments
-(a JSON string) into a dict. gpt-4o-mini is multimodal, so the same call path
-handles both plain text and image content blocks (used for OCR and image
-description).
+Thin wrapper around the Azure OpenAI SDK (gpt-5-mini by default; gpt-4o-mini also works).
+Structured output is obtained via OpenAI's function-calling / tools feature: we hand the
+model a single "tool" whose parameters schema is the exact JSON shape we want, force
+tool_choice to that tool, and parse the resulting tool_call's arguments (a JSON string)
+into a dict. The model is multimodal, so the same call path handles both plain text and
+image content blocks (used for OCR and image description).
+
+Reasoning models (gpt-5*, o-series) differ from gpt-4o-mini in two ways handled here:
+they only accept the default temperature, and they take `max_completion_tokens` (which
+also has to cover their hidden reasoning tokens) instead of `max_tokens`.
 """
 from __future__ import annotations
 
@@ -32,6 +35,26 @@ def get_client() -> AzureOpenAI:
     return _client
 
 
+def _generation_kwargs(max_tokens: int | None, temperature: float | None) -> dict[str, Any]:
+    settings = get_settings()
+    if settings.is_reasoning_model:
+        kwargs: dict[str, Any] = {
+            "max_completion_tokens": max(max_tokens or 0, settings.reasoning_output_tokens),
+        }
+        if settings.azure_openai_reasoning_effort:
+            kwargs["reasoning_effort"] = settings.azure_openai_reasoning_effort
+        return kwargs  # temperature is fixed at the model default
+    kwargs = {"max_completion_tokens": max_tokens or settings.max_output_tokens}
+    if temperature is not None:
+        kwargs["temperature"] = temperature
+    return kwargs
+
+
+def _truncation_hint(response) -> str:
+    reason = response.choices[0].finish_reason
+    return " (output was cut off - raise REASONING_OUTPUT_TOKENS)" if reason == "length" else ""
+
+
 def _build_content(user_text: str, images_b64: list[str] | None) -> list[dict[str, Any]]:
     content: list[dict[str, Any]] = [{"type": "text", "text": user_text}]
     if images_b64:
@@ -56,11 +79,9 @@ def call_tool(
     temperature: float | None = None,
 ) -> dict[str, Any]:
     """Calls the model with a single forced tool and returns its parsed arguments dict."""
-    settings = get_settings()
     response = get_client().chat.completions.create(
         model=model,
-        max_tokens=max_tokens or settings.max_output_tokens,
-        temperature=temperature if temperature is not None else 1.0,
+        **_generation_kwargs(max_tokens, temperature),
         messages=[
             {"role": "system", "content": system},
             {"role": "user", "content": _build_content(user_text, images_b64)},
@@ -71,7 +92,7 @@ def call_tool(
                 "name": tool_name,
                 "description": tool_description,
                 "parameters": input_schema,
-                # Without strict mode, gpt-4o-mini's function-calling only *usually*
+                # Without strict mode, function-calling only *usually*
                 # honors the schema's `required` list - it will sometimes omit a
                 # field it judges "not applicable" (e.g. sourceType on a narrative
                 # field the model wrote itself), which breaks strict parsing on our
@@ -86,22 +107,24 @@ def call_tool(
     message = response.choices[0].message
     if message.tool_calls:
         return json.loads(message.tool_calls[0].function.arguments)
-    raise RuntimeError(f"Model did not return a tool call for '{tool_name}'")
+    raise RuntimeError(f"Model did not return a tool call for '{tool_name}'{_truncation_hint(response)}")
 
 
 def call_text(*, model: str, system: str, user_text: str, images_b64: list[str] | None = None,
               max_tokens: int | None = None) -> str:
     """Plain-text completion (no forced structured output) - used for summaries/translation."""
-    settings = get_settings()
     response = get_client().chat.completions.create(
         model=model,
-        max_tokens=max_tokens or settings.max_output_tokens,
+        **_generation_kwargs(max_tokens, None),
         messages=[
             {"role": "system", "content": system},
             {"role": "user", "content": _build_content(user_text, images_b64)},
         ],
     )
-    return (response.choices[0].message.content or "").strip()
+    text = (response.choices[0].message.content or "").strip()
+    if not text:
+        raise RuntimeError(f"Model returned an empty completion{_truncation_hint(response)}")
+    return text
 
 
 def png_bytes_to_b64(data: bytes) -> str:

@@ -1,184 +1,452 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="back()"><mat-icon>arrow_back</mat-icon></button>
-  <span>{{ detail?.subject || '(no subject)' }}</span>
+<mat-progress-bar class="top-progress" *ngIf="loading || submitting" mode="indeterminate"></mat-progress-bar>
+
+<!-- ===== Header ===== -->
+<header class="detail-header">
+  <button mat-icon-button (click)="back()" matTooltip="Back to the queue" aria-label="Back"><mat-icon>arrow_back</mat-icon></button>
+
+  <div class="title-block" *ngIf="detail">
+    <div class="title-row">
+      <h1 [title]="detail.subject">{{ detail.subject || '(no subject)' }}</h1>
+      <ng-container *ngIf="!isUpload()">
+        <app-category-badge
+          *ngFor="let c of detail.classifications"
+          [category]="c.reviewerStatus === 'OVERRIDDEN' && c.reviewerCategory ? c.reviewerCategory : c.category"
+          [status]="c.reviewerStatus"
+        ></app-category-badge>
+      </ng-container>
+      <span class="pill lit" *ngIf="isUpload()"><mat-icon>menu_book</mat-icon>Literature screening</span>
+    </div>
+    <div class="meta">
+      <span *ngIf="!isUpload()"><mat-icon>person</mat-icon>{{ detail.sender || '(unknown sender)' }}</span>
+      <span><mat-icon>schedule</mat-icon>{{ detail.receivedAt | date: 'medium' }}</span>
+      <span *ngIf="detail.attachments.length"><mat-icon>attach_file</mat-icon>{{ detail.attachments.length }} attachment(s)</span>
+      <span class="pill info" *ngIf="isProcessing()"><mat-icon class="spin">autorenew</mat-icon>{{ detail.status | titlecase }}</span>
+      <span class="pill err" *ngIf="detail.status === 'FAILED'"><mat-icon>error</mat-icon>Processing failed</span>
+      <ng-container *ngIf="!isProcessing() && detail.status !== 'FAILED'">
+        <span class="pill ok" *ngIf="reviewInfo().reviewed">
+          <mat-icon>task_alt</mat-icon>Reviewed by {{ reviewInfo().by }} · {{ reviewInfo().at | date: 'short' }}
+        </span>
+        <span class="pill warn" *ngIf="!reviewInfo().reviewed"><mat-icon>schedule</mat-icon>Awaiting review</span>
+      </ng-container>
+    </div>
+  </div>
+
   <span class="spacer"></span>
-  <span class="status-chip" *ngIf="detail">{{ detail.status }}</span>
-</mat-toolbar>
 
-<mat-progress-bar *ngIf="loading || submitting" mode="indeterminate"></mat-progress-bar>
+  <div class="nav-arrows" *ngIf="position().index >= 0">
+    <span class="muted">{{ position().index + 1 }} / {{ position().total }}</span>
+    <button mat-icon-button [disabled]="!position().prev" [routerLink]="['/messages', position().prev]" matTooltip="Previous message">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button mat-icon-button [disabled]="!position().next" [routerLink]="['/messages', position().next]" matTooltip="Next message">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</header>
 
-<div class="detail-wrap" *ngIf="detail && !loading">
-  <div class="column left">
-    <mat-tab-group>
-      <mat-tab [label]="detail.sourceType === 'UPLOAD' ? 'Upload info' : 'Email'">
-        <div class="pane" *ngIf="detail.sourceType !== 'UPLOAD'; else uploadInfo">
-          <p><strong>From:</strong> {{ detail.sender }}</p>
-          <p><strong>Received:</strong> {{ detail.receivedAt | date: 'medium' }}</p>
-          <mat-divider></mat-divider>
-          <pre class="body-text">{{ detail.bodyText || '(no body text)' }}</pre>
-        </div>
-        <ng-template #uploadInfo>
-          <div class="pane">
-            <p>Independently uploaded for literature screening (Section 4 bonus) — not received via the mailbox.</p>
-            <p><strong>Uploaded:</strong> {{ detail.receivedAt | date: 'medium' }}</p>
+<div class="processing-banner" *ngIf="detail && isProcessing()">
+  <mat-icon class="spin">autorenew</mat-icon>
+  <div>
+    <strong>The AI is still working on this message.</strong>
+    <span>Reading attachments, classifying and extracting facts — this page updates automatically.</span>
+  </div>
+</div>
+
+<div class="processing-banner err" *ngIf="detail?.status === 'FAILED'">
+  <mat-icon>error</mat-icon>
+  <div>
+    <strong>Processing failed for this message.</strong>
+    <span>Use “Retry failed” in the processing report to re-queue it. The original email is still shown below.</span>
+  </div>
+</div>
+
+<div class="detail-grid" *ngIf="detail">
+  <!-- ===================== LEFT: source documents ===================== -->
+  <section class="panel viewer">
+    <mat-tab-group [(selectedIndex)]="selectedTab" animationDuration="150ms" mat-stretch-tabs="false">
+      <!-- Email body -->
+      <mat-tab *ngIf="!isUpload()">
+        <ng-template mat-tab-label><mat-icon class="tab-icon">mail</mat-icon>Email</ng-template>
+        <div class="pane">
+          <dl class="email-meta">
+            <dt>From</dt>
+            <dd>{{ detail.sender }}</dd>
+            <dt>Subject</dt>
+            <dd>{{ detail.subject }}</dd>
+            <dt>Received</dt>
+            <dd>{{ detail.receivedAt | date: 'full' }}</dd>
+          </dl>
+
+          <div class="highlight-note" *ngIf="highlight">
+            <mat-icon>highlight</mat-icon>
+            Highlighting source text “{{ highlight }}”
+            <button mat-button (click)="highlight = null; highlightedFieldId = null">Clear</button>
           </div>
-        </ng-template>
+
+          <div class="body-text"><ng-container *ngFor="let s of bodySegments()"><mark *ngIf="s.hit">{{ s.text }}</mark><ng-container *ngIf="!s.hit">{{ s.text }}</ng-container></ng-container><span class="muted" *ngIf="!detail.bodyText">(no body text)</span></div>
+        </div>
       </mat-tab>
 
-      <mat-tab *ngFor="let att of detail.attachments" [label]="att.filename">
+      <!-- Attachments -->
+      <mat-tab *ngFor="let att of detail.attachments; trackBy: trackById">
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">{{ att.pdfFlavor ? flavorMeta[att.pdfFlavor].icon : att.processable ? 'picture_as_pdf' : 'insert_drive_file' }}</mat-icon>
+          <span class="tab-name" [title]="att.filename">{{ att.filename }}</span>
+        </ng-template>
+
         <div class="pane">
-          <p>
-            <strong>Type:</strong> {{ att.processable ? (att.pdfFlavor || 'processing…') : 'not processed (non-PDF)' }}
-            <span *ngIf="att.detectedLanguage"> · lang: {{ att.detectedLanguage }}</span>
-            <span *ngIf="att.pageCount"> · {{ att.pageCount }} page(s)</span>
-          </p>
-          <p class="summary" *ngIf="att.summary"><strong>AI summary:</strong> {{ att.summary }}</p>
+          <div class="att-info">
+            <ng-container *ngIf="att.processable; else notProcessable">
+              <span class="pill brand" *ngIf="att.pdfFlavor" [matTooltip]="flavorMeta[att.pdfFlavor].hint">
+                <mat-icon>{{ flavorMeta[att.pdfFlavor].icon }}</mat-icon>{{ flavorMeta[att.pdfFlavor].label }}
+              </span>
+              <span class="pill info" *ngIf="!att.processed"><mat-icon class="spin">autorenew</mat-icon>Processing…</span>
+              <span class="pill" *ngIf="att.detectedLanguage">
+                <mat-icon>language</mat-icon>{{ att.detectedLanguage | uppercase }}
+                <ng-container *ngIf="att.detectedLanguage !== 'en'"> · translated to EN</ng-container>
+              </span>
+              <span class="pill" *ngIf="att.pageCount"><mat-icon>description</mat-icon>{{ att.pageCount }} page{{ att.pageCount === 1 ? '' : 's' }}</span>
+              <span
+                class="pill read-conf"
+                *ngIf="att.extractionConfidence != null && att.pdfFlavor === 'SCANNED_HANDWRITTEN'"
+                matTooltip="How confidently the handwriting/scan was transcribed. Facts from this PDF never score higher."
+              >
+                <mat-icon>draw</mat-icon>OCR confidence
+                <app-confidence-meter [value]="att.extractionConfidence"></app-confidence-meter>
+              </span>
+              <span class="pill" *ngIf="tablesFor(att.id).length"><mat-icon>table_chart</mat-icon>{{ tablesFor(att.id).length }} table(s)</span>
+              <span class="pill warn" *ngIf="imagesFor(att.id).length"><mat-icon>image</mat-icon>{{ imagesFor(att.id).length }} image(s)</span>
+              <span class="spacer"></span>
+              <a mat-button [href]="rawPdfUrl(att)" target="_blank" rel="noopener"><mat-icon>open_in_new</mat-icon>Open</a>
+            </ng-container>
+            <ng-template #notProcessable>
+              <span class="pill"><mat-icon>block</mat-icon>{{ att.mimeType || 'Unknown type' }} — logged, not processed (only PDFs are analysed)</span>
+            </ng-template>
+          </div>
 
-          <iframe *ngIf="att.processable" class="pdf-frame" [src]="safeAttachmentUrl(att.id)"></iframe>
+          <div class="callout" *ngIf="att.summary">
+            <div class="callout-title"><mat-icon>auto_awesome</mat-icon>AI summary for the reviewer</div>
+            <p [class.clamped]="!expandedSummary.has(att.id)">{{ att.summary }}</p>
+            <button class="link" *ngIf="att.summary.length > 360" (click)="toggleSummary(att.id)">
+              {{ expandedSummary.has(att.id) ? 'Show less' : 'Show more' }}
+            </button>
+          </div>
 
-          <div *ngIf="tablesFor(att.id).length">
-            <h4>Extracted tables</h4>
-            <div class="table-scroll" *ngFor="let t of tablesFor(att.id)">
-              <p class="muted">Page {{ t.pageNumber }}</p>
-              <table class="extracted-table">
-                <tr>
-                  <th *ngFor="let h of parseTable(t.tableJson).headers">{{ h }}</th>
-                </tr>
-                <tr *ngFor="let row of parseTable(t.tableJson).rows">
-                  <td *ngFor="let cell of row">{{ cell }}</td>
-                </tr>
-              </table>
+          <div class="translation" *ngIf="att.translatedText">
+            <button class="translation-toggle" (click)="toggleTranslation(att.id)" [attr.aria-expanded]="showTranslation.has(att.id)">
+              <mat-icon>translate</mat-icon>
+              English translation used for the analysis ({{ att.detectedLanguage | uppercase }} → EN)
+              <span class="spacer"></span>
+              <mat-icon>{{ showTranslation.has(att.id) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            </button>
+            <div class="translation-body" *ngIf="showTranslation.has(att.id)">
+              <p class="muted">Machine translation — the original PDF below is the source of truth.</p>
+              <pre>{{ att.translatedText }}</pre>
             </div>
           </div>
 
-          <div *ngIf="imagesFor(att.id).length">
-            <h4>Images found</h4>
-            <ul>
-              <li *ngFor="let img of imagesFor(att.id)">
-                Page {{ img.pageNumber }}: {{ img.description }}
-                <mat-chip *ngIf="img.flaggedForReview" color="warn" highlighted>needs review</mat-chip>
-              </li>
-            </ul>
+          <div class="pdf-wrap" *ngIf="att.processable">
+            <div class="page-jump" *ngIf="pdfPage[att.id]"><mat-icon>my_location</mat-icon>Showing page {{ pdfPage[att.id] }} (source of the selected fact)</div>
+            <iframe class="pdf-frame" [src]="pdfUrl(att)" [title]="att.filename"></iframe>
+          </div>
+
+          <div class="section" *ngIf="tablesFor(att.id).length">
+            <h3><mat-icon>table_chart</mat-icon>Extracted tables</h3>
+            <div class="table-card" *ngFor="let t of tablesFor(att.id)">
+              <div class="muted">Page {{ t.pageNumber }} · {{ parseTable(t).rows.length }} row(s)</div>
+              <div class="table-scroll">
+                <table class="extracted-table">
+                  <thead>
+                    <tr><th *ngFor="let h of parseTable(t).headers">{{ h }}</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of parseTable(t).rows">
+                      <td *ngFor="let cell of row">{{ cell }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="section" *ngIf="imagesFor(att.id).length">
+            <h3><mat-icon>image</mat-icon>Images found</h3>
+            <div class="image-item" *ngFor="let img of imagesFor(att.id)" [class.flagged]="img.flaggedForReview">
+              <mat-icon>{{ img.flaggedForReview ? 'flag' : 'image' }}</mat-icon>
+              <div>
+                <div class="muted">
+                  Page {{ img.pageNumber }}
+                  <span class="pill warn" *ngIf="img.flaggedForReview">Needs human review</span>
+                </div>
+                <p>{{ img.description }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </mat-tab>
     </mat-tab-group>
-  </div>
 
-  <div class="column right">
-    <mat-card *ngIf="detail.sourceType !== 'UPLOAD'">
-      <mat-card-header><mat-card-title>AI Classification</mat-card-title></mat-card-header>
-      <mat-card-content>
-        <div class="classification-row" *ngFor="let c of classifications">
-          <div class="cls-header">
-            <strong>{{ c.category }}</strong>
-            <span class="muted">{{ (c.confidence * 100) | number: '1.0-0' }}% confidence</span>
-          </div>
-          <p class="reason">{{ c.reason }}</p>
-          <mat-button-toggle-group [(ngModel)]="c.uiDecision" aria-label="Decision">
-            <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
-            <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
-            <mat-button-toggle value="REJECTED">Reject</mat-button-toggle>
+    <div class="empty-docs" *ngIf="isUpload() && !detail.attachments.length">No document attached.</div>
+  </section>
+
+  <!-- ===================== RIGHT: review panel ===================== -->
+  <section class="review">
+    <!-- Classification -->
+    <div class="panel" *ngIf="!isUpload()">
+      <div class="panel-title">
+        <mat-icon>category</mat-icon>
+        AI classification
+        <span class="spacer"></span>
+        <span class="muted">{{ classifications.length }} categor{{ classifications.length === 1 ? 'y' : 'ies' }}</span>
+      </div>
+
+      <div class="empty-block" *ngIf="!classifications.length">
+        <mat-icon [class.spin]="isProcessing()">{{ isProcessing() ? 'autorenew' : 'help_outline' }}</mat-icon>
+        {{ isProcessing() ? 'Classification in progress…' : 'No classification available.' }}
+      </div>
+
+      <div class="cls" *ngFor="let c of classifications" [ngClass]="categoryMeta[c.category].cssClass" [class.rejected]="c.uiDecision === 'REJECTED'">
+        <div class="cls-top">
+          <app-category-badge [category]="c.category"></app-category-badge>
+          <span class="spacer"></span>
+          <app-confidence-meter [value]="c.confidence"></app-confidence-meter>
+        </div>
+        <p class="reason"><mat-icon>format_quote</mat-icon>{{ c.reason }}</p>
+        <div class="decision-row">
+          <mat-button-toggle-group [(ngModel)]="c.uiDecision" aria-label="Classification decision" hideSingleSelectionIndicator>
+            <mat-button-toggle value="ACCEPTED" class="toggle-accept"><mat-icon>check</mat-icon> Accept</mat-button-toggle>
+            <mat-button-toggle value="OVERRIDDEN" class="toggle-override"><mat-icon>swap_horiz</mat-icon> Change</mat-button-toggle>
+            <mat-button-toggle value="REJECTED" class="toggle-reject"><mat-icon>close</mat-icon> Reject</mat-button-toggle>
           </mat-button-toggle-group>
-          <mat-form-field *ngIf="c.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-select">
+          <mat-form-field *ngIf="c.uiDecision === 'OVERRIDDEN'" appearance="outline" subscriptSizing="dynamic" class="override-select">
             <mat-label>Correct category</mat-label>
             <mat-select [(ngModel)]="c.uiOverrideCategory">
-              <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+              <mat-option *ngFor="let cat of categories" [value]="cat">{{ categoryMeta[cat].label }} ({{ categoryMeta[cat].short }})</mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-divider></mat-divider>
         </div>
-        <p *ngIf="!classifications.length" class="muted">No classification yet — still processing.</p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card *ngFor="let group of fieldGroups">
-      <mat-card-header><mat-card-title>{{ group }}</mat-card-title></mat-card-header>
-      <mat-card-content>
-        <div class="field-row" *ngFor="let f of fieldsFor(group)">
-          <div class="field-header">
-            <strong>{{ f.fieldName }}</strong>
-            <span class="muted" *ngIf="f.confidence !== null">{{ (f.confidence * 100) | number: '1.0-0' }}%</span>
-          </div>
-          <p class="field-value">{{ f.fieldValue }}</p>
-          <p class="muted source">source: {{ sourceLabel(f) }}</p>
-          <mat-button-toggle-group [(ngModel)]="f.uiDecision" aria-label="Decision">
-            <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
-            <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
-          </mat-button-toggle-group>
-          <mat-form-field *ngIf="f.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-input">
-            <mat-label>Corrected value</mat-label>
-            <input matInput [(ngModel)]="f.uiOverrideValue" />
-          </mat-form-field>
-          <mat-divider></mat-divider>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card *ngIf="detail.sourceType === 'UPLOAD'">
-      <mat-card-header><mat-card-title>Literature Screening — Patient Cases</mat-card-title></mat-card-header>
-      <mat-card-content>
-        <p *ngIf="!literatureCases.length" class="muted">No patient cases identified in this article.</p>
-
-        <div class="case-block" *ngFor="let c of literatureCases">
-          <div class="cls-header">
-            <strong>Case {{ c.caseNumber }} — {{ c.relevantCase ? 'Relevant' : 'Not relevant' }}</strong>
-            <span class="muted">{{ (c.confidence * 100) | number: '1.0-0' }}% confidence</span>
-          </div>
-          <p class="reason">{{ c.relevanceReason }}</p>
-          <p class="summary">{{ c.summary }}</p>
-          <mat-button-toggle-group [(ngModel)]="c.uiDecision" aria-label="Decision">
-            <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
-            <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
-            <mat-button-toggle value="REJECTED">Reject</mat-button-toggle>
-          </mat-button-toggle-group>
-          <mat-form-field *ngIf="c.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-select">
-            <mat-label>Actually relevant?</mat-label>
-            <mat-select [(ngModel)]="c.uiOverrideIsRelevant">
-              <mat-option [value]="true">Yes — relevant case</mat-option>
-              <mat-option [value]="false">No — not relevant</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <div class="case-fields" *ngIf="fieldGroupsForCase(c.caseNumber).length">
-            <div *ngFor="let group of fieldGroupsForCase(c.caseNumber)">
-              <h4>{{ group }}</h4>
-              <div class="field-row" *ngFor="let f of fieldsForCase(c.caseNumber)" [hidden]="f.fieldGroup !== group">
-                <div class="field-header">
-                  <strong>{{ f.fieldName }}</strong>
-                  <span class="muted" *ngIf="f.confidence !== null">{{ (f.confidence * 100) | number: '1.0-0' }}%</span>
-                </div>
-                <p class="field-value">{{ f.fieldValue }}</p>
-                <p class="muted source">source: {{ sourceLabel(f) }}</p>
-                <mat-button-toggle-group [(ngModel)]="f.uiDecision" aria-label="Decision">
-                  <mat-button-toggle value="ACCEPTED">Accept</mat-button-toggle>
-                  <mat-button-toggle value="OVERRIDDEN">Override</mat-button-toggle>
-                </mat-button-toggle-group>
-                <mat-form-field *ngIf="f.uiDecision === 'OVERRIDDEN'" appearance="outline" class="override-input">
-                  <mat-label>Corrected value</mat-label>
-                  <input matInput [(ngModel)]="f.uiOverrideValue" />
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-          <mat-divider></mat-divider>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <button mat-raised-button color="primary" class="submit-btn" (click)="submitReview()" [disabled]="submitting">
-      Submit review
-    </button>
-
-    <mat-expansion-panel class="audit-panel">
-      <mat-expansion-panel-header>
-        <mat-panel-title>Audit trail ({{ detail.auditTrail.length }})</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="audit-entry" *ngFor="let a of detail.auditTrail">
-        <span class="muted">{{ a.createdAt | date: 'medium' }}</span>
-        — <strong>{{ a.actor }}</strong> {{ a.action }}
-        <span class="muted" *ngIf="a.detailJson"> ({{ a.detailJson }})</span>
       </div>
-    </mat-expansion-panel>
-  </div>
+    </div>
+
+    <!-- Extracted facts -->
+    <div class="panel" *ngIf="groups.length">
+      <div class="panel-title">
+        <mat-icon>fact_check</mat-icon>
+        Extracted facts
+        <span class="spacer"></span>
+        <span class="muted">{{ fieldStats().stated }}/{{ fieldStats().total }} stated</span>
+      </div>
+
+      <div class="facts-toolbar">
+        <mat-button-toggle-group [(ngModel)]="fieldFilter" aria-label="Filter facts" hideSingleSelectionIndicator>
+          <mat-button-toggle value="ALL">All</mat-button-toggle>
+          <mat-button-toggle value="ATTENTION">Needs attention ({{ fieldStats().attention }})</mat-button-toggle>
+          <mat-button-toggle value="STATED">Hide “Not stated”</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <ng-container *ngFor="let g of groups">
+        <ng-container *ngTemplateOutlet="groupTpl; context: { $implicit: g }"></ng-container>
+      </ng-container>
+      <div class="empty-block" *ngIf="!hasVisibleFacts()">
+        <mat-icon>task_alt</mat-icon>
+        {{ fieldFilter === 'ATTENTION' ? 'Nothing needs attention — every fact is stated with high confidence.' : 'No stated facts to show.' }}
+      </div>
+    </div>
+
+    <!-- Literature cases -->
+    <div class="panel" *ngIf="isUpload()">
+      <div class="panel-title">
+        <mat-icon>person_search</mat-icon>
+        Patient cases found in the article
+        <span class="spacer"></span>
+        <span class="muted">{{ literatureCases.length }} case(s)</span>
+      </div>
+
+      <div class="empty-block" *ngIf="!literatureCases.length">
+        <mat-icon [class.spin]="isProcessing()">{{ isProcessing() ? 'autorenew' : 'person_off' }}</mat-icon>
+        {{ isProcessing() ? 'Screening in progress…' : 'No identifiable patient case in this article — nothing to report.' }}
+      </div>
+
+      <div class="case" *ngFor="let c of literatureCases" [class.relevant]="c.relevantCase" [class.rejected]="c.uiDecision === 'REJECTED'">
+        <div class="cls-top">
+          <span class="case-no">Case {{ c.caseNumber }}</span>
+          <span class="pill" [ngClass]="c.relevantCase ? 'err' : ''">
+            <mat-icon>{{ c.relevantCase ? 'report' : 'do_not_disturb_on' }}</mat-icon>
+            {{ c.relevantCase ? 'Reportable case' : 'Not reportable' }}
+          </span>
+          <span class="spacer"></span>
+          <app-confidence-meter [value]="c.confidence"></app-confidence-meter>
+        </div>
+        <p class="reason"><mat-icon>format_quote</mat-icon>{{ c.relevanceReason }}</p>
+        <p class="case-summary">{{ c.summary }}</p>
+        <div class="decision-row">
+          <mat-button-toggle-group [(ngModel)]="c.uiDecision" aria-label="Case decision" hideSingleSelectionIndicator>
+            <mat-button-toggle value="ACCEPTED" class="toggle-accept"><mat-icon>check</mat-icon> Accept</mat-button-toggle>
+            <mat-button-toggle value="OVERRIDDEN" class="toggle-override"><mat-icon>swap_horiz</mat-icon> Change</mat-button-toggle>
+            <mat-button-toggle value="REJECTED" class="toggle-reject"><mat-icon>close</mat-icon> Reject</mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-form-field *ngIf="c.uiDecision === 'OVERRIDDEN'" appearance="outline" subscriptSizing="dynamic" class="override-select">
+            <mat-label>Actually reportable?</mat-label>
+            <mat-select [(ngModel)]="c.uiOverrideIsRelevant">
+              <mat-option [value]="true">Yes — reportable case</mat-option>
+              <mat-option [value]="false">No — not reportable</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="case-facts" *ngIf="groupsForCase(c.caseNumber).length">
+          <ng-container *ngFor="let g of groupsForCase(c.caseNumber)">
+            <ng-container *ngTemplateOutlet="groupTpl; context: { $implicit: g }"></ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audit trail -->
+    <div class="panel audit">
+      <button class="panel-title audit-toggle" (click)="auditOpen = !auditOpen" [attr.aria-expanded]="auditOpen">
+        <mat-icon>history</mat-icon>
+        Audit trail
+        <span class="count-chip">{{ detail.auditTrail.length }}</span>
+        <span class="spacer"></span>
+        <mat-icon>{{ auditOpen ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </button>
+      <ng-container *ngIf="auditOpen">
+        <div class="facts-toolbar">
+          <mat-button-toggle-group [(ngModel)]="auditFilter" aria-label="Filter audit entries" hideSingleSelectionIndicator>
+            <mat-button-toggle value="ALL">Everything</mat-button-toggle>
+            <mat-button-toggle value="AI">AI decisions</mat-button-toggle>
+            <mat-button-toggle value="REVIEWER">Reviewer actions</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <ol class="timeline">
+          <li *ngFor="let a of auditEntries(); trackBy: trackById" [class.human]="a.actor !== 'system'">
+            <span class="dot"><mat-icon>{{ auditIcon(a) }}</mat-icon></span>
+            <div class="entry">
+              <div class="entry-top">
+                <strong>{{ auditTitle(a) }}</strong>
+                <span class="muted">{{ a.entityType | lowercase }} #{{ a.entityId }}</span>
+                <span class="spacer"></span>
+                <span class="muted" [title]="a.createdAt">{{ a.createdAt | date: 'MMM d, HH:mm:ss' }}</span>
+              </div>
+              <div class="entry-sub">
+                <span class="actor"><mat-icon>{{ a.actor === 'system' ? 'smart_toy' : 'person' }}</mat-icon>{{ a.actor === 'system' ? 'AI pipeline' : a.actor }}</span>
+                <span *ngIf="auditSummary(a)">· {{ auditSummary(a) }}</span>
+                <button class="link" *ngIf="a.detailJson" (click)="toggleAudit(a.id)">
+                  {{ expandedAudit.has(a.id) ? 'hide' : 'details' }}
+                </button>
+              </div>
+              <pre *ngIf="expandedAudit.has(a.id)">{{ prettyJson(a.detailJson) }}</pre>
+            </div>
+          </li>
+        </ol>
+      </ng-container>
+    </div>
+
+    <!-- Sticky submit bar -->
+    <div class="submit-bar" *ngIf="classifications.length || fields.length || literatureCases.length">
+      <div class="submit-summary">
+        <span class="pill ok" matTooltip="Accepted as the AI suggested"><mat-icon>check</mat-icon>{{ decisionCounts().accepted }}</span>
+        <span class="pill info" matTooltip="Changed by you"><mat-icon>edit</mat-icon>{{ decisionCounts().overridden }}</span>
+        <span class="pill err" matTooltip="Rejected"><mat-icon>close</mat-icon>{{ decisionCounts().rejected }}</span>
+        <span class="dirty" *ngIf="isDirty()">Unsaved changes</span>
+        <mat-icon
+          class="hint-icon"
+          matTooltip="Everything starts as Accept — only change what the AI got wrong. Ctrl+Enter saves."
+          >info_outline</mat-icon
+        >
+      </div>
+      <div class="submit-actions">
+        <button mat-button (click)="resetChanges()" [disabled]="!isDirty() || submitting">Reset</button>
+        <button mat-stroked-button (click)="submitReview(false)" [disabled]="submitting || isProcessing()" matTooltip="Save (Ctrl+Enter)">
+          <mat-icon>save</mat-icon>Save
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="submitReview(true)"
+          [disabled]="submitting || isProcessing()"
+          [matTooltip]="'Signed as ' + reviewer.name() + (position().nextPending ? ' — then open the next pending message' : '')"
+        >
+          <mat-icon>task_alt</mat-icon>{{ position().nextPending ? 'Confirm & next' : 'Confirm review' }}
+        </button>
+      </div>
+    </div>
+  </section>
 </div>
+
+<!-- ===== Reusable fact group ===== -->
+<ng-template #groupTpl let-g>
+  <div class="group" *ngIf="visibleCount(g)">
+    <div class="group-head">
+      <mat-icon>{{ g.icon }}</mat-icon>
+      <span>{{ g.label }}</span>
+      <span class="muted">{{ g.stated }}/{{ g.fields.length }} stated</span>
+    </div>
+
+    <ng-container *ngFor="let f of g.fields; trackBy: trackById">
+      <div
+        class="fact"
+        *ngIf="visible(f)"
+        [class.not-stated]="isNotStated(f.fieldValue)"
+        [class.overridden]="f.uiDecision === 'OVERRIDDEN'"
+        [class.low]="band(f.confidence) === 'low'"
+        [class.focused]="highlightedFieldId === f.id"
+        [class.narrative]="f.fieldGroup === 'NARRATIVE'"
+      >
+        <div class="fact-label">{{ humanize(f.fieldName) }}</div>
+
+        <div class="fact-value">
+          <ng-container *ngIf="!f.editing">
+            <ng-container *ngIf="f.uiDecision === 'OVERRIDDEN'">
+              <span class="new-value">{{ f.uiOverrideValue }}</span>
+              <span class="old-value" [title]="'AI suggested: ' + f.fieldValue">AI: {{ f.fieldValue }}</span>
+            </ng-container>
+            <ng-container *ngIf="f.uiDecision !== 'OVERRIDDEN'">
+              <span class="ns" *ngIf="isNotStated(f.fieldValue)"><mat-icon>help_outline</mat-icon>Not stated</span>
+              <span *ngIf="!isNotStated(f.fieldValue)">{{ f.fieldValue }}</span>
+            </ng-container>
+          </ng-container>
+
+          <div class="edit-box" *ngIf="f.editing">
+            <textarea
+              *ngIf="f.fieldGroup === 'NARRATIVE'; else singleLine"
+              [(ngModel)]="f.uiOverrideValue"
+              rows="5"
+              (keydown.escape)="revertField(f)"
+              placeholder="Corrected value"
+              autofocus
+            ></textarea>
+            <ng-template #singleLine>
+              <input
+                [(ngModel)]="f.uiOverrideValue"
+                (keydown.enter)="confirmEdit(f)"
+                (keydown.escape)="revertField(f)"
+                placeholder="Corrected value (leave empty to keep the AI's)"
+                autofocus
+              />
+            </ng-template>
+            <button mat-icon-button (click)="confirmEdit(f)" matTooltip="Keep this correction"><mat-icon>check</mat-icon></button>
+            <button mat-icon-button (click)="revertField(f)" matTooltip="Cancel"><mat-icon>close</mat-icon></button>
+          </div>
+
+          <div class="fact-meta">
+            <button class="source" (click)="jumpToSource(f)" [matTooltip]="'Open the source: ' + sourceLabel(f)">
+              <mat-icon>{{ f.sourceType === 'EMAIL_BODY' ? 'mail' : 'picture_as_pdf' }}</mat-icon>
+              {{ sourceLabel(f) }}
+            </button>
+            <app-confidence-meter [value]="f.confidence"></app-confidence-meter>
+          </div>
+        </div>
+
+        <div class="fact-actions" *ngIf="!f.editing">
+          <button mat-icon-button (click)="editField(f)" matTooltip="Correct this value"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button *ngIf="f.uiDecision === 'OVERRIDDEN'" (click)="revertField(f)" matTooltip="Revert to the AI's value">
+            <mat-icon>undo</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>

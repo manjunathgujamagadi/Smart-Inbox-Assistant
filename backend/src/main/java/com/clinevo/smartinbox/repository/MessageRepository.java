@@ -11,4 +11,5 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     Optional<Message> findByExternalRef(String externalRef);
     List<Message> findByStatusOrderByReceivedAtAsc(MessageStatus status);
     List<Message> findAllByOrderByReceivedAtDesc();
+    Optional<Message> findTopByExternalRefStartingWithOrderByReceivedAtDesc(String externalRefPrefix);
 }

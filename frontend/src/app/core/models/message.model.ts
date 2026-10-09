@@ -52,6 +52,10 @@ export interface AttachmentDto {
   pageCount: number | null;
   processed: boolean;
   summary: string | null;
+  /** How reliably the PDF text was read (OCR confidence for scanned/handwritten pages). */
+  extractionConfidence: number | null;
+  /** English translation of a non-English PDF ("--- page N ---" separated). */
+  translatedText: string | null;
 }
 
 export interface TableDto {
@@ -147,4 +151,23 @@ export interface BatchReportDto {
   minDurationMs: number;
   maxDurationMs: number;
   jobs: BatchReportJobEntry[];
+}
+
+export interface MailFetchResultDto {
+  since: string;
+  scanned: number;
+  ingested: number;
+  alreadyIngested: number;
+  failed: number;
+}
+
+export interface MailStatusDto {
+  pollingEnabled: boolean;
+  configured: boolean;
+  mailbox: string | null;
+  folder: string;
+  pollIntervalMs: number;
+  lastPollAt: string | null;
+  lastResult: MailFetchResultDto | null;
+  lastError: string | null;
 }

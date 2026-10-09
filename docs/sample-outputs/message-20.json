@@ -3,7 +3,7 @@
     "sourceType": "UPLOAD",
     "sender": "literature-upload",
     "subject": "lit-no-case.pdf",
-    "receivedAt": "2026-09-04T04:49:43.348447Z",
+    "receivedAt": "2026-10-09T16:18:36.879703Z",
     "bodyText": null,
     "status": "PROCESSED",
     "attachments": [
@@ -16,7 +16,9 @@
             "detectedLanguage": "en",
             "pageCount": 1,
             "processed": true,
-            "summary": "This article is a written piece that does not contain any actual patient cases. It appears to focus on a theoretical discussion or analysis rather than providing evidence or data related to specific patient experiences or adverse events. As such, it does not include any real-life scenarios that would typically be relevant for assessing patient safety, quality complaints, or information requests. The absence of case details means that there are no insights or findings that could contribute to understanding the safety profile of any medication or treatment. Therefore, this document does not seem relevant to a patient-safety or quality-complaint review. It does not provide the necessary information or context that would typically be required for such evaluations in pharmacovigilance. Overall, the article lacks the required patient-specific information that is essential for the intended review process."
+            "summary": "The article is primarily a theoretical discussion and does not present any actual patient cases. It focuses on concepts and findings that do not include specific incidents or experiences related to medication use or patient safety. As there are no real-world examples or patient data referenced, the document lacks practical applications regarding adverse drug reactions or safety concerns. \n\nGiven the absence of patient cases, this document does not appear to be relevant for a patient-safety review, quality complaint assessment, or information request focused on actual incidents involving patients and medications. It may contain valuable information for academic or theoretical purposes but does not contribute to assessing or handling specific patient safety issues. Therefore, for a human reviewer looking for insights into patient-related safety matters, this article would not be useful.",
+            "extractionConfidence": 0.8,
+            "translatedText": null
         }
     ],
     "classifications": [],
@@ -32,16 +34,16 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"filename\": \"lit-no-case.pdf\", \"sourceType\": \"LITERATURE_UPLOAD\"}",
-            "createdAt": "2026-09-04T04:49:43.353763Z"
+            "createdAt": "2026-10-09T16:18:36.891129Z"
         },
         {
-            "id": 348,
+            "id": 331,
             "entityType": "ATTACHMENT",
             "entityId": 16,
             "actor": "system",
             "action": "AI_PDF_PROCESSED",
             "detailJson": "{\"flavor\": \"ARTICLE\", \"pageCount\": 1, \"confidence\": 0.8}",
-            "createdAt": "2026-09-04T04:51:25.750082Z"
+            "createdAt": "2026-10-09T16:20:29.266906Z"
         }
     ]
 }

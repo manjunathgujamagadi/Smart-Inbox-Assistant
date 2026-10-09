@@ -26,12 +26,24 @@ public class StorageService {
             Path dir = Path.of(props.storage().root(), "messages", String.valueOf(messageId));
             Files.createDirectories(dir);
             String safeName = filename == null || filename.isBlank() ? "attachment.bin" : filename.replaceAll("[/\\\\]", "_");
-            Path target = dir.resolve(safeName);
+            Path target = uniquePath(dir, safeName);
             Files.copy(data, target, StandardCopyOption.REPLACE_EXISTING);
             return target.toAbsolutePath().toString();
         } catch (IOException e) {
             throw new StorageException("Failed to store attachment " + filename + " for message " + messageId, e);
         }
+    }
+
+    /** Two attachments with the same name on one email (e.g. two "scan.pdf") must not overwrite each other. */
+    private Path uniquePath(Path dir, String name) {
+        Path target = dir.resolve(name);
+        int dot = name.lastIndexOf('.');
+        String stem = dot > 0 ? name.substring(0, dot) : name;
+        String ext = dot > 0 ? name.substring(dot) : "";
+        for (int i = 2; Files.exists(target); i++) {
+            target = dir.resolve(stem + "-" + i + ext);
+        }
+        return target;
     }
 
     public static class StorageException extends RuntimeException {

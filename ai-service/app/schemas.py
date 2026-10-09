@@ -14,6 +14,9 @@ class PageDto(BaseModel):
     pageNumber: int
     text: str
     translatedText: Optional[str] = None
+    # How reliably this page's text was read: OCR confidence for scanned pages, a fixed
+    # translation confidence for non-English pages, None for an exact digital text layer.
+    confidence: Optional[float] = None
 
 
 class TableDto(BaseModel):
@@ -52,6 +55,7 @@ class MessageContext(BaseModel):
 class PageContext(BaseModel):
     pageNumber: int
     text: str
+    confidence: Optional[float] = None
 
 
 class AttachmentContext(BaseModel):

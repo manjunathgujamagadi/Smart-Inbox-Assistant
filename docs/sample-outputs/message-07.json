@@ -16,25 +16,17 @@
             "detectedLanguage": "en",
             "pageCount": 1,
             "processed": true,
-            "summary": "This document contains laboratory notes for a 34-year-old female patient who is currently taking a medication named Ferbolex at a dose of 500 mg twice daily. The patient has reported experiencing hives (urticaria) on her arms and torso, which began approximately after her second dose of the medication. Laboratory test results indicate that her white blood cell (WBC) count is elevated at 11.2 x10^9/L, which is above the normal reference range, suggesting she may be experiencing an allergic reaction or another underlying issue. Additionally, her eosinophil percentage is 8.5%, significantly higher than the normal range of 1-4%, which is often associated with allergic responses or parasitic infections.\n\nThe information in this document is relevant to a patient-safety review, as it highlights a potential adverse reaction to a medication the patient is taking. The onset of hives following medication administration and the laboratory findings indicating elevated eosinophils could suggest a serious allergic reaction that warrants further investigation. Overall, this document provides critical information needed to assess the safety of the medication in question and could impact patient care and the management of potential side effects."
+            "summary": "This document contains laboratory notes related to a 34-year-old female patient who experienced an adverse reaction to a medication named Ferbolex, prescribed at a dosage of 500 mg twice daily. The patient developed hives (urticaria) on her arms and torso, with the onset occurring approximately after her second dose. Laboratory test results indicate an elevated white blood cell (WBC) count at 11.2 x10^9/L, which is above the normal reference range of 4.0-11.0. Additionally, the eosinophil count is 8.5%, exceeding the normal range of 1-4%. \n\nGiven the patient's adverse reaction and the laboratory results, this document is relevant to a patient-safety review as it details a potentially serious allergic response to a medication, which requires further investigation. The elevated eosinophil level suggests an allergic or hypersensitivity reaction, supporting the need for vigilance in monitoring the patient's safety following medication use. Overall, this document should be considered in the context of pharmacovigilance due to the potential implications for patient safety and the need for reporting and evaluation of adverse drug reactions.",
+            "extractionConfidence": 0.95,
+            "translatedText": null
         }
     ],
     "classifications": [
         {
             "id": 9,
             "category": "ICSR",
-            "confidence": 1.0,
-            "reason": "A patient developed hives after starting Ferbolex, with specific details about the patient, drug, and reaction.",
-            "reviewerStatus": "PENDING",
-            "reviewerCategory": null,
-            "reviewedBy": null,
-            "reviewedAt": null
-        },
-        {
-            "id": 10,
-            "category": "MI",
-            "confidence": 0.9,
-            "reason": "The email implies a need for further investigation into the reaction, suggesting a request for more information.",
+            "confidence": 0.95,
+            "reason": "The message contains a specific patient (34-year-old woman), a specific reporter (nurse), a specific drug (Ferbolex), and a bad outcome (hives).",
             "reviewerStatus": "PENDING",
             "reviewerCategory": null,
             "reviewedBy": null,
@@ -43,143 +35,13 @@
     ],
     "extractedFields": [
         {
-            "id": 115,
+            "id": 125,
             "attachmentId": null,
             "caseNumber": null,
             "fieldGroup": "PATIENT",
             "fieldName": "age",
             "fieldValue": "34",
-            "confidence": 1.0,
-            "sourceType": "EMAIL_BODY",
-            "sourceRef": null,
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 116,
-            "attachmentId": null,
-            "caseNumber": null,
-            "fieldGroup": "PATIENT",
-            "fieldName": "sex",
-            "fieldValue": "Female",
-            "confidence": 1.0,
-            "sourceType": "EMAIL_BODY",
-            "sourceRef": null,
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 117,
-            "attachmentId": null,
-            "caseNumber": null,
-            "fieldGroup": "REPORTER",
-            "fieldName": "reporter_name_or_role",
-            "fieldValue": "Nurse Callahan",
-            "confidence": 1.0,
-            "sourceType": "EMAIL_BODY",
-            "sourceRef": null,
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 118,
-            "attachmentId": null,
-            "caseNumber": null,
-            "fieldGroup": "REPORTER",
-            "fieldName": "reporter_role",
-            "fieldValue": "Nurse",
-            "confidence": 1.0,
-            "sourceType": "EMAIL_BODY",
-            "sourceRef": null,
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 119,
-            "attachmentId": null,
-            "caseNumber": null,
-            "fieldGroup": "REPORTER",
-            "fieldName": "reporter_country",
-            "fieldValue": "Not stated",
-            "confidence": 1.0,
-            "sourceType": "EMAIL_BODY",
-            "sourceRef": null,
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 120,
-            "attachmentId": null,
-            "caseNumber": null,
-            "fieldGroup": "PRODUCT",
-            "fieldName": "product_name",
-            "fieldValue": "Ferbolex",
-            "confidence": 1.0,
-            "sourceType": "EMAIL_BODY",
-            "sourceRef": null,
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 121,
-            "attachmentId": 7,
-            "caseNumber": null,
-            "fieldGroup": "PRODUCT",
-            "fieldName": "dose",
-            "fieldValue": "500 mg twice daily",
-            "confidence": 1.0,
-            "sourceType": "PDF_PAGE",
-            "sourceRef": "page 1",
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 122,
-            "attachmentId": 7,
-            "caseNumber": null,
-            "fieldGroup": "REACTION",
-            "fieldName": "reaction_description",
-            "fieldValue": "Hives / urticaria across arms and torso",
-            "confidence": 1.0,
-            "sourceType": "PDF_PAGE",
-            "sourceRef": "page 1",
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 123,
-            "attachmentId": 7,
-            "caseNumber": null,
-            "fieldGroup": "REACTION",
-            "fieldName": "onset",
-            "fieldValue": "approximately after the second dose",
-            "confidence": 1.0,
-            "sourceType": "PDF_PAGE",
-            "sourceRef": "page 1",
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 124,
-            "attachmentId": 7,
-            "caseNumber": null,
-            "fieldGroup": "NARRATIVE",
-            "fieldName": "case_narrative",
-            "fieldValue": "A 34-year-old female patient developed hives after starting Ferbolex, specifically after her second dose. Laboratory results indicate elevated eosinophils, suggesting a possible allergic reaction. Further investigation may be warranted to assess the safety of the medication.",
-            "confidence": 1.0,
-            "sourceType": "PDF_PAGE",
-            "sourceRef": "page 1",
-            "reviewerStatus": "PENDING",
-            "reviewerValue": null
-        },
-        {
-            "id": 125,
-            "attachmentId": null,
-            "caseNumber": null,
-            "fieldGroup": "MI",
-            "fieldName": "question_1",
-            "fieldValue": "What should we do about the patient's reaction?",
-            "confidence": 0.9,
+            "confidence": 0.95,
             "sourceType": "EMAIL_BODY",
             "sourceRef": null,
             "reviewerStatus": "PENDING",
@@ -187,12 +49,194 @@
         },
         {
             "id": 126,
+            "attachmentId": 7,
+            "caseNumber": null,
+            "fieldGroup": "PATIENT",
+            "fieldName": "sex",
+            "fieldValue": "Female",
+            "confidence": 0.95,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 127,
             "attachmentId": null,
             "caseNumber": null,
-            "fieldGroup": "MI",
-            "fieldName": "product_or_topic",
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_name_or_role",
+            "fieldValue": "nurse Callahan",
+            "confidence": 0.95,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 128,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_role",
+            "fieldValue": "nurse",
+            "confidence": 0.95,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 129,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "REPORTER",
+            "fieldName": "reporter_country",
+            "fieldValue": "Not stated",
+            "confidence": 0.9,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 130,
+            "attachmentId": 7,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "product_name",
             "fieldValue": "Ferbolex",
-            "confidence": 1.0,
+            "confidence": 0.95,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 131,
+            "attachmentId": 7,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "dose",
+            "fieldValue": "500 mg twice daily",
+            "confidence": 0.95,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 132,
+            "attachmentId": 7,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "route",
+            "fieldValue": "Not stated",
+            "confidence": 0.9,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 133,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "start_date",
+            "fieldValue": "Not stated",
+            "confidence": 0.9,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 134,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "PRODUCT",
+            "fieldName": "stop_date",
+            "fieldValue": "Not stated",
+            "confidence": 0.9,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 135,
+            "attachmentId": 7,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "reaction_description",
+            "fieldValue": "Hives / urticaria across arms and torso",
+            "confidence": 0.95,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 136,
+            "attachmentId": 7,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "onset",
+            "fieldValue": "approximately after the second dose",
+            "confidence": 0.95,
+            "sourceType": "PDF_PAGE",
+            "sourceRef": "page 1",
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 137,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "REACTION",
+            "fieldName": "outcome",
+            "fieldValue": "Not stated",
+            "confidence": 0.9,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 138,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "serious",
+            "fieldValue": "Not stated",
+            "confidence": 0.9,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 139,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "SEVERITY",
+            "fieldName": "seriousness_criteria",
+            "fieldValue": "Not stated",
+            "confidence": 0.9,
+            "sourceType": "EMAIL_BODY",
+            "sourceRef": null,
+            "reviewerStatus": "PENDING",
+            "reviewerValue": null
+        },
+        {
+            "id": 140,
+            "attachmentId": null,
+            "caseNumber": null,
+            "fieldGroup": "NARRATIVE",
+            "fieldName": "case_narrative",
+            "fieldValue": "A 34-year-old female patient developed hives after starting Ferbolex, which began after her second dose. Laboratory results indicate elevated white blood cell and eosinophil counts, suggesting an allergic reaction. Further investigation is warranted due to the potential seriousness of the reaction.",
+            "confidence": 0.75,
             "sourceType": "EMAIL_BODY",
             "sourceRef": null,
             "reviewerStatus": "PENDING",
@@ -217,124 +261,25 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"fixture\": \"icsr-02.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
-            "createdAt": "2026-09-04T04:49:43.183984Z"
+            "createdAt": "2026-10-09T16:18:36.511931Z"
         },
         {
-            "id": 155,
+            "id": 166,
             "entityType": "ATTACHMENT",
             "entityId": 7,
             "actor": "system",
             "action": "AI_PDF_PROCESSED",
             "detailJson": "{\"flavor\": \"DIGITAL\", \"pageCount\": 1, \"confidence\": 0.95}",
-            "createdAt": "2026-09-04T04:50:27.482650Z"
+            "createdAt": "2026-10-09T16:19:24.353775Z"
         },
         {
-            "id": 176,
+            "id": 187,
             "entityType": "CLASSIFICATION",
             "entityId": 9,
             "actor": "system",
             "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"A patient developed hives after starting Ferbolex, with specific details about the patient, drug, and reaction.\", \"category\": \"ICSR\", \"confidence\": 1.0}",
-            "createdAt": "2026-09-04T04:50:33.936881Z"
-        },
-        {
-            "id": 177,
-            "entityType": "CLASSIFICATION",
-            "entityId": 10,
-            "actor": "system",
-            "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"The email implies a need for further investigation into the reaction, suggesting a request for more information.\", \"category\": \"MI\", \"confidence\": 0.9}",
-            "createdAt": "2026-09-04T04:50:33.939432Z"
-        },
-        {
-            "id": 178,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 115,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.942103Z"
-        },
-        {
-            "id": 179,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 116,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.944350Z"
-        },
-        {
-            "id": 180,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 117,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.945945Z"
-        },
-        {
-            "id": 181,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 118,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.947882Z"
-        },
-        {
-            "id": 182,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 119,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.950058Z"
-        },
-        {
-            "id": 183,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 120,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.952193Z"
-        },
-        {
-            "id": 184,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 121,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:33.954631Z"
-        },
-        {
-            "id": 185,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 122,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:33.956987Z"
-        },
-        {
-            "id": 186,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 123,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:33.959033Z"
-        },
-        {
-            "id": 187,
-            "entityType": "EXTRACTED_FIELD",
-            "entityId": 124,
-            "actor": "system",
-            "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:50:33.960660Z"
+            "detailJson": "{\"reason\": \"The message contains a specific patient (34-year-old woman), a specific reporter (nurse), a specific drug (Ferbolex), and a bad outcome (hives).\", \"category\": \"ICSR\", \"confidence\": 0.95}",
+            "createdAt": "2026-10-09T16:19:32.919449Z"
         },
         {
             "id": 188,
@@ -342,8 +287,8 @@
             "entityId": 125,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"question_1\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.962217Z"
+            "detailJson": "{\"fieldName\": \"age\", \"sourceRef\": \"\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.923492Z"
         },
         {
             "id": 189,
@@ -351,8 +296,134 @@
             "entityId": 126,
             "actor": "system",
             "action": "AI_EXTRACTED",
-            "detailJson": "{\"fieldName\": \"product_or_topic\", \"sourceRef\": \"\", \"fieldGroup\": \"MI\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:50:33.963354Z"
+            "detailJson": "{\"fieldName\": \"sex\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PATIENT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:32.927715Z"
+        },
+        {
+            "id": 190,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 127,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_name_or_role\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.931198Z"
+        },
+        {
+            "id": 191,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 128,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_role\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.935214Z"
+        },
+        {
+            "id": 192,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 129,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reporter_country\", \"sourceRef\": \"\", \"fieldGroup\": \"REPORTER\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.941384Z"
+        },
+        {
+            "id": 193,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 130,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:32.944761Z"
+        },
+        {
+            "id": 194,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 131,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"dose\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:32.947699Z"
+        },
+        {
+            "id": 195,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 132,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"route\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:32.950527Z"
+        },
+        {
+            "id": 196,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 133,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"start_date\", \"sourceRef\": \"\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.952909Z"
+        },
+        {
+            "id": 197,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 134,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"stop_date\", \"sourceRef\": \"\", \"fieldGroup\": \"PRODUCT\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.955290Z"
+        },
+        {
+            "id": 198,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 135,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"reaction_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:32.958603Z"
+        },
+        {
+            "id": 199,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 136,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"onset\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"PDF_PAGE\"}",
+            "createdAt": "2026-10-09T16:19:32.961598Z"
+        },
+        {
+            "id": 200,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 137,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"outcome\", \"sourceRef\": \"\", \"fieldGroup\": \"REACTION\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.964001Z"
+        },
+        {
+            "id": 201,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 138,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"serious\", \"sourceRef\": \"\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.966596Z"
+        },
+        {
+            "id": 202,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 139,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"seriousness_criteria\", \"sourceRef\": \"\", \"fieldGroup\": \"SEVERITY\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.969608Z"
+        },
+        {
+            "id": 203,
+            "entityType": "EXTRACTED_FIELD",
+            "entityId": 140,
+            "actor": "system",
+            "action": "AI_EXTRACTED",
+            "detailJson": "{\"fieldName\": \"case_narrative\", \"sourceRef\": \"\", \"fieldGroup\": \"NARRATIVE\", \"sourceType\": \"EMAIL_BODY\"}",
+            "createdAt": "2026-10-09T16:19:32.972243Z"
         }
     ]
 }

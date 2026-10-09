@@ -14,7 +14,8 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image as RLImage
+from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak, Image as RLImage, NextPageTemplate,
+                                PageTemplate, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle)
 from reportlab.pdfgen import canvas as rl_canvas
 from PIL import Image, ImageDraw, ImageFont
 
@@ -65,16 +66,38 @@ def make_digital_form_pdf(filename, title, fields, table=None, image_path=None, 
     return filename
 
 
-def make_article_pdf(filename, title, authors, journal_line, abstract, case_report, discussion, references, out_dir=None):
+def _two_column_doc(path):
+    """Journal-style layout: full-width title block, then two text columns (Section 3B multi-column)."""
+    width, height = LETTER
+    margin, gap, header_h = 0.75 * inch, 0.3 * inch, 1.2 * inch
+    col_w = (width - 2 * margin - gap) / 2
+    header = Frame(margin, height - margin - header_h, width - 2 * margin, header_h, id="header")
+    first_cols = [Frame(margin + i * (col_w + gap), margin, col_w, height - 2 * margin - header_h, id=f"c{i}")
+                  for i in range(2)]
+    later_cols = [Frame(margin + i * (col_w + gap), margin, col_w, height - 2 * margin, id=f"l{i}")
+                  for i in range(2)]
+    doc = BaseDocTemplate(path, pagesize=LETTER)
+    doc.addPageTemplates([PageTemplate(id="first", frames=[header, *first_cols]),
+                          PageTemplate(id="later", frames=later_cols)])
+    return doc
+
+
+def make_article_pdf(filename, title, authors, journal_line, abstract, case_report, discussion, references,
+                     out_dir=None, two_column=False):
     out_dir = out_dir or PDF_DIR
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, filename)
-    doc = SimpleDocTemplate(path, pagesize=LETTER, topMargin=0.75 * inch, bottomMargin=0.75 * inch)
+    if two_column:
+        doc = _two_column_doc(path)
+    else:
+        doc = SimpleDocTemplate(path, pagesize=LETTER, topMargin=0.75 * inch, bottomMargin=0.75 * inch)
     story = [
         Paragraph(title, H1),
         Paragraph(authors, ParagraphStyle("authors", parent=BODY, fontName="Helvetica-Oblique")),
         Paragraph(journal_line, ParagraphStyle("journal", parent=BODY, fontSize=9, textColor=colors.grey)),
-        Spacer(1, 10),
+    ]
+    story += [NextPageTemplate("later"), FrameBreak()] if two_column else [Spacer(1, 10)]
+    story += [
         Paragraph("Abstract", H2),
         Paragraph(abstract, BODY),
         Paragraph("Introduction", H2),
@@ -83,6 +106,10 @@ def make_article_pdf(filename, title, authors, journal_line, abstract, case_repo
             "We describe a case observed in clinical practice and discuss its implications.", BODY),
         Paragraph("Case Report", H2),
         Paragraph(case_report, BODY),
+    ]
+    if two_column:
+        story.append(FrameBreak())  # discussion + references fill the right-hand column
+    story += [
         Paragraph("Discussion", H2),
         Paragraph(discussion, BODY),
         Paragraph("References", H2),
@@ -351,6 +378,7 @@ articles = [
          references=["Smith J et al. Drug hypersensitivity reactions. Int J Pharmacovigilance 2024;9:112-119.",
                      "WHO Guidelines on ADR reporting, 2023."]),
     dict(filename="article-02.pdf",
+         two_column=True,  # journal-style two-column layout to exercise multi-column handling
          title="Pediatric Hepatotoxicity Associated with Ferbolex: A Case Report",
          authors="Nakamura T, Silva R.",
          journal="Pediatric Drug Safety Bulletin, Vol 8(1), 2026",
@@ -406,7 +434,7 @@ articles = [
 ]
 for a in articles:
     make_article_pdf(a["filename"], a["title"], a["authors"], a["journal"], a["abstract"],
-                      a["case_report"], a["discussion"], a["references"])
+                      a["case_report"], a["discussion"], a["references"], two_column=a.get("two_column", False))
 
 article_emails = [
     ("article-email-01", "dr.priya.nair@rivermed-clinic.example", "FYI - relevant published case report (Neptazol)",

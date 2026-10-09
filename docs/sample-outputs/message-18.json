@@ -16,15 +16,17 @@
             "detectedLanguage": "en",
             "pageCount": 1,
             "processed": true,
-            "summary": "The document is a Product Quality Complaint Form regarding Ferbolex 500mg tablets, submitted by a patient named S. Whitfield from the UK. The complaint involves the observation that some tablets in the bottle are a noticeably different color compared to the others. There is no accompanying photo to illustrate the issue. \n\nThis document appears relevant to a patient safety and product quality review because it raises a concern about the uniformity and potential quality of the medication. Differently colored tablets could indicate a manufacturing issue or contamination, which may affect the safety and efficacy of the product. Monitoring such complaints is important for ensuring that medications meet quality standards and are safe for patients. Therefore, it is imperative for the appropriate team to investigate this complaint further to assess any risks involved and determine if any action is necessary."
+            "summary": "This document is a Product Quality Complaint Form submitted by a patient named S. Whitfield from the UK regarding Ferbolex 500mg tablets, specifically batch number B9012. The complaint notes that some of the tablets in the bottle have a noticeably different color compared to the others. This indicates a potential quality issue with the product, which could impact patient safety and efficacy. \n\nThere is no accompanying photo to visually assess the color difference mentioned in the complaint. The document is relevant to a patient-safety and quality-complaint review because it raises concerns about the uniformity and quality of the medication, which are critical factors in ensuring that patients receive safe and effective pharmaceutical products. Quality complaints can indicate broader issues with manufacturing processes or product integrity, thus warranting further investigation. \n\nOverall, this complaint highlights a potential defect in the product quality that could affect patient confidence and safety, making it important for review.",
+            "extractionConfidence": 0.95,
+            "translatedText": null
         }
     ],
     "classifications": [
         {
-            "id": 23,
+            "id": 20,
             "category": "PQC",
-            "confidence": 1.0,
-            "reason": "The message reports a specific defect regarding the color of the tablets in the bottle, including a batch number.",
+            "confidence": 0.95,
+            "reason": "The message explicitly reports a defect in the product, specifically that some tablets are a different color than others, and includes a batch number.",
             "reviewerStatus": "PENDING",
             "reviewerCategory": null,
             "reviewedBy": null,
@@ -33,52 +35,52 @@
     ],
     "extractedFields": [
         {
-            "id": 249,
+            "id": 235,
             "attachmentId": 14,
             "caseNumber": null,
             "fieldGroup": "PQC",
             "fieldName": "product_name",
             "fieldValue": "Ferbolex 500mg tablets",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "EMAIL_BODY",
             "sourceRef": null,
             "reviewerStatus": "PENDING",
             "reviewerValue": null
         },
         {
-            "id": 250,
+            "id": 236,
             "attachmentId": 14,
             "caseNumber": null,
             "fieldGroup": "PQC",
             "fieldName": "batch_lot_number",
             "fieldValue": "B9012",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "EMAIL_BODY",
             "sourceRef": null,
             "reviewerStatus": "PENDING",
             "reviewerValue": null
         },
         {
-            "id": 251,
+            "id": 237,
             "attachmentId": 14,
             "caseNumber": null,
             "fieldGroup": "PQC",
             "fieldName": "defect_description",
             "fieldValue": "Some tablets in the bottle are a noticeably different color than the rest",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
             "reviewerValue": null
         },
         {
-            "id": 252,
+            "id": 238,
             "attachmentId": 14,
             "caseNumber": null,
             "fieldGroup": "PQC",
             "fieldName": "photo_mentioned",
             "fieldValue": "no",
-            "confidence": 1.0,
+            "confidence": 0.95,
             "sourceType": "PDF_PAGE",
             "sourceRef": "page 1",
             "reviewerStatus": "PENDING",
@@ -96,61 +98,61 @@
             "actor": "system",
             "action": "MESSAGE_INGESTED",
             "detailJson": "{\"fixture\": \"pqc-02.json\", \"sourceType\": \"EMAIL_FIXTURE\"}",
-            "createdAt": "2026-09-04T04:49:43.317626Z"
+            "createdAt": "2026-10-09T16:18:36.797100Z"
         },
         {
-            "id": 335,
+            "id": 318,
             "entityType": "ATTACHMENT",
             "entityId": 14,
             "actor": "system",
             "action": "AI_PDF_PROCESSED",
             "detailJson": "{\"flavor\": \"DIGITAL\", \"pageCount\": 1, \"confidence\": 0.95}",
-            "createdAt": "2026-09-04T04:51:19.213419Z"
+            "createdAt": "2026-10-09T16:20:23.028928Z"
         },
         {
-            "id": 342,
+            "id": 325,
             "entityType": "CLASSIFICATION",
-            "entityId": 23,
+            "entityId": 20,
             "actor": "system",
             "action": "AI_CLASSIFIED",
-            "detailJson": "{\"reason\": \"The message reports a specific defect regarding the color of the tablets in the bottle, including a batch number.\", \"category\": \"PQC\", \"confidence\": 1.0}",
-            "createdAt": "2026-09-04T04:51:22.681416Z"
+            "detailJson": "{\"reason\": \"The message explicitly reports a defect in the product, specifically that some tablets are a different color than others, and includes a batch number.\", \"category\": \"PQC\", \"confidence\": 0.95}",
+            "createdAt": "2026-10-09T16:20:26.198022Z"
         },
         {
-            "id": 343,
+            "id": 326,
             "entityType": "EXTRACTED_FIELD",
-            "entityId": 249,
+            "entityId": 235,
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"product_name\", \"sourceRef\": \"\", \"fieldGroup\": \"PQC\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:51:22.684222Z"
+            "createdAt": "2026-10-09T16:20:26.200203Z"
         },
         {
-            "id": 344,
+            "id": 327,
             "entityType": "EXTRACTED_FIELD",
-            "entityId": 250,
+            "entityId": 236,
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"batch_lot_number\", \"sourceRef\": \"\", \"fieldGroup\": \"PQC\", \"sourceType\": \"EMAIL_BODY\"}",
-            "createdAt": "2026-09-04T04:51:22.686532Z"
+            "createdAt": "2026-10-09T16:20:26.202221Z"
         },
         {
-            "id": 345,
+            "id": 328,
             "entityType": "EXTRACTED_FIELD",
-            "entityId": 251,
+            "entityId": 237,
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"defect_description\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:51:22.688684Z"
+            "createdAt": "2026-10-09T16:20:26.204320Z"
         },
         {
-            "id": 346,
+            "id": 329,
             "entityType": "EXTRACTED_FIELD",
-            "entityId": 252,
+            "entityId": 238,
             "actor": "system",
             "action": "AI_EXTRACTED",
             "detailJson": "{\"fieldName\": \"photo_mentioned\", \"sourceRef\": \"page 1\", \"fieldGroup\": \"PQC\", \"sourceType\": \"PDF_PAGE\"}",
-            "createdAt": "2026-09-04T04:51:22.690777Z"
+            "createdAt": "2026-10-09T16:20:26.206509Z"
         }
     ]
 }

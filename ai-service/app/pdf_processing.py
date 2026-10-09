@@ -74,6 +74,10 @@ ARTICLE_SYSTEM_PROMPT = (
     "no real patient case at all, say so explicitly in one sentence."
 )
 
+# Machine translation can shift nuance (e.g. dose units, negations), so facts read from a
+# translated page are never reported as fully certain.
+TRANSLATION_CONFIDENCE = 0.9
+
 SUMMARY_SYSTEM_PROMPT = (
     "You write short, plain-language summaries of pharmacovigilance intake documents "
     "for a human reviewer who has not read the document yet."
@@ -129,8 +133,9 @@ def _process_scanned(doc, page_count: int) -> PdfProcessResponse:
             input_schema=OCR_PAGE_SCHEMA,
             images_b64=[b64],
         )
-        pages.append(PageDto(pageNumber=i + 1, text=result["text"]))
-        confidences.append(float(result["confidence"]))
+        page_confidence = max(0.0, min(1.0, float(result["confidence"])))
+        pages.append(PageDto(pageNumber=i + 1, text=result["text"], confidence=page_confidence))
+        confidences.append(page_confidence)
 
     images.extend(_extract_meaningful_images(doc))
 
@@ -160,7 +165,7 @@ def _process_non_english(doc, file_path: str, raw_pages_text: list[str], page_co
             system=TRANSLATE_SYSTEM_PROMPT,
             user_text=f"Translate this page {i + 1} text to English:\n\n{text}",
         )
-        pages.append(PageDto(pageNumber=i + 1, text=text, translatedText=translated))
+        pages.append(PageDto(pageNumber=i + 1, text=text, translatedText=translated, confidence=TRANSLATION_CONFIDENCE))
 
     full_text = "\n".join(p.translatedText or "" for p in pages)
     tables = _extract_tables(file_path)
@@ -176,7 +181,7 @@ def _process_non_english(doc, file_path: str, raw_pages_text: list[str], page_co
         tables=tables,
         images=images,
         summary=summary,
-        confidence=0.85,
+        confidence=TRANSLATION_CONFIDENCE,
     )
 
 

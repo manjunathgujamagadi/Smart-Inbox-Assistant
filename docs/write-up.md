@@ -5,7 +5,8 @@ known limitations, and what would change for production.
 
 ## 1. What was built
 
-A working prototype that ingests emails (real IMAP mailbox, or a batch of synthetic fixtures),
+A working prototype that ingests emails from a real IMAP test mailbox (with an offline fixture
+loader as a fallback),
 processes PDF attachments across all four required "flavors," classifies each message into one or
 more of ICSR / PQC / MI / Not Relevant with confidence + reasoning, extracts category-specific
 structured fields with per-field confidence and a source pointer (email body or PDF+page), and
@@ -21,15 +22,15 @@ classification and field. Every AI decision and every reviewer action is written
                     └──────┬──────┘
                            │ REST (/api/*)
                            ▼
-                    ┌─────────────┐        IMAP           ┌──────────────┐
-   test-data/  ────▶│ Spring Boot │◀──────────────────────│ test mailbox │
-   (batch run)       │  (backend)  │
+                    ┌─────────────┐   IMAP poll (30s)     ┌──────────────┐   SMTP   senders /
+   test-data/  ····▶│ Spring Boot │◀──────────────────────│ test mailbox │◀──────── send_test_emails.py
+   (offline only)   │  (backend)  │
                     │             │  REST (/ai/*)
                     │  - ingestion│───────────┐
                     │  - queue    │           ▼
                     │  - audit log│      ┌───────────┐
                     │  - review   │      │  FastAPI  │  Azure OpenAI
-                    └──────┬──────┘      │(ai-service)│──▶ (gpt-4o-mini)
+                    └──────┬──────┘      │(ai-service)│──▶ (gpt-5-mini) 
                            │             └───────────┘
                            ▼
                     ┌─────────────┐
@@ -48,15 +49,28 @@ Flow: Angular → Spring Boot → Python AI service → Postgres, with a durable
 | Backend | Spring Boot | Spring Boot 3 / Java 21 | As suggested. |
 | AI service | Python | FastAPI | As suggested; FastAPI + Pydantic gives typed request/response schemas that mirror the Java DTOs 1:1. |
 | Database | Oracle (PL/SQL) | **PostgreSQL** | Deliberate deviation. Oracle's local-dev story (multi-GB Docker image, licensing friction, PL/SQL syntax overhead) buys little for a prototype — the relational modeling, SQL, and audit-log design are the same skill either way, and Postgres gets a working DB running in seconds via `docker compose up`. Everything here (schema, JSONB columns for tables/audit detail, indexes) ports to Oracle with minor syntax changes if this became a real Clinevo deployment. |
-| AI model | "Your choice" | **Azure OpenAI, gpt-4o-mini** | See below. |
+| AI model | "Your choice" | **Azure OpenAI, gpt-5-mini** | See below. |
 
-### AI model: Azure OpenAI (gpt-4o-mini)
+### AI model: Azure OpenAI (gpt-5-mini)
 
-- **Cost/speed**: gpt-4o-mini is priced for high-volume document processing (this pipeline makes
-  several model calls per document: PDF flavor-specific extraction, per-page OCR or translation,
-  a summary, and one classification+extraction call) - a frontier-tier model would meaningfully
-  raise per-document cost without a clear quality win at this task's difficulty.
-- **Multimodal**: gpt-4o-mini handles both text and vision in the same API, so one model serves
+The prototype was first built on gpt-4o-mini and then moved to **gpt-5-mini**, a small *reasoning*
+model; both are supported by the same code (`llm_client.py` detects reasoning models by name).
+
+- **Why switch**: classification here is a judgment call on borderline multi-label cases (is a
+  question inside a safety report an info request? is a recalled batch a quality complaint?).
+  gpt-5-mini reasons before answering, which gives tighter one-line reasons and better-spread
+  confidence scores than gpt-4o-mini on the same prompts.
+- **Cost/speed trade-off**: it is still a "mini"-tier model priced for high-volume processing (this
+  pipeline makes several calls per document: flavor-specific extraction, per-page OCR or
+  translation, a summary, and one classification+extraction call). The cost is latency: hidden
+  reasoning makes each call ~5-7 s, so PDF-bearing documents take ~40-50 s end to end (vs ~20 s on
+  gpt-4o-mini) - inside the brief's "a few seconds to a minute", and the queue keeps the UI responsive.
+- **API differences handled**: reasoning models accept only the default temperature (so the
+  `temperature=0` used for classification on gpt-4o-mini is dropped - the code-enforced category
+  rules in §5 keep results consistent instead) and take `max_completion_tokens`, which must also
+  cover hidden reasoning tokens (budget raised to 16k). `reasoning_effort=low` was tried for speed
+  and rejected: the model then skipped reading images, breaking OCR.
+- **Multimodal**: gpt-5-mini handles both text and vision in the same API, so one model serves
   OCR of scanned/handwritten pages, description of embedded images, and text classification/
   extraction - no second vision-specific model or separate OCR library needed.
 - **Structured output**: OpenAI's function-calling with `strict: true` (see §5) gives schema-
@@ -89,11 +103,31 @@ Flyway's own history table. Key design points:
 
 ### Intake (Section 3A)
 
-`MailIngestionService` polls a real IMAP mailbox (Jakarta Mail) on a schedule, or
-`LocalBatchIngestionService` ingests a directory of JSON email fixtures (used for the required
-synthetic-data batch run, and for development before real mailbox credentials existed). Both
-converge on the same path: extract sender/subject/date/body, save PDF attachments to a shared
-storage volume (other file types are logged only, never processed, per spec), and enqueue.
+`MailIngestionService` polls a real IMAP test mailbox (Jakarta Mail) every 30s; a "Check mailbox"
+button polls on demand. The synthetic test set is delivered to that mailbox as real emails with
+PDF attachments by `test-data/send_test_emails.py`, so the batch run exercises the same intake a
+production mailbox would. `LocalBatchIngestionService` (JSON fixtures from disk) remains only as an
+offline fallback. Both converge on the same path: extract sender/subject/date/body, save PDF
+attachments to a shared storage volume (other file types are logged only, never processed, per
+spec), and enqueue.
+
+Decisions in the IMAP path:
+
+- **Bounded scan.** Only mail received since the newest already-ingested email (minus a day, so
+  downtime never loses mail) is searched; on first run, from the day before startup or
+  `MAIL_INGEST_SINCE`. Connecting an existing mailbox therefore doesn't send its whole history to
+  the LLM. The mailbox is opened read-only; de-duplication is by Message-ID (IMAP UID as fallback).
+- **All-or-nothing per email.** Each email is downloaded once in full and parsed locally, then the
+  message, its attachments and its queue job are written in one transaction. A failure leaves no
+  row, so the email is retried on the next poll instead of being marked "seen" but never processed.
+  Parsing locally also avoids depending on how each IMAP server numbers nested MIME parts (testing
+  against GreenMail showed a server returning the wrong part for a forwarded email).
+- **Real-world email shapes.** Forwarded emails (`message/rfc822`) are unwrapped — the original
+  reporter and text are kept and their PDFs processed; HTML-only bodies are converted to text;
+  attachments are only treated as PDFs if the bytes are actually a PDF; same-named attachments
+  don't overwrite each other.
+- **Receipt date, not sent date.** `received_at` is the mailbox's receipt time (IMAP INTERNALDATE):
+  in pharmacovigilance, receipt starts the reporting clock, and the sender's clock can't be trusted.
 
 ### The queue
 
@@ -145,7 +179,7 @@ the schema on its own.
 
 **Classification precision - an iterative process, not a one-shot prompt**: running the full
 synthetic batch (not just spot-checking a few messages) surfaced real over-classification patterns
-from gpt-4o-mini that reasoning about the prompt in the abstract never would have caught. In order:
+from the model (gpt-4o-mini at the time) that reasoning about the prompt in the abstract never would have caught. In order:
 
 1. PQC assigned to a pure ICSR case with no defect evidence ("this *could* indicate a quality
    issue"). Fixed by requiring a *named* defect for PQC, not mere product involvement.
@@ -165,11 +199,26 @@ from gpt-4o-mini that reasoning about the prompt in the abstract never would hav
    request?) showed visible run-to-run flip-flopping at the default temperature, and `0` favors
    its single most-confident reading instead.
 
-After four rounds, 17 of 18 documents in the final batch carry zero spurious secondary labels. One
-residual case remains genuinely borderline even after all four fixes (see §8) - documented rather
-than hidden, since a compact model won't reach 100% precision on ambiguous secondary-label
-judgment through prompting alone, and the human review step is exactly the intended safety net for
-that residual uncertainty.
+5. Prompting alone still left slips (an `ICSR` + `NOT_RELEVANT 0%` pair; an `MI` label on a
+   case-report email with an invented question). So the Section 2 definitions are now also
+   **enforced in code** after the model answers (`_enforce_category_rules`): `NOT_RELEVANT` never
+   coexists with another category; `MI` is dropped when `ICSR` or `PQC` applies (the brief defines MI
+   as a question "with no bad reaction and no defect"); `MI` also requires a question or explicit
+   request actually present in the source; zero-confidence labels are discarded; and fields belonging
+   to a category that was not assigned are removed. The prompt does the judgment, the code guarantees
+   the definitions.
+
+With those rules, all 18 emails in the final batch carry exactly the categories the brief's
+definitions call for (13 ICSR, 2 of them also PQC; 2 PQC-only; 2 MI-only; 1 Not Relevant).
+
+**Confidence scoring**: an early batch had 283 of 288 field confidences at exactly `1.0`, which
+tells a reviewer nothing. Two changes fixed that. The prompt now carries an explicit calibration
+rubric (verbatim value 0.95-1.0; normalised or paraphrased 0.75-0.9; implied 0.5-0.7; unsure below
+0.5; and separate guidance for "Not stated"). And each PDF page carries a *reading confidence* (the
+vision model's OCR confidence for scanned pages, a fixed 0.9 for machine-translated pages, none for an
+exact digital text layer), which is shown to the model and then applied as a hard cap: a fact can
+never be more certain than the reading of the page it came from (`_cap_confidence`). The PDF-level
+OCR confidence is stored on the attachment and shown in the review screen.
 
 This is exactly the kind of "getting the domain right" issue the assignment scores on, and all of
 it only surfaced by running the full batch and reading real output - not from reading the prompt.
@@ -186,14 +235,17 @@ exercised rather than round-tripped.
 
 ### Batch run results (Section 3E)
 
-Final run over all 18 documents, processed automatically via `POST /api/batch/run`:
+Final run over all 18 emails (via `POST /api/batch/run`) plus the 2 literature-screening uploads,
+processed automatically through the queue:
 
 | Metric | Value |
 |---|---|
-| Documents processed | 18 / 18 (0 failed) |
-| Average time per document | ~12.5s |
-| Fastest | ~1.5s (short MI/irrelevant emails, no attachment) |
-| Slowest | ~22s (documents with a PDF attachment: OCR, translation, or article extraction plus tables/images) |
+| Documents processed | 20 / 20 (0 failed) |
+| Average time per document | ~12.3s |
+| Fastest | ~1.2s (short MI/irrelevant emails, no attachment) |
+| Slowest | ~25s (documents with a PDF attachment: OCR, translation, or article extraction plus tables/images) |
+
+The same numbers, per document, are on the **Processing report** page of the UI.
 
 Per-document timing is queryable live via `GET /api/batch/report`, and full extracted output for
 every document is exported under `docs/sample-outputs/`. All 18 primary category assignments
@@ -242,26 +294,27 @@ system, not from reading the code:
 
 ## 8. Known limitations
 
-- **Secondary/multi-label classification is not 100% reliable on genuinely ambiguous cases.** Even
-  after four rounds of prompt fixes and `temperature=0` (§5), one message in the final 18-document
-  batch still carries a defensible-but-debatable secondary `MI` label: an ICSR email containing the
-  phrase "not 100% sure on exact timing" gets read as an implicit request for clarification, even
-  though nothing in it is phrased as a question. Unlike the earlier, clearly-wrong fabrications this
-  replaced, the extracted field is now at least grounded in real quoted text rather than invented -
-  but it's still a misread of intent, not a correct answer. A stronger model for the classification
-  step specifically, or a small set of few-shot examples encoding this exact distinction, would
-  likely close the remaining gap; this is exactly the kind of case the human review step exists for.
+- **Confidence scores are model-reported, then rule-capped - not statistically calibrated.** The
+  rubric and the page-level cap (§5) spread scores over a meaningful range, but the underlying
+  numbers still come from the model's own judgment; the vision model in particular rates its own
+  handwriting transcription quite high (0.95 on the synthetic forms). Real calibration would need a
+  labelled set of reviewed cases to fit against - which the reviewer accept/override data in the
+  audit log is exactly the start of.
+- **The MI "explicit question" check is lexical** (a `?` or a known request phrase in the source). It
+  stops invented questions, but a question phrased unusually without a question mark could be missed;
+  the reviewer can add the category back via override.
 - **PDF flavor detection is heuristic, not learned.** Text-density thresholds and keyword lists
   work well on this test set but would need tuning (or a real classifier) against a broader real-
   world document mix.
 - **No OCR fallback library** (e.g. Tesseract) - scanned/handwritten pages rely entirely on the
   vision model's transcription; there's no second opinion to cross-check against.
 - **Multi-column layout detection is a simple bounding-box heuristic**, not true column
-  reconstruction - it decides "this looks like an article," not exact reading order within columns.
+  reconstruction - it decides "this looks like an article," and relies on PyMuPDF's block order for
+  reading order. `article-02.pdf` is a genuine two-column journal layout to exercise this path.
 - **Retry is batch-level, not automatic.** `POST /api/batch/retry-failed` re-enqueues every FAILED
   message (used successfully during testing after a transient network error - see §6), but there's
-  no automatic backoff-and-retry inside a single job, and no per-message "retry" button in the UI
-  yet - a human has to notice a FAILED status and trigger the batch-wide retry.
+  no automatic backoff-and-retry inside a single job. In the UI a human triggers it with **Retry
+  failed** on the Processing report page; there is no per-message retry button yet.
 - **Frontend has no automated tests** - manually verified in-browser and via a scripted Playwright
   pass (queue list, PDF viewer, field override, submit, audit trail all exercised end-to-end - see
   `docs/screenshots/`), but there's no CI test suite.
